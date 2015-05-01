@@ -1,0 +1,3 @@
+database-user fp_app_user
+database-name football_prediction
+host localhost
