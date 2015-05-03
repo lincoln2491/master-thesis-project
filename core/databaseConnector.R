@@ -1,5 +1,6 @@
 library("RMySQL")
 library("stringr")
+source("core/utils.R")
 
 createConnection <- function(){
   if(! exists("connection") ){
@@ -12,26 +13,32 @@ createConnection <- function(){
   return(connection)
 }
 
+
+
 writeDataToDatabase <- function(tableName, data){
   connection = createConnection()
   dbWriteTable(connection, tableName ,value = data, append = TRUE, row.names = FALSE)
 }
 
-getIdForSeason <-function(startYear){
+getIdForSeason <-function(seasonStartYear){
   connection = createConnection()
-  endYear = startYear + 1
-  if(nchar(as.character(startYear)) < 2){
-    startYear = paste("0", startYear, sep = "")
-  } 
-  if(nchar(as.character(endYear)) < 2){
-    endYear = paste("0", endYear, sep = "")
-  }
-  if(nchar(as.character(endYear)) > 2){
-    endYear = str_sub(endYear, start = -2)
-  } 
+  tmp = getSeasonsName(seasonStartYear)
+  seasonStartYear = tmp[1]
+  seasonEndYear = tmp[2]
   
-  seasonName = paste(startYear, "/", endYear , sep = "")
+  seasonName = paste(seasonStartYear, "/", seasonEndYear , sep = "")
   query = paste("SELECT idSeasons FROM Seasons WHERE name = \"", seasonName, "\";", sep = "")
   result = dbSendQuery(connection, query)
-  return(fetch(result)[1,1])
+  id = fetch(result)[1,1]
+  dbClearResult(result)
+  return(id)
+}
+
+getIdForLeague <-function(leagueName){
+  connection = createConnection()
+  query = paste("SELECT idLeague FROM Leagues WHERE nameInFootbalData = \"", leagueName, "\";", sep = "")
+  result = dbSendQuery(connection, query)
+  id = fetch(result)[1,1]
+  dbClearResult(result)
+  return(id)
 }
