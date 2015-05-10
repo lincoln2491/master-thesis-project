@@ -1,5 +1,6 @@
 library("stringr")
 library("plyr")
+library("hash")
 source("core/utils.R")
 source("core/databaseConnector.R")
 
@@ -9,6 +10,7 @@ removeUnUsedColumns <- function(data){
   data <- data[, columnsToSelect]
   return(data)
 }
+
 
 removeEmptyLines <- function(data){
   data = data[!(data$HomeTeam == "" | data$AwayTeam == "" ),]
@@ -22,7 +24,9 @@ loadLeagueData <- function(league, seasonStartYear){
   
   dirName = paste("data/", seasonStartYear, "-", seasonEndYear, "/", league,  ".csv", sep = "")
   
-  data = read.csv(dirName,  header = TRUE, sep = ",")
+  data = read.csv(dirName,  header = TRUE, sep = ",", stringsAsFactors = FALSE)
+  
+  
   data = removeUnUsedColumns(data)
   data = removeEmptyLines(data)
   return(data)
@@ -38,15 +42,19 @@ loadLeagueDataForAllSeasons <- function(league){
     seasonName  = paste(tmpYears[1], "/", tmpYears[2], sep = "")
     
     idSeason = getIdForSeason(i)    
-    tmpData$season_id = idSeason
+    tmpData$season_fk = idSeason
     tmpData$Div = idLeague
   
     tmpData = renameColumns(tmpData)
+    
+    tmpData$match_date <- unlist(lapply(tmpData$match_date, changeDateFormat))
     
     result[seasonName] = tmpData
   }
   return(result)
 }
+
+
 
 renameColumns <-function(data){
   data = rename(data, c("Div" = "league_fk","Referee" = "referee_fk",
@@ -64,4 +72,56 @@ renameColumns <-function(data){
   return(data) 
 }
 
+getAllTeamsFromData <- function(data){
+  allTeams = list()
+  for(key in keys(data)){
+    tmpData = data[[key]]
+    allTeams = c(allTeams, tmpData$away_team_fk, recursive = TRUE)
+  }
+  allTeams = unique(allTeams)
+  return(allTeams)
+}
 
+etl <- function(league){
+  leagueData = loadLeagueDataForAllSeasons(league)
+  name = getAllTeamsFromData(leagueData)
+  country = getCountryLeague(league)
+  dataTable = data.frame(name, city = NA, country, nameInFootballData = name)
+  writeDataToDatabase("Clubs", dataTable)
+  
+  
+  
+  for(key in keys(leagueData)){
+    tmpData = leagueData[[key]]
+    for(club in name){
+      id = getClubId(club)
+      tmpData$home_team_fk[tmpData$home_team_fk == club] = id
+      tmpData$away_team_fk[tmpData$away_team_fk == club] = id
+    }
+    writeDataToDatabase("Matches", tmpData)
+  }
+ 
+  
+}
+
+getAllReferees <- function(data){
+  allReferees = list()
+  for(key in keys(data)){
+    tmpData = data[[key]]
+    allTeams = c(allReferees, tmpData$referee_fk, recursive = TRUE)
+  }
+  allReferees = unique(allReferees)
+  return(allReferees)
+}
+
+changeDateFormat <- function(oldDate){
+  splited = unlist(strsplit(oldDate, "/"))
+  year = splited[3]
+  if(substr(year, 1, 1) == "9"){
+    year = paste("19", year, sep = "")
+  }else{
+    year = paste("20", year, sep = "")
+  }
+  newDate = paste(year, splited[2], splited[1], sep = "-")
+  return(newDate)
+}

@@ -20,6 +20,8 @@ writeDataToDatabase <- function(tableName, data){
   dbWriteTable(connection, tableName ,value = data, append = TRUE, row.names = FALSE)
 }
 
+
+#TODO do better
 getIdForSeason <-function(seasonStartYear){
   connection = createConnection()
   tmp = getSeasonsName(seasonStartYear)
@@ -36,7 +38,25 @@ getIdForSeason <-function(seasonStartYear){
 
 getIdForLeague <-function(leagueName){
   connection = createConnection()
-  query = paste("SELECT idLeague FROM Leagues WHERE nameInFootbalData = \"", leagueName, "\";", sep = "")
+  query = paste("SELECT idLeague FROM Leagues WHERE nameInFootballData = \"", leagueName, "\";", sep = "")
+  result = dbSendQuery(connection, query)
+  id = fetch(result)[1,1]
+  dbClearResult(result)
+  return(id)
+}
+
+getCountryLeague <-function(leagueName){
+  connection = createConnection()
+  query = paste("SELECT country FROM Leagues WHERE nameInFootballData = \"", leagueName, "\";", sep = "")
+  result = dbSendQuery(connection, query)
+  id = fetch(result)[1,1]
+  dbClearResult(result)
+  return(id)
+}
+
+getClubId <-function(nameInFootballData){
+  connection = createConnection()
+  query = paste("SELECT idClubs FROM Clubs WHERE nameInFootballData = \"", nameInFootballData, "\";", sep = "")
   result = dbSendQuery(connection, query)
   id = fetch(result)[1,1]
   dbClearResult(result)
