@@ -56,7 +56,16 @@ getCountryLeague <-function(leagueName){
 
 getClubId <-function(nameInFootballData){
   connection = createConnection()
-  query = paste("SELECT idClubs FROM Clubs WHERE nameInFootballData = \"", nameInFootballData, "\";", sep = "")
+  query = paste("SELECT idClubs FROM Clubs WHERE name_in_football_data = \"", nameInFootballData, "\";", sep = "")
+  result = dbSendQuery(connection, query)
+  id = fetch(result)[1,1]
+  dbClearResult(result)
+  return(id)
+}
+
+getRefereeId <-function(nameInFootballData){
+  connection = createConnection()
+  query = paste("SELECT idReferees FROM Referees WHERE name_in_football_data = \"", nameInFootballData, "\";", sep = "")
   result = dbSendQuery(connection, query)
   id = fetch(result)[1,1]
   dbClearResult(result)

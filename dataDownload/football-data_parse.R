@@ -6,7 +6,8 @@ source("core/databaseConnector.R")
 
 removeUnUsedColumns <- function(data){
   columnsToSelect <- names(data) %in%  c("Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "HTHG", "HTAG", "Attendance", 
-                                     "Referee", "HS" ,"AS" ,"HST" ,"AST" ,"HHW" ,"AHW" ,"HC" ,"AC" ,"HF","AF","HO" ,"AO" ,"HY","AY","HR" ,"AR")
+                                     #"Referee",
+                                     "HS" ,"AS" ,"HST" ,"AST" ,"HHW" ,"AHW" ,"HC" ,"AC" ,"HF","AF","HO" ,"AO" ,"HY","AY","HR" ,"AR")
   data <- data[, columnsToSelect]
   return(data)
 }
@@ -57,7 +58,8 @@ loadLeagueDataForAllSeasons <- function(league){
 
 
 renameColumns <-function(data){
-  data = rename(data, c("Div" = "league_fk","Referee" = "referee_fk",
+  data = rename(data, c("Div" = "league_fk",
+                        #"Referee" = "referee_fk",
                         "HomeTeam" = "home_team_fk","AwayTeam" = "away_team_fk",
                         "Date" = "match_date","Attendance" = "attendance",
                         "FTHG" = "home_goals","FTAG" = "away_goals",
@@ -82,12 +84,27 @@ getAllTeamsFromData <- function(data){
   return(allTeams)
 }
 
+getAllReferees <- function(data){
+  allReferees = list()
+  for(key in keys(data)){
+    tmpData = data[[key]]
+    allReferees = c(allReferees, tmpData$referee_fk, recursive = TRUE)
+  }
+  allReferees = unique(allReferees)
+  return(allReferees)
+}
+
 etl <- function(league){
   leagueData = loadLeagueDataForAllSeasons(league)
   name = getAllTeamsFromData(leagueData)
   country = getCountryLeague(league)
-  dataTable = data.frame(name, city = NA, country, nameInFootballData = name)
-  writeDataToDatabase("Clubs", dataTable)
+  clubsTable = data.frame(name, city = NA, country, name_in_football_data = name)
+  writeDataToDatabase("Clubs", clubsTable)
+  
+  nameR = getAllReferees(leagueData)
+  if(!is.null(nameR)){
+    refeeresTable = data.frame(name = nameR, NA, NA, country, name_in_football_data = nameR)
+  }
   
   
   
@@ -98,21 +115,19 @@ etl <- function(league){
       tmpData$home_team_fk[tmpData$home_team_fk == club] = id
       tmpData$away_team_fk[tmpData$away_team_fk == club] = id
     }
+    #if(!all(is.na(tmpData$referee_fk))){
+    #  for(referee in nameR){
+    #    id = getRefereeId(referee)
+    #    tmpData$referee_fk[tmpData$referee_fk == referee] = id
+    #  }
+    #
     writeDataToDatabase("Matches", tmpData)
   }
  
   
 }
 
-getAllReferees <- function(data){
-  allReferees = list()
-  for(key in keys(data)){
-    tmpData = data[[key]]
-    allTeams = c(allReferees, tmpData$referee_fk, recursive = TRUE)
-  }
-  allReferees = unique(allReferees)
-  return(allReferees)
-}
+
 
 changeDateFormat <- function(oldDate){
   splited = unlist(strsplit(oldDate, "/"))
