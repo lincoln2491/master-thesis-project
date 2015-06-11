@@ -1,5 +1,1 @@
-library(XML)
-
-parseSquawka(league){
-  
-}
+library(XML) 
