@@ -2,6 +2,13 @@ library("RMySQL")
 library("stringr")
 source("core/utils.R")
 
+readTableFromMatches <- function(){
+    result = readDataFromDatabase("Matches")
+    clubs = readDataFromDatabase("Clubs")
+    
+    return(result);
+}
+
 readDataFromDatabase <- function(tableName) {
     con = createConnection()
     result = dbReadTable(con, tableName)
