@@ -22,7 +22,7 @@ def getHtmlFromUrl(url):
 
 def getAllLinksFromPage(page):
     root = etree.fromstring(page)
-    
+
 tmp = getLeagueUrl(spanishLeagueId, "2013", 12)
 tmp = getHtmlFromUrl(tmp)
 
