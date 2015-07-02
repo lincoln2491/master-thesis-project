@@ -16,3 +16,15 @@ getSeasonsName <- function(seasonStartYear) {
     
     return(c(as.character(seasonStartYear), as.character(endYear)))
 } 
+
+getResult <- function(home_goals, away_goals){ 
+  if (home_goals > away_goals){
+    return("H")}
+  else if (home_goals < away_goals){
+    return("A") 
+  } 
+  else{
+    return("D")   
+  }  
+}
+    

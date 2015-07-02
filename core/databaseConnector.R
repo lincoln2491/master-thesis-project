@@ -1,13 +1,20 @@
 library("RMySQL")
 library("stringr")
+library("tidyr")
+library("data.table")
 source("core/utils.R")
 
 readTableFromMatches <- function(){
-    result = readDataFromDatabase("Matches")
+    results = readDataFromDatabase("Matches")
     clubs = readDataFromDatabase("Clubs")
-    
-    return(result);
+    results$home_team_fk <- with(clubs,  name[match(results$home_team_fk, idClubs)])
+    results$away_team_fk <- with(clubs,  name[match(results$away_team_fk, idClubs)])
+    results = separate(data = results, col = match_date, into = c("year", "month", "day"), sep = "-")
+    results = Filter(function(x) !all(is.na(x)), results)
+    results$result = mapply(getResult, results$home_goals, results$away_goals)
+    return(results);
 }
+
 
 readDataFromDatabase <- function(tableName) {
     con = createConnection()
