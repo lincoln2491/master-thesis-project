@@ -2,18 +2,7 @@ library("RMySQL")
 library("stringr")
 library("tidyr")
 library("data.table")
-source("core/utils.R")
 
-readTableFromMatches <- function(){
-    results = readDataFromDatabase("Matches")
-    clubs = readDataFromDatabase("Clubs")
-    results$home_team_fk <- with(clubs,  name[match(results$home_team_fk, idClubs)])
-    results$away_team_fk <- with(clubs,  name[match(results$away_team_fk, idClubs)])
-    results = separate(data = results, col = match_date, into = c("year", "month", "day"), sep = "-")
-    results = Filter(function(x) !all(is.na(x)), results)
-    results$result = mapply(getResult, results$home_goals, results$away_goals)
-    return(results);
-}
 
 
 readDataFromDatabase <- function(tableName) {
@@ -92,3 +81,13 @@ getRefereeId <- function(nameInFootballData) {
     dbClearResult(result)
     return(id)
 } 
+
+getSeasonIdByName <-function(name){
+  connection = createConnection()
+  query = paste("SELECT idSeasons FROM football_prediction.Seasons WHERE name = '", name, "';", 
+                sep = "")
+  result = dbSendQuery(connection, query)
+  id = fetch(result)[1, 1]
+  dbClearResult(result)
+  return(id)
+}

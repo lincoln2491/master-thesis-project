@@ -1,3 +1,6 @@
+source("core/databaseConnector.R")
+
+
 getSeasonsName <- function(seasonStartYear) {
     endYear = seasonStartYear + 1
     if (nchar(as.character(seasonStartYear)) < 2) {
@@ -27,4 +30,44 @@ getResult <- function(home_goals, away_goals){
     return("D")   
   }  
 }
-    
+  
+getFromSeasonRange <- function(data, seasonStartYearFor, seasonStartYearTo){
+  if(!missing(seasonStartYearFor) && !is.na(seasonStartYearFor)){
+    tmp = getSeasonsName(seasonStartYearFor)
+    seasonStartYearFor = paste(tmp[1], "/", tmp[2], sep = "")
+    seasonStartYearFor = getSeasonIdByName (seasonStartYearFor)
+    data = data[data$season_fk >= seasonStartYearFor,]
+  }
+  
+  if(!missing(seasonStartYearTo) && !is.na(seasonStartYearTo)){
+    tmp = getSeasonsName(seasonStartYearTo)
+    seasonStartYearTo = paste(tmp[1], "/", tmp[2], sep = "")
+    seasonStartYearTo = getSeasonIdByName (seasonStartYearTo)
+    data = data[data$season_fk <= seasonStartYearTo,]
+  }
+  
+  return(data)
+}
+
+
+
+readTableFromMatches <- function(){
+  results = readDataFromDatabase("Matches")
+  clubs = readDataFromDatabase("Clubs")
+  results$home_team_fk <- with(clubs,  name[match(results$home_team_fk, idClubs)])
+  results$away_team_fk <- with(clubs,  name[match(results$away_team_fk, idClubs)])
+  results = separate(data = results, col = match_date, into = c("year", "month", "day"), sep = "-")
+  results = Filter(function(x) !all(is.na(x)), results)
+  results$result = mapply(getResult, results$home_goals, results$away_goals)
+  return(results);
+}
+
+removeColumnsWhereAllIsNa <-function(data){
+  data = Filter(function(x) !all(is.na(x)), data)
+  return(data)
+}
+
+removeColumnsWhereAnyIsNa <-function(data){
+  data = Filter(function(x) !any(is.na(x)), data)
+  return(data)
+}
