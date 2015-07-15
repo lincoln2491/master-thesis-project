@@ -38,7 +38,7 @@ loadLeagueData <- function(league, seasonStartYear) {
 loadLeagueDataForAllSeasons <- function(league) {
     result = hash()
     idLeague = getIdForLeague(league)
-    for (i in 93:113) {
+    for (i in 93:114) {
         tmpData = loadLeagueData(league, i)
         tmpYears = getSeasonsName(i)
         seasonName = paste(tmpYears[1], "/", tmpYears[2], sep = "")
@@ -131,3 +131,12 @@ changeDateFormat <- function(oldDate) {
     newDate = paste(year, splited[2], splited[1], sep = "-")
     return(newDate)
 } 
+
+# for england season 02/03
+changeDateFormat2 <- function(oldDate) {
+  splited = unlist(strsplit(oldDate, "/"))
+  year = splited[3]
+  newDate = paste(year, splited[2], splited[1], sep = "-")
+  return(newDate)
+} 
+

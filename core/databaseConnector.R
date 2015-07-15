@@ -91,3 +91,13 @@ getSeasonIdByName <-function(name){
   dbClearResult(result)
   return(id)
 }
+
+getLeagueNameById <-function(id){
+  connection = createConnection()
+  query = paste("SELECT name FROM football_prediction.Leagues WHERE idLeague = '", id, "';", 
+                sep = "")
+  result = dbSendQuery(connection, query)
+  name = fetch(result)[1, 1]
+  dbClearResult(result)
+  return(name)
+}

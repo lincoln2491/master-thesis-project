@@ -58,7 +58,7 @@ readTableFromMatches <- function(){
   results$away_team_fk <- with(clubs,  name[match(results$away_team_fk, idClubs)])
   results = separate(data = results, col = match_date, into = c("year", "month", "day"), sep = "-")
   results = Filter(function(x) !all(is.na(x)), results)
-  results$result = mapply(getResult, results$home_goals, results$away_goals)
+  results$result =  as.factor(mapply(getResult, results$home_goals, results$away_goals))
   return(results);
 }
 
@@ -71,3 +71,13 @@ removeColumnsWhereAnyIsNa <-function(data){
   data = Filter(function(x) !any(is.na(x)), data)
   return(data)
 }
+
+getData <- function(){
+  tmp = readTableFromMatches()
+  tmp = getFromSeasonRange(tmp, 2005)
+  tmp = removeColumnsWhereAnyIsNa(tmp)
+  tmp$league_fk = sapply(tmp$league_fk, getLeagueNameById)
+  return(tmp)
+}
+
+
