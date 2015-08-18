@@ -77,32 +77,4 @@ removeColumnsWhereAnyIsNa <-function(data){
   return(data)
 }
 
-getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10, forWho = "home"){
-  thisMatch = data[ data$idMatch == idMatch,]
-  
-  
-  if(forWho == "home"){
-    data = data[data$home_team_fk == thisMatch$home_team_fk,]
-  }
-  else if(forWho == "away"){
-    data = data[data$away_team_fk == thisMatch$away_team_fk,]
-  }else{
-    stop("You must specify fow who I should searching")
-  }
-  
-  data = data[data$season_fk <= thisMatch$season_fk & data$year <= thisMatch$year,]
-  data = data[!(data$year == thisMatch$year & data$month > thisMatch$month),]
-  data = data[!(data$year == thisMatch$year & data$month == thisMatch$month & data$day > thisMatch$day ),]
-  
-  data = data[ data$idMatch != idMatch,]
-  data = data[ order(data$year, data$month, data$day),]
-  
-  return(tail(data, howManyPreviousMatches))
-}
-
-
-getMean <- function(id, data, columnName, howManyPreviousMatches = 10, forWho = "home"){
-  tmp = getPreviosuMatchesOfTeam(id, data, howManyPreviousMatches, forWho)
-  return(mean(tmp[, columnName]))
-}
 
