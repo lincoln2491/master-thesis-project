@@ -2,11 +2,13 @@ source("core/utils.R")
 source("core/databaseConnector.R")
 
 getData <- function(){
-  tmp = readTableFromMatches()
-  tmp = getFromSeasonRange(tmp, 2005)
-  tmp = removeColumnsWhereAnyIsNa(tmp)
-  tmp$league_fk = sapply(tmp$league_fk, getLeagueNameById)
-  return(tmp)
+  results = readTableFromMatches()
+  results = results[ results$league_fk ==2 & results$season_fk >= 8, ]
+  results = results[order(results$year, results$month, results$day),]
+  results = Filter(function(x) !any(is.na(x)), results)
+  matches$idMatch = NULL
+  rownames(matches) = 1:nrow(matches)
+  return(results)
 }
 
 
