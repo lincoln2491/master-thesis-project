@@ -54,6 +54,8 @@ getFromSeasonRange <- function(data, seasonStartYearFor, seasonStartYearTo){
 readTableFromMatches <- function(){
   results = readDataFromDatabase("Matches")
   clubs = readDataFromDatabase("Clubs")
+  results = results[ results$league_fk ==2 & results$season_fk >= 8, ]
+  
   results$home_team_fk <- with(clubs,  name[match(results$home_team_fk, idClubs)])
   results$away_team_fk <- with(clubs,  name[match(results$away_team_fk, idClubs)])
   results = separate(data = results, col = match_date, into = c("year", "month", "day"), sep = "-")
@@ -61,6 +63,8 @@ readTableFromMatches <- function(){
   results$result =  as.factor(mapply(getResult, results$home_goals, results$away_goals))
   return(results);
 }
+
+
 
 removeColumnsWhereAllIsNa <-function(data){
   data = Filter(function(x) !all(is.na(x)), data)
@@ -72,12 +76,32 @@ removeColumnsWhereAnyIsNa <-function(data){
   return(data)
 }
 
-getData <- function(){
-  tmp = readTableFromMatches()
-  tmp = getFromSeasonRange(tmp, 2005)
-  tmp = removeColumnsWhereAnyIsNa(tmp)
-  tmp$league_fk = sapply(tmp$league_fk, getLeagueNameById)
-  return(tmp)
+getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10, forWho = "home"){
+  thisMatch = data[ data$idMatch == idMatch,]
+  
+  
+  if(forWho == "home"){
+    data = data[data$home_team_fk == thisMatch$home_team_fk,]
+  }
+  else if(forWho == "away"){
+    data = data[data$away_team_fk == thisMatch$away_team_fk,]
+  }else{
+    stop("You must specify fow who I should searching")
+  }
+  
+  data = data[data$season_fk <= thisMatch$season_fk & data$year <= thisMatch$year,]
+  data = data[!(data$year == thisMatch$year & data$month > thisMatch$month),]
+  data = data[!(data$year == thisMatch$year & data$month == thisMatch$month & data$day > thisMatch$day ),]
+  
+  data = data[ data$idMatch != idMatch,]
+  data = data[ order(data$year, data$month, data$day),]
+  
+  return(tail(data, howManyPreviousMatches))
 }
 
+
+getMean <- function(id, data, columnName, howManyPreviousMatches = 10, forWho = "home"){
+  tmp = getPreviosuMatchesOfTeam(id, data, howManyPreviousMatches, forWho)
+  return(mean(tmp[, columnName]))
+}
 

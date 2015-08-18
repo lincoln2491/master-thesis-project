@@ -29,6 +29,10 @@ writeDataToDatabase <- function(tableName, data) {
     dbWriteTable(connection, tableName, value = data, append = TRUE, row.names = FALSE)
 }
 
+updateDataToDatabase <- function(tableName, data) {
+  connection = createConnection()
+  dbWriteTable(connection, tableName, value = data, append = FALSE, row.names = FALSE, overwrite = TRUE)
+}
 
 # TODO do better
 getIdForSeason <- function(seasonStartYear) {
