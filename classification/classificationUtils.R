@@ -62,13 +62,13 @@ prepareDataForClassification <- function(data){
   
   for(attr in attributes){
     attrName = paste("home_", attr,"_av10", sep="")
-    newData[[attrName]] = as.double(sapply(data$idMatch, function(x) getMean(x, data, attr)))
+    newData[[attrName]] = as.numeric(sapply(data$idMatch, function(x) getMean(x, data, attr)))
     attrName2 = paste("away_", attr,"_av10", sep="")
-    newData[[attrName2]] = as.double(sapply(data$idMatch, function(x) getMean(x, data, attr, forWho = "away")))
+    newData[[attrName2]] = as.numeric(sapply(data$idMatch, function(x) getMean(x, data, attr, forWho = "away")))
     attrName3 = paste("diff_", attr,"_av10", sep="")
-    newData[[attrName3]] = as.double(newData[[attrName]] - newData[[attrName2]])
+    newData[[attrName3]] = as.numeric(newData[[attrName]] - newData[[attrName2]])
   }
-  
+  newData$idMatch = NULL
   newData$result = as.factor(data$result) 
   return(newData)
 }
