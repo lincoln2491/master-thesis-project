@@ -54,11 +54,17 @@ getFromSeasonRange <- function(data, seasonStartYearFor, seasonStartYearTo){
 readTableFromMatches <- function(){
   results = readDataFromDatabase("Matches")
   clubs = readDataFromDatabase("Clubs")
+  coaches = readDataFromDatabase("Couches")
+  seasons = readDataFromDatabase("Seasons")
+  
+  
+  results$home_couch_fk <- with(coaches,  name[match(results$home_couch_fk, idCouches)])
+  results$away_couch_fk <- with(coaches,  name[match(results$away_couch_fk, idCouches)])
+  
   results$home_team_fk <- with(clubs,  name[match(results$home_team_fk, idClubs)])
   results$away_team_fk <- with(clubs,  name[match(results$away_team_fk, idClubs)])
   results$home_shots_outside_target = results$home_shots - results$home_shots_on_target
   results$away_shots_outside_target = results$away_shots - results$away_shots_on_target
-  results = separate(data = results, col = match_date, into = c("year", "month", "day"), sep = "-")
   #results = Filter(function(x) !all(is.na(x)), results)
   results$result =  as.factor(mapply(getResult, results$home_goals, results$away_goals))
   
