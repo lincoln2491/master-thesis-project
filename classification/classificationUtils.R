@@ -15,7 +15,7 @@ getData <- function(){
   results$seasonEnd = as.Date(results$seasonEnd)
   results$day_of_season = results$date - results$seasonStart
   
-  results$date = NULL
+  #results$date = NULL
   results$seasonStart = NULL
   results$seasonEnd = NULL
   
@@ -35,6 +35,7 @@ getData <- function(){
     results$away_pos[ results$season_fk ==i] = tmp$away_pos
   }
   results$season_fk <- with(seasons,  name[match(results$season_fk, idSeasons)])
+  results$result = factor(results$result, levels = c("H", "D", "A"))
   
   return(results)
 }
@@ -54,6 +55,7 @@ prepareDataForClassification <- function(data){
   newData$away_couch_fk = as.factor(data$away_couch_fk)
   
   newData$day_of_season = as.integer(data$day_of_season)
+  newData$date = data$date
   newData$year = as.integer(data$year) 
   newData$month = as.integer(data$month) 
   newData$day = as.integer(data$day) 
@@ -68,8 +70,13 @@ prepareDataForClassification <- function(data){
     attrName3 = paste("diff_", attr,"_av10", sep="")
     newData[[attrName3]] = as.numeric(newData[[attrName]] - newData[[attrName2]])
   }
-  newData$idMatch = NULL
+  
   newData$result = as.factor(data$result) 
+  
+  #newData$idMatch = NULL
+  
+  newData$month = newData$month - 7
+  newData$month[newData$month < 0] = newData$month[newData$month < 0] + 12
   return(newData)
 }
 
@@ -187,3 +194,10 @@ updateLeagueTable <-function(leagueTable, matchesToCount){
   return(leagueTable)
 }
 
+
+jaccardIndex <-function(vec1, vec2){
+  n1 = length(vec1)
+  n2 = length(vec2)
+  ni = length(intersect(vec1, vec2))
+  return(ni/(n1 + n2 - ni))
+}
