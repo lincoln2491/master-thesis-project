@@ -269,12 +269,59 @@ matchClusters <-function(clusteredData){
 }
 
 printTopNTeams <- function(clusteredData, trRow, n){
+  commonsClubs = list()
   for(i in 1: 13){
     tmp = clusteredData[[i]]
     cNumber = as.numeric(trRow[i])
+    if(is.na(cNumber)){
+      next
+    }
     tmp = tmp[ tmp$cluster == cNumber, ]
     tab = table(tmp$home_team_fk)
     tab = tab[order(tab, decreasing = TRUE)]
-    print(tab[1:n])
+    tab = data.frame(tab[1:n])
+    colnames(tab) = c("count")
+    tab = data.frame(rownames(tab), tab$count)
+    colnames(tab) = c("club", "count")
+    rownames(tab) = NULL
+    tab = tab[ tab$count > 0, ]
+    for(i in 1:nrow(tab)){
+      key = as.character(tab[i, 1])
+      if(key %in% names(commonsClubs)){
+        commonsClubs[key] = as.numeric(commonsClubs[key]) + 1
+      }
+      else{
+        commonsClubs[key] = 1
+      }
+    }
+    print(i)
+    print(tab)
+  }
+  
+  print("Often top clubs")
+  commonsClubs = data.frame(unlist(commonsClubs))
+  colnames(commonsClubs) = c("count")
+  commonsClubs = data.frame(rownames(commonsClubs), commonsClubs$count)
+  colnames(commonsClubs) = c("club", "count")
+  commonsClubs = commonsClubs[ order(commonsClubs$count, decreasing = TRUE), ]
+  print(commonsClubs)
+}
+
+jaccardForTransitions <- function(clusteredData, trRow){
+  for(i in 1:12){
+    tmp = clusteredData[[i]]
+    tmp2 = clusteredData[[i+1]]
+    if(is.na(trRow[i])){
+      print(NA)
+      next
+    }
+    cNumber = as.numeric(trRow[i])
+    cNumber2 = as.numeric(trRow[i+1])
+    tmp = tmp[ tmp$cluster == cNumber, ]
+    tmp2 = tmp2[ tmp2$cluster == cNumber2, ]
+    cat(cNumber, "->", cNumber2, ": ", jaccardIndex(tmp$idMatch, tmp2$idMatch), 
+        "(", length(tmp$idMatch), "/", lengthOfIntersect(tmp$idMatch, tmp2$idMatch),
+        "/", length(tmp2$idMatch), ")", "\n")
   }
 }
+

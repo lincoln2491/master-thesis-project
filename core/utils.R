@@ -82,5 +82,3 @@ removeColumnsWhereAnyIsNa <-function(data){
   data = Filter(function(x) !any(is.na(x)), data)
   return(data)
 }
-
-

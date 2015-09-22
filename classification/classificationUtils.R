@@ -201,3 +201,8 @@ jaccardIndex <-function(vec1, vec2){
   ni = length(intersect(vec1, vec2))
   return(ni/(n1 + n2 - ni))
 }
+
+lengthOfIntersect <- function(vec1, vec2){
+  ni = length(intersect(vec1, vec2))
+  return(ni)
+}

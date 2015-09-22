@@ -116,3 +116,18 @@ generateMostCommonCLusterPlot <- function(data, n){
   print(p)
   dev.off()
 }
+
+plotTransitions <- function(trRows){
+  fileName = "plots/plotTransitions.png"
+  png(filename = fileName, width = 1024, height = 1024)
+  matplot(t(trRows), type = "l")
+  dev.off()
+}
+
+
+plotClustDistribution <- function(clustDistribution){
+  fileName = "plots/plotClusterDistribution.png"
+  png(filename = fileName, width = 1024, height = 1024)
+  matplot(clustDistribution, type = "l")
+  dev.off()
+}
