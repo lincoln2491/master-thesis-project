@@ -35,6 +35,8 @@ trRows = tr$trRows
 plotTransitions(tr$trRows)
 
 sink("classification/results.txt")
+print(trRows)
+
 for(i in 1:nrow(trRows)){
   row = trRows[i, ]
   print("")
@@ -54,7 +56,11 @@ for(i in 1:13){
   clustDistribution = rbind(clustDistribution, table(tmp$cluster))
 }
 
+print("clustDistribution")
 print(clustDistribution)
+
+
+
 sink()
 
 plotClustDistribution(clustDistribution)

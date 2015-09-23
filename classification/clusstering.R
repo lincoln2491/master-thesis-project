@@ -325,3 +325,6 @@ jaccardForTransitions <- function(clusteredData, trRow){
   }
 }
 
+normazlizeClusterNames <-funcion(clusteredData, trRows){
+  
+}
