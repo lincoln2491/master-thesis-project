@@ -1,7 +1,5 @@
 source("classification/classificationUtils.R")
 
-
-
 getDataForCluster <- function(data, clusters, clusterNumber){
   cl = clusters[ clusters == clusterNumber]
   cl = names(cl)
@@ -325,6 +323,95 @@ jaccardForTransitions <- function(clusteredData, trRow){
   }
 }
 
-normazlizeClusterNames <-funcion(clusteredData, trRows){
+normalizeClusterNames <-function(clusteredData, tr){
+  transitions = tr$transitions
+  trRows = tr$trRows
+  clusterNumberToUse = 1
   
+  
+  fromPrev = numeric()
+  prevPrev = numeric()
+  
+  for(i in 1:12){
+    prevPrev = fromPrev
+    fromPrev = numeric();
+    
+    tmpTr = transitions[[i]]
+    curData = clusteredData[[i]]
+    nextData = clusteredData[[i+1]]
+    nextData$newCluster = NA
+    if(!("newCluster" %in% colnames(curData))){
+      curData$newCluster = NA
+    }
+    
+    for(j in 1:length(tmpTr)){
+      curTr = tmpTr[[j]]
+      t1 = curTr[1]
+      t2 = curTr[2]
+      
+      fromPrev = append(fromPrev, t2)
+      
+      newCluster = unique(nextData$newCluster[ nextData$cluster == t2 ]) 
+      newClusterPrev = NA
+      
+      if(is.na(newCluster)){
+        newCluster = unique(curData$newCluster[ curData$cluster == t1 ]) 
+        newClusterPrev = unique(curData$newCluster[ curData$cluster == t1 ])
+      }
+      
+      if(is.na(newCluster)){
+        newCluster = paste("c", clusterNumberToUse, sep = "")
+        clusterNumberToUse = clusterNumberToUse + 1
+        newClusterPrev = newCluster
+      }
+      else if(!(t1 %in% prevPrev)){
+        newClusterPrev =  paste("c", clusterNumberToUse, sep = "")
+        clusterNumberToUse = clusterNumberToUse + 1
+      }
+      
+      if(is.na(unique(curData$newCluster[ curData$cluster == t1 ]))){
+        curData$newCluster[ curData$cluster == t1 ] = newClusterPrev
+      }
+      
+      if(is.na(unique(nextData$newCluster[ nextData$cluster == t2 ]))){
+        nextData$newCluster[ nextData$cluster == t2 ] = newCluster
+      }
+      
+      
+    }
+    clusteredData[[i]] = curData
+    clusteredData[[i+1]] = nextData
+  }
+  
+  
+  curData = clusteredData[[13]]
+  clusters = unique(curData$cluster)
+  for(i in clusters){
+    newCluster = unique(curData$newCluster[ curData$cluster == i ]) 
+    if(is.na(newCluster)){
+      newCluster = paste("c", clusterNumberToUse, sep = "")
+      clusterNumberToUse = clusterNumberToUse + 1
+      curData$newCluster[ curData$cluster == i ] = newCluster
+    }
+  }
+  
+  clusteredData[[13]] = curData
+    
+  newTrRows = trRows
+  
+  for(i in 1:13){
+    tmp = clusteredData[[i]]
+    for(j in 1:nrow(newTrRows)){
+      oldCluster = newTrRows[j, i]
+      if(is.na(oldCluster)){
+        next
+      }
+      
+      newCluster = unique(tmp$newCluster[ tmp$cluster == oldCluster])
+      newTrRows[j, i] = newCluster
+    }
+  }
+  
+  tr$newTrRows = newTrRows
+  return(list( data = clusteredData, newTr = tr))
 }

@@ -124,9 +124,31 @@ plotTransitions <- function(trRows){
   dev.off()
 }
 
+plotNewTransitions <- function(trRows){
+  for(i in 1:13){
+    for(j in 1:nrow(trRows)){
+      if(is.na(trRows[j, i])){
+        next
+      }
+      trRows[j, i] = as.numeric(gsub("c", "", trRows[j, i]))
+    }
+  }
+  fileName = "plots/plotNewTransitions.png"
+  png(filename = fileName, width = 1024, height = 1024)
+  matplot(t(trRows), type = "l")
+  dev.off()
+}
+
 
 plotClustDistribution <- function(clustDistribution){
   fileName = "plots/plotClusterDistribution.png"
+  png(filename = fileName, width = 1024, height = 1024)
+  matplot(clustDistribution, type = "l")
+  dev.off()
+}
+
+plotNewClustDistribution <- function(clustDistribution){
+  fileName = "plots/plotNewClusterDistribution.png"
   png(filename = fileName, width = 1024, height = 1024)
   matplot(clustDistribution, type = "l")
   dev.off()
