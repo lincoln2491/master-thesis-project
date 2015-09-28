@@ -23,7 +23,7 @@ clusteredData = clustering2(data, nClusters, clusterAlg)
 
 #matching clusters
 tr = matchClusters(clusteredData)
-plotTransitions()
+plotTransitions(tr$trRows)
 
 sink("classification/results.txt")
 
