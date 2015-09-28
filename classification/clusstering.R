@@ -175,7 +175,7 @@ getFilteredData <- function(data){
   return(dataForClustering)
 }
 
-
+#TODO change to most newCluster
 getMostCommonClusterForClub <- function(data){
   tab = table(data$home_team_fk, data$cluster)
   tabCl = table(data$cluster)
@@ -415,3 +415,5 @@ normalizeClusterNames <-function(clusteredData, tr){
   tr$newTrRows = newTrRows
   return(list( data = clusteredData, newTr = tr))
 }
+
+

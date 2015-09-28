@@ -1,4 +1,7 @@
 library("ggplot2")
+
+#generating scatter plots of features
+#TODO do it better
 generateScatterPlots <- function(data, n){
   #   labels = c("home_goals_av10", "away_goals_av10", "diff_goals_av10", "home_goals_half_time_av10", "away_goals_half_time_av10",
   #              "diff_goals_half_time_av10", "home_shots_av10", "away_shots_av10",
@@ -7,20 +10,35 @@ generateScatterPlots <- function(data, n){
   #              "diff_corners_av10", "home_fouls_av10", "away_fouls_av10", "diff_fouls_av10",
   #              "home_yellows_av10", "away_yellows_av10", "diff_yellows_av10", "home_reds_av10",
   #              "away_reds_av10","diff_reds_av10")  
-  labels = c(  "home_goals_av10", "away_goals_av10","diff_goals_av10",          
-               "home_goals_half_time_av10","away_goals_half_time_av10",
-               "diff_goals_half_time_av10" )
+  labels = c( "season_fk", "home_shots_av10",
+                       "away_shots_av10",
+                       "diff_shots_av10",
+                       "home_shots_on_target_av10",
+                       "away_shots_on_target_av10",
+                       "diff_shots_on_target_av10",
+                       "home_corners_av10",
+                       "away_corners_av10",
+                       "diff_corners_av10",
+                       "home_fouls_av10",
+                       "away_fouls_av10",
+                       "diff_fouls_av10",
+                       "home_yellows_av10",
+                       "away_yellows_av10",
+                       "diff_yellows_av10",
+                       "home_reds_av10",
+                       "away_reds_av10",
+                       "diff_reds_av10" )
   combination = combn(labels, 2)
-  res = "cluster"
-  data$cluster = as.factor(data$cluster)
-  
+  res = "newCluster"
+  data$newCluster = as.factor(data$newCluster)
+  numberOfClusters = length(unique(data$newCluster))
   for(i in 1:ncol(combination)){
     first = combination[1, i]
     second = combination[2, i]
     fileName = paste("plots/featuresPlots/", i,"-", n, ".png", sep = "")
     png(filename = fileName, width = 1024, height = 1024)
     plot(data[[first]], data[[second]], col = data[[res]], xlab = first, ylab = second) 
-    legend(x = "topleft", legend = levels(data$cluster), col = c(1:5), pch = 1)
+    legend(x = "topleft", legend = levels(data$newCluster), col = c(1:numberOfClusters), pch = 1)
     dev.off()
   }
 }
@@ -36,19 +54,40 @@ createAndSaveHeatmaps <-function(c1, c2, c3, c4, c5, clubs, m){
 }
 
 
-generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE){
-  labelsToInlcude = c( "home_goals_av10", "away_goals_av10","diff_goals_av10",          
-                       "home_goals_half_time_av10","away_goals_half_time_av10",
-                       "diff_goals_half_time_av10" )
+generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = FALSE){
+  labelsToInlcude = c( "season_fk", "home_shots_av10",
+                       "away_shots_av10",
+                       "diff_shots_av10",
+                       "home_shots_on_target_av10",
+                       "away_shots_on_target_av10",
+                       "diff_shots_on_target_av10",
+                       "home_corners_av10",
+                       "away_corners_av10",
+                       "diff_corners_av10",
+                       "home_fouls_av10",
+                       "away_fouls_av10",
+                       "diff_fouls_av10",
+                       "home_yellows_av10",
+                       "away_yellows_av10",
+                       "diff_yellows_av10",
+                       "home_reds_av10",
+                       "away_reds_av10",
+                       "diff_reds_av10" )
   plotLimit = ifelse(isProp == TRUE, 1, 60)
   for(i in 1:length(labelsToInlcude)){
     label = labelsToInlcude[i]
-    tab = table(data[[label]], data$cluster)
+    tab = table(data[[label]], data$newCluster)
     if(isProp == TRUE){
       tab = prop.table(tab, 1)
     }
     tab = data.frame(tab)
-    tab$Var1 = as.numeric(as.character(tab$Var1))
+    if(label == "season_fk"){
+      tab$Var1 = as.factor(as.character(tab$Var1))
+    }
+    else{
+      tab$Var1 = as.numeric(as.character(tab$Var1)) 
+    }
+    #tab$Var1 = as.numeric(as.character(tab$Var1))
     
     fileName = paste("plots/frequencyPlots/", i,"-", n, ".png", sep = "")
     png(filename = fileName, width = 1024, height = 1024)
@@ -60,8 +99,11 @@ generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE){
       
     }
     else{
-      p = qplot(tab$Var1, tab$Freq, data = tab, group = tab$Var2, color = tab$Var2, main = label) + 
-        geom_line() +  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+      p = qplot(tab$Var1, tab$Freq, data = tab, group = tab$Var2, color = tab$Var2, main = label) 
+      if(isLine ==  TRUE){
+        p = p + geom_line()
+      }
+      p = p + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
         expand_limits(y = c(0, plotLimit))
       print(p)
     }
@@ -70,8 +112,8 @@ generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE){
 }
 
 generateClubsFreqPlots <- function(data, n, isProp = FALSE, side = "home"){
-  tab = table(data$home_team_fk, data$cluster)
-  tab2 = table(data$away_team_fk, data$cluster)
+  tab = table(data$home_team_fk, data$newCluster)
+  tab2 = table(data$away_team_fk, data$newCluster)
   if(isProp == TRUE){
     tab = prop.table(tab, 1)
     tab2 = prop.table(tab2, 1)
@@ -152,4 +194,42 @@ plotNewClustDistribution <- function(clustDistribution){
   png(filename = fileName, width = 1024, height = 1024)
   matplot(clustDistribution, type = "l")
   dev.off()
+}
+
+
+generateDensityPlots <- function(tmp, n){
+  #   labels = c("home_goals_av10", "away_goals_av10", "diff_goals_av10", "home_goals_half_time_av10", "away_goals_half_time_av10",
+  #              "diff_goals_half_time_av10", "home_shots_av10", "away_shots_av10",
+  #              "diff_shots_av10", "home_shots_on_target_av10", "away_shots_on_target_av10",
+  #              "diff_shots_on_target_av10", "home_corners_av10", "away_corners_av10",
+  #              "diff_corners_av10", "home_fouls_av10", "away_fouls_av10", "diff_fouls_av10",
+  #              "home_yellows_av10", "away_yellows_av10", "diff_yellows_av10", "home_reds_av10",
+  #              "away_reds_av10","diff_reds_av10")  
+  labelsToInlcude = c( "season_fk", "home_shots_av10",
+                       "away_shots_av10",
+                       "diff_shots_av10",
+                       "home_shots_on_target_av10",
+                       "away_shots_on_target_av10",
+                       "diff_shots_on_target_av10",
+                       "home_corners_av10",
+                       "away_corners_av10",
+                       "diff_corners_av10",
+                       "home_fouls_av10",
+                       "away_fouls_av10",
+                       "diff_fouls_av10",
+                       "home_yellows_av10",
+                       "away_yellows_av10",
+                       "diff_yellows_av10",
+                       "home_reds_av10",
+                       "away_reds_av10",
+                       "diff_reds_av10" )
+  for(i in 1:length(labelsToInlcude)){
+    lab = as.character(labelsToInlcude[i] )
+    fileName = paste("plots/densityPlots/", i,"-", n, ".png", sep = "")
+    png(filename = fileName, width = 1024, height = 1024)
+    p = ggplot(data = tmp, aes_string(color = "newCluster", x =  lab)) +
+      geom_density() + xlab(lab)
+    print(p)
+    dev.off()
+  }
 }

@@ -4,7 +4,8 @@ source("classification/plots.R")
 nClusters = 5
 clusterAlg = "km"
 freqProp = TRUE
-freqFacets = TRUE
+freqFacets = FALSE
+freqIsLine = FALSE
 clubFreqProp = TRUE
 clubFreqSide = "home"
 topNClubs = 5
@@ -22,15 +23,13 @@ clusteredData = clustering2(data, nClusters, clusterAlg)
 
 #matching clusters
 tr = matchClusters(clusteredData)
-trRows = tr$trRows
-plotTransitions(tr$trRows)
+plotTransitions()
 
 sink("classification/results.txt")
-print(trRows)
 
 #printing informations about transitions
-for(i in 1:nrow(trRows)){
-  row = trRows[i, ]
+for(i in 1:nrow(tr$trRows)){
+  row = tr$trRows[i, ]
   print("")
   print("----------------------------")
   print("")
@@ -39,6 +38,9 @@ for(i in 1:nrow(trRows)){
   printTopNTeams(clusteredData, row, topNClubs)
 }
 
+print("----------------------------")
+print("transitions")
+print(tr$trRows)
 #calculating cluster distributions
 print("----------------------------")
 clustDistribution = data.frame(c1 = numeric(0), c2 = numeric(0), 
@@ -51,9 +53,6 @@ for(i in 1:13){
 
 print("clustDistribution")
 print(clustDistribution)
-
-sink()
-
 plotClustDistribution(clustDistribution)
 
 #calculating new cluster names
@@ -61,10 +60,16 @@ newClusteredData = normalizeClusterNames(clusteredData, tr)
 tr = newClusteredData$newTr
 clusteredData = newClusteredData$data
 
+#printing new transitions
+print("----------------------------")
+print("----------------------------")
+print("New transitions")
 plotNewTransitions(tr$newTrRows)
-
+print(tr$newTrRows)
 
 #calculating new cluster distribution
+print("----------------------------")
+print("New cluster distribution")
 clustDistribution = as.data.frame(matrix(NA, ncol = nrow(tr$newTrRows), nrow = 13))
 
 for(i in 1:13){
@@ -77,15 +82,21 @@ for(i in 1:13){
   }
 }
 
+plotNewClustDistribution(clustDistribution)
+print(clustDistribution)
+
+sink()
+
 #creating plots 
 for(i in 1:13){
   generateScatterPlots(clusteredData[[i]], i)
-  generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets)
+  generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine)
   generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide)
   generateMostCommonCLusterPlot(clusteredData[[i]], i)
+  generateDensityPlots(clusteredData[[i]], i)
 }
-generateScatterPlots(clusteredData[[14]], "all")
-generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets)
-generateClubsFreqPlots(clusteredData[[14]], 14, clubFreqProp, clubFreqSide)
-generateMostCommonCLusterPlot(clusteredData[[14]], 14)
+# generateScatterPlots(clusteredData[[14]], "all")
+# generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets, freqIsLine)
+# generateClubsFreqPlots(clusteredData[[14]], 14, clubFreqProp, clubFreqSide)
+# generateMostCommonCLusterPlot(clusteredData[[14]], 14)
 
