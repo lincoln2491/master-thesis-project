@@ -262,6 +262,16 @@ matchClusters <-function(clusteredData){
       }
     }
   }
+  
+  used = unique(trRows$V13)
+  toUse = c(1, 2, 3, 4, 5)
+  toUse = setdiff(toUse, used)
+  
+  for(t in toUse){
+    trRows = rbind(trRows, NA)
+    trRows[ nrow(trRows), 13 ] = t
+  }
+  
   result$trRows = trRows
   return(result)
 }
@@ -323,7 +333,7 @@ jaccardForTransitions <- function(clusteredData, trRow){
   }
 }
 
-#TODO poprawić
+
 normalizeClusterNames <-function(clusteredData, tr){
   transitions = tr$transitions
   trRows = tr$trRows
@@ -417,6 +427,7 @@ normalizeClusterNames <-function(clusteredData, tr){
   return(list( data = clusteredData, newTr = tr))
 }
 
+
 importance <- function(data){
   labels = c( "home_shots_av10",
               "away_shots_av10",
@@ -483,8 +494,8 @@ calculateMeansAndSDForFeatures <-function(clusteredData){
               "away_reds_av10",
               "diff_reds_av10" )
   nrows = length(labels)
-  means = data.frame(matrix(0, ncol =nrows, nrow = 13))
-  stdDevs = data.frame(matrix(0, ncol =nrows, nrow = 13))
+  means = data.frame(matrix(0, ncol = nrows, nrow = 13))
+  stdDevs = data.frame(matrix(0, ncol = nrows, nrow = 13))
   colnames(means) = labels
   colnames(stdDevs) = labels
   rownames(means) = 1:13
@@ -503,4 +514,31 @@ calculateMeansAndSDForFeatures <-function(clusteredData){
   result$means = means
   result$stdDevs = stdDevs
   return(result)
+}
+
+calculateMeasnAndSDOfClusters <-function(data, nClusters){
+  labels = c( "home_shots_av10",
+              "away_shots_av10",
+              "diff_shots_av10",
+              "home_shots_on_target_av10",
+              "away_shots_on_target_av10",
+              "diff_shots_on_target_av10",
+              "home_corners_av10",
+              "away_corners_av10",
+              "diff_corners_av10",
+              "home_fouls_av10",
+              "away_fouls_av10",
+              "diff_fouls_av10",
+              "home_yellows_av10",
+              "away_yellows_av10",
+              "diff_yellows_av10",
+              "home_reds_av10",
+              "away_reds_av10",
+              "diff_reds_av10" )
+  clusters = 
+  
+  for(label in labels){
+    means = data.frame(matrix(0, ncol = nClusters, nrow = 13))
+    stdDevs = data.frame(matrix(0, ncol = nClusters, nrow = 13))
+  }
 }
