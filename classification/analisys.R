@@ -85,7 +85,21 @@ for(i in 1:13){
 plotNewClustDistribution(clustDistribution)
 print(clustDistribution)
 
+#means and standard deviations
+
+res = calculateMeansAndSDForFeatures(clusteredData)
+print("----------------------------")
+print("----------------------------")
+print("Means and standard deviation")
+print("Mean")
+print(res$means)
+print("----------------------------")
+print("Standard deviation")
+print(res$stdDevs)
+generatePlotsOfMeansAndStandardDeviations(res$means, res$stdDevs)
+
 sink()
+
 
 #creating plots 
 for(i in 1:13){
