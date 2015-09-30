@@ -323,6 +323,7 @@ jaccardForTransitions <- function(clusteredData, trRow){
   }
 }
 
+#TODO poprawić
 normalizeClusterNames <-function(clusteredData, tr){
   transitions = tr$transitions
   trRows = tr$trRows
@@ -416,4 +417,90 @@ normalizeClusterNames <-function(clusteredData, tr){
   return(list( data = clusteredData, newTr = tr))
 }
 
+importance <- function(data){
+  labels = c( "home_shots_av10",
+              "away_shots_av10",
+              "diff_shots_av10",
+              "home_shots_on_target_av10",
+              "away_shots_on_target_av10",
+              "diff_shots_on_target_av10",
+              "home_corners_av10",
+              "away_corners_av10",
+              "diff_corners_av10",
+              "home_fouls_av10",
+              "away_fouls_av10",
+              "diff_fouls_av10",
+              "home_yellows_av10",
+              "away_yellows_av10",
+              "diff_yellows_av10",
+              "home_reds_av10",
+              "away_reds_av10",
+              "diff_reds_av10" )
+  
+  for(i in 1:length(labels)){
+    label = labels[i]
+    df = data.frame(data$newCluster, data[label])
+    colnames(df) = c("newCluster", label)
+    means = aggregate(df[2], by=list(tmp$newCluster), mean)
+    means = as.list(means[2])
+    means = unlist(means)
+    std.devs = aggregate(df[2], by=list(tmp$newCluster), sd)
+    std.devs = as.list(std.devs[2])
+    std.devs= unlist(std.devs)
+    pairwise.score <- matrix(nrow = length(means), ncol = length(means))
+    for (i in 1:length(means)){
+      for (j in 1:length(means)){
+        if (i != j){
+          pairwise.score[i,j] <- abs(means[[i]] - means[[j]])^2 / (std.devs[[i]] * std.devs[[j]])
+        }
+      }
+    }
+    attribute.importance <- sum(pairwise.score, na.rm = TRUE)
+    print(label)
+    print(attribute.importance)
 
+  }
+}
+
+
+calculateMeansAndSDForFeatures <-function(clusteredData){
+  labels = c( "home_shots_av10",
+              "away_shots_av10",
+              "diff_shots_av10",
+              "home_shots_on_target_av10",
+              "away_shots_on_target_av10",
+              "diff_shots_on_target_av10",
+              "home_corners_av10",
+              "away_corners_av10",
+              "diff_corners_av10",
+              "home_fouls_av10",
+              "away_fouls_av10",
+              "diff_fouls_av10",
+              "home_yellows_av10",
+              "away_yellows_av10",
+              "diff_yellows_av10",
+              "home_reds_av10",
+              "away_reds_av10",
+              "diff_reds_av10" )
+  nrows = length(labels)
+  means = data.frame(matrix(0, ncol =nrows, nrow = 13))
+  stdDevs = data.frame(matrix(0, ncol =nrows, nrow = 13))
+  colnames(means) = labels
+  colnames(stdDevs) = labels
+  rownames(means) = 1:13
+  rownames(stdDevs) = 1:13
+  for(label in labels){
+    for(i in 1:13){
+      tmp = clusteredData[[i]]
+      data = tmp[[label]]
+      tmpMean = mean(data)
+      tmpStdDev = sd(data)
+      means[i, label] = tmpMean
+      stdDevs[i, label] = tmpStdDev
+    }
+  }
+  result = list()
+  result$means = means
+  result$stdDevs = stdDevs
+  return(result)
+}

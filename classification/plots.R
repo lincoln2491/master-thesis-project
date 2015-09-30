@@ -233,3 +233,70 @@ generateDensityPlots <- function(tmp, n){
     dev.off()
   }
 }
+
+generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
+  shotLabels = c( "home_shots_av10",
+                   "away_shots_av10",
+                   "diff_shots_av10")
+  shotOnTargetLabels = c("home_shots_on_target_av10",
+                         "away_shots_on_target_av10",
+                         "diff_shots_on_target_av10")
+  cornerLabels = c("home_corners_av10",
+                  "away_corners_av10",
+                  "diff_corners_av10")
+  foulsLabels = c("home_fouls_av10",
+                  "away_fouls_av10",
+                  "diff_fouls_av10")
+  yellowLabels = c("home_yellows_av10",
+                   "away_yellows_av10",
+                   "diff_yellows_av10")
+  redLabels = c("home_reds_av10",
+                "away_reds_av10",
+                "diff_reds_av10")
+  
+  means$id = 1:13
+  means = melt(means, id.vars = "id")
+  colnames(means) = c("season", "feature", "mean")
+  
+  stdDevs$id = 1:13
+  stdDevs = melt(stdDevs, id.vars = "id")
+  colnames(stdDevs) = c("season", "feature", "stdDev")
+  df = merge(means, stdDevs, sort = FALSE)
+  
+  #shots
+  png(filename = "plots/meansAndSDFeaturesPlots/shots.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% shotLabels, ], aes(x = season, y = mean, colour = feature)) + geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+
+  #shots on target  
+  png(filename = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = season, y = mean, colour = feature)) + geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+  
+  #corners
+  png(filename = "plots/meansAndSDFeaturesPlots/corners.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% cornerLabels, ], aes(x = season, y = mean, colour = feature)) + geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+  
+  #fouls
+  png(filename = "plots/meansAndSDFeaturesPlots/fouls.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% foulsLabels, ], aes(x = season, y = mean, colour = feature)) + geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+  
+  #yellow cards 
+  png(filename = "plots/meansAndSDFeaturesPlots/yellows.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% yellowLabels, ], aes(x = season, y = mean, colour = feature)) + geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+  
+  #red cards 
+  png(filename = "plots/meansAndSDFeaturesPlots/reds.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% redLabels, ], aes(x = season, y = mean, colour = feature)) + geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+  
+}
