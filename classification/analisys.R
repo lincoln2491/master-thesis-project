@@ -100,6 +100,24 @@ print("Standard deviation")
 print(res$stdDevs)
 generatePlotsOfMeansAndStandardDeviations(res$means, res$stdDevs)
 
+
+#means and standard deviations for clusters
+res = calculateMeasnAndSDOfClusters(clusteredData)
+print("----------------------------")
+print("----------------------------")
+print("Means and standard deviation for clusters")
+for(label in names(res)){
+  tmp = res[[label]]
+  print("----------------------------")
+  print(label)
+  print("Mean")
+  print(tmp$means)
+  print("Standard deviation")
+  print(tmp$stdDevs)
+}
+generatePlotsOfMeansAndStandardDeviationsForClusters(res)
+
+
 sink()
 
 

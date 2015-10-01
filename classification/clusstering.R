@@ -535,7 +535,9 @@ calculateMeasnAndSDOfClusters <-function(data){
               "diff_yellows_av10",
               "home_reds_av10",
               "away_reds_av10",
-              "diff_reds_av10" )
+              "diff_reds_av10",
+              "home_pos",
+              "away_pos")
   clusters = list()
   for(i in 1:13){
     tmp = data[[i]]
