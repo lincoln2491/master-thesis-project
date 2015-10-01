@@ -1,4 +1,5 @@
 source("classification/classificationUtils.R")
+library(gtools)
 
 getDataForCluster <- function(data, clusters, clusterNumber){
   cl = clusters[ clusters == clusterNumber]
@@ -516,7 +517,7 @@ calculateMeansAndSDForFeatures <-function(clusteredData){
   return(result)
 }
 
-calculateMeasnAndSDOfClusters <-function(data, nClusters){
+calculateMeasnAndSDOfClusters <-function(data){
   labels = c( "home_shots_av10",
               "away_shots_av10",
               "diff_shots_av10",
@@ -535,10 +536,37 @@ calculateMeasnAndSDOfClusters <-function(data, nClusters){
               "home_reds_av10",
               "away_reds_av10",
               "diff_reds_av10" )
-  clusters = 
-  
-  for(label in labels){
-    means = data.frame(matrix(0, ncol = nClusters, nrow = 13))
-    stdDevs = data.frame(matrix(0, ncol = nClusters, nrow = 13))
+  clusters = list()
+  for(i in 1:13){
+    tmp = data[[i]]
+    clusters = append(clusters, unique(tmp$newCluster))
   }
+  
+  clusters = mixedsort(unique(unlist(clusters)))
+  
+  res = list()
+  for(label in labels){
+    means = data.frame(matrix(NA, ncol = length(clusters), nrow = 13))
+    rownames(means) = 1:13
+    colnames(means) = clusters
+    stdDevs = data.frame(matrix(NA, ncol = length(clusters), nrow = 13))
+    rownames(stdDevs) = 1:13
+    colnames(stdDevs) = clusters
+    
+    tmpRes = list()
+    for(i in 1:13){
+      tmpData = data[[i]]
+      for(cluster in clusters){
+        mean = mean(tmpData[tmpData$newCluster == cluster, label])
+        stdDev = sd(tmpData[tmpData$newCluster == cluster, label])
+        means[i, cluster] = mean
+        stdDevs[i, cluster] = stdDev
+      }
+    }
+    
+    tmpRes$means = means
+    tmpRes$stdDevs = stdDevs
+    res[[label]] = tmpRes
+  }
+  return(res)
 }

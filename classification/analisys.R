@@ -1,5 +1,7 @@
 source("classification/clusstering.R")
 source("classification/plots.R")
+
+
 #params
 nClusters = 5
 clusterAlg = "km"

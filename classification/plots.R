@@ -1,4 +1,5 @@
 library("ggplot2")
+library("reshape2")
 
 #generating scatter plots of features
 #TODO do it better
