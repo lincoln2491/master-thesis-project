@@ -1,6 +1,6 @@
 source("classification/clusstering.R")
 source("classification/plots.R")
-
+set.seed(5)
 
 #params
 nClusters = 5

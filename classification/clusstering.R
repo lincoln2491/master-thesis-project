@@ -429,7 +429,7 @@ normalizeClusterNames <-function(clusteredData, tr){
 }
 
 
-importance <- function(data){
+calculateImportance <- function(clusteredData){
   labels = c( "home_shots_av10",
               "away_shots_av10",
               "diff_shots_av10",
@@ -448,30 +448,37 @@ importance <- function(data){
               "home_reds_av10",
               "away_reds_av10",
               "diff_reds_av10" )
-  
-  for(i in 1:length(labels)){
-    label = labels[i]
-    df = data.frame(data$newCluster, data[label])
-    colnames(df) = c("newCluster", label)
-    means = aggregate(df[2], by=list(tmp$newCluster), mean)
-    means = as.list(means[2])
-    means = unlist(means)
-    std.devs = aggregate(df[2], by=list(tmp$newCluster), sd)
-    std.devs = as.list(std.devs[2])
-    std.devs= unlist(std.devs)
-    pairwise.score <- matrix(nrow = length(means), ncol = length(means))
-    for (i in 1:length(means)){
-      for (j in 1:length(means)){
-        if (i != j){
-          pairwise.score[i,j] <- abs(means[[i]] - means[[j]])^2 / (std.devs[[i]] * std.devs[[j]])
+  res = list()
+  for(k in 1:13){
+    data = clusteredData[[k]]
+    tmpRes = numeric()
+    for(l in 1:length(labels)){
+      label = labels[l]
+      df = data.frame(data$newCluster, data[label])
+      colnames(df) = c("newCluster", label)
+      means = aggregate(df[2], by=list(data$newCluster), mean)
+      means = as.list(means[2])
+      means = unlist(means)
+      std.devs = aggregate(df[2], by=list(data$newCluster), sd)
+      std.devs = as.list(std.devs[2])
+      std.devs= unlist(std.devs)
+      pairwise.score <- matrix(nrow = length(means), ncol = length(means))
+      for (i in 1:length(means)){
+        for (j in 1:length(means)){
+          if (i != j){
+            pairwise.score[i,j] <- abs(means[[i]] - means[[j]])^2 / (std.devs[[i]] * std.devs[[j]])
+          }
         }
       }
+      attribute.importance <- sum(pairwise.score, na.rm = TRUE)
+      tmpRes[label] = attribute.importance
     }
-    attribute.importance <- sum(pairwise.score, na.rm = TRUE)
-    print(label)
-    print(attribute.importance)
-
+    tmpRes = data.frame(feature = names(tmpRes), importance = tmpRes)
+    tmpRes = tmpRes[ order(tmpRes$importance, decreasing = TRUE), ]
+    rownames(tmpRes) = NULL
+    res[[k]] = tmpRes
   }
+  return(res)
 }
 
 

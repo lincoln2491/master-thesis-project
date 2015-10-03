@@ -350,3 +350,25 @@ generatePlotsOfMeansAndStandardDeviationsForClusters <-function(statistics){
     dev.off()
   }
 }
+
+generateImportancePlots <-function(importanceData){
+  df = data.frame(period = numeric(0), feature = numeric(0), importance = numeric(0), position = numeric(0))
+  for(i in 1:13){
+    tmp = importanceData[[i]]
+    tmp$period = i
+    tmp$position = 1:nrow(tmp)
+    df = rbind(df, tmp)
+  }
+  
+  png(filename = "plots/importanceValuesPlot.png", width = 1024, height = 1024)
+  p = ggplot(df, aes(x = period, y = importance, colour = feature)) + 
+    geom_point() + geom_line()
+  print(p)
+  dev.off()
+  
+  png(filename = "plots/importancePositionPlot.png", width = 1024, height = 1024)
+  p = ggplot(df, aes(x = period, y = position, colour = feature)) + 
+    geom_point() + geom_line()
+  print(p)
+  dev.off()
+}
