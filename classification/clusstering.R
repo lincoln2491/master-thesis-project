@@ -1,5 +1,6 @@
 source("classification/classificationUtils.R")
 library(gtools)
+library(cluster)
 
 getDataForCluster <- function(data, clusters, clusterNumber){
   cl = clusters[ clusters == clusterNumber]
@@ -34,7 +35,6 @@ createCountTableInClusters <- function(c1, c2, c3, c4, c5, clubs){
   return(df)
 }
 
-
 splitDataToPeriods <- function(data, yearsInPeriod){
   seasons = unique(data$season_fk)
   resultData = list()
@@ -52,8 +52,6 @@ createTable <-function(c1, c2, c3, c4, c5, clubs, n){
   return(createCountTableInClusters(c1[[n]], c2[[n]], c3[[n]], c4[[n]], c5[[n]], clubs ))
 }
 
-
-
 createSortTable <- function(t){
   tmpT =  t[order(t$c1S, decreasing = T),1:5]
   df = data.frame(rownames(tmpT), tmpT$c1S)
@@ -69,7 +67,6 @@ createSortTable <- function(t){
   tmpT =  t[order(t$c5S, decreasing = T),1:5]
   df = data.frame(df, rownames(tmpT), tmpT$c5S)
 }
-
 
 clustering <-function(data, nClusters){
 
@@ -154,7 +151,7 @@ getFilteredData <- function(data){
   #                      "away_couch_fk", "day_of_season", "date", "year", "month", "day")  
   #   dataForClustering = data[ !(names(data) %in% labelsToEclude)]
   #   
-  labelsToInlcude = c( "season_fk", "home_shots_av10",
+  labelsToInlcude = c( "home_shots_av10",
                        "away_shots_av10",
                        "diff_shots_av10",
                        "home_shots_on_target_av10",
@@ -334,7 +331,6 @@ jaccardForTransitions <- function(clusteredData, trRow){
   }
 }
 
-
 normalizeClusterNames <-function(clusteredData, tr){
   transitions = tr$transitions
   trRows = tr$trRows
@@ -428,7 +424,6 @@ normalizeClusterNames <-function(clusteredData, tr){
   return(list( data = clusteredData, newTr = tr))
 }
 
-
 calculateImportance <- function(clusteredData){
   labels = c( "home_shots_av10",
               "away_shots_av10",
@@ -448,7 +443,7 @@ calculateImportance <- function(clusteredData){
               "home_reds_av10",
               "away_reds_av10",
               "diff_reds_av10" )
-  res = list()
+  importance = list()
   for(k in 1:13){
     data = clusteredData[[k]]
     tmpRes = numeric()
@@ -476,11 +471,22 @@ calculateImportance <- function(clusteredData){
     tmpRes = data.frame(feature = names(tmpRes), importance = tmpRes)
     tmpRes = tmpRes[ order(tmpRes$importance, decreasing = TRUE), ]
     rownames(tmpRes) = NULL
-    res[[k]] = tmpRes
+    importance[[k]] = tmpRes
   }
-  return(res)
+  return(importance)
 }
 
+mergeImportance <-function(importance){
+  mergedData = data.frame(feature = numeric(0), imporatnce = numeric(0), 
+                          position = numeric(0), period = numeric(0))
+  for(i in 1:13){
+    tmp = importance[[i]]
+    tmp$position = 1:nrow(tmp)
+    tmp$period = i
+    mergedData = rbind(mergedData, tmp)
+  }
+  return(mergedData)
+}
 
 calculateMeansAndSDForFeatures <-function(clusteredData){
   labels = c( "home_shots_av10",
@@ -578,4 +584,33 @@ calculateMeasnAndSDOfClusters <-function(data){
     res[[label]] = tmpRes
   }
   return(res)
+}
+
+getDistances <-function(data){
+  data = data[complete.cases(data),]
+  dataForClustering = getFilteredData(data)
+  dataForClustering = data.frame(sapply(dataForClustering, normalize01))
+  distances = dist(dataForClustering)
+  return(distances)
+}
+
+estimatingNumberOfClusters <- function(data, alg){
+  splitedData = splitDataToPeriods(data, 3)
+  sil = rep(0, 13)
+  df = as.data.frame(matrix(0, ncol = 13, nrow = 0))
+  for(j in 2:10){
+    for(i in 1:13){
+      tmp = splitedData[[i]]
+      distances = getDistances(tmp)
+      cl = clusteringOnePart(tmp, j, alg )
+      sl = silhouette(cl$cluster, distances)
+      sil[[i]] = mean(sl[,"sil_width"])
+    }
+    df = rbind(df, sil)
+  }
+  df = t(df)
+  colnames(df) = 2:10
+  rownames(df) = 1:13
+  df = as.data.frame(df)
+  return(df)
 }

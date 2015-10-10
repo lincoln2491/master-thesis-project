@@ -1,6 +1,5 @@
 source("core/databaseConnector.R")
 
-
 getSeasonsName <- function(seasonStartYear) {
     endYear = seasonStartYear + 1
     if (nchar(as.character(seasonStartYear)) < 2) {
@@ -49,8 +48,6 @@ getFromSeasonRange <- function(data, seasonStartYearFor, seasonStartYearTo){
   return(data)
 }
 
-
-
 readTableFromMatches <- function(){
   results = readDataFromDatabase("Matches")
   clubs = readDataFromDatabase("Clubs")
@@ -70,8 +67,6 @@ readTableFromMatches <- function(){
   
   return(results);
 }
-
-
 
 removeColumnsWhereAllIsNa <-function(data){
   data = Filter(function(x) !all(is.na(x)), data)

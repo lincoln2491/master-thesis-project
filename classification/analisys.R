@@ -1,5 +1,6 @@
 source("classification/clusstering.R")
 source("classification/plots.R")
+library(caret)
 set.seed(5)
 
 #params
@@ -12,6 +13,9 @@ clubFreqProp = TRUE
 clubFreqSide = "home"
 topNClubs = 5
 
+matches = NULL
+data = NULL
+backupData = NULL
 
 #load data if not loaded
 if(!exists("data")){
@@ -117,6 +121,15 @@ for(label in names(res)){
 }
 generatePlotsOfMeansAndStandardDeviationsForClusters(res)
 
+print("----------------------------")
+print("Importance of clusters")
+importance = calculateImportance(clusteredData)
+for(i in 1:13){
+  tmp = importance[[i]]  
+  print(i)
+  print(importance)
+}
+generateImportancePlots(importance)
 
 sink()
 

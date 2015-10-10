@@ -3,8 +3,6 @@ library("stringr")
 library("tidyr")
 library("data.table")
 
-
-
 readDataFromDatabase <- function(tableName) {
     con = createConnection()
     result = dbReadTable(con, tableName)
@@ -21,8 +19,6 @@ createConnection <- function() {
     }
     return(connection)
 }
-
-
 
 writeDataToDatabase <- function(tableName, data) {
     connection = createConnection()
