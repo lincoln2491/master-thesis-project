@@ -40,6 +40,7 @@ getData <- function(){
   return(results)
 }
 
+
 prepareDataForClassification <- function(data){
   newData = data.frame(  data$idMatch )
   setnames(newData, "data.idMatch", "idMatch")
@@ -79,6 +80,7 @@ prepareDataForClassification <- function(data){
   return(newData)
 }
 
+
 getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10, forWho = "home"){
   thisMatch = data[ data$idMatch == idMatch,]
   matchId = thisMatch$idMatch
@@ -94,10 +96,17 @@ getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10,
   }
   
   data = data[ data$idMatch < matchId,]
+  if(forWho == "home"){
+    data = data[data$home_team_fk == clubId,]
+  }
+  else if(forWho == "away"){
+    data = data[data$away_team_fk == clubId,]
+  }
   data = data[data$home_team_fk == clubId | data$away_team_fk == clubId,]
   
   return(tail(data, howManyPreviousMatches))
 }
+
 
 getMean <- function(id, data, columnName, howManyPreviousMatches = 10, forWho = "home"){
   thisMatch = data[ data$idMatch == id,]
@@ -123,7 +132,40 @@ getMean <- function(id, data, columnName, howManyPreviousMatches = 10, forWho = 
   return(mean(values))
 }
 
-addTablePlace <-function(data)
+addTablePlace <-function(data){
+  data$home_pos = 0
+  data$away_pos = 0
+
+  leagueTable = data.table(pos = 1:20, team = unique(data$home_team_fk), p =0, win = 0,
+                           draw = 0, lose = 0, gf = 0, ga = 0, gd = 0, point = 0)
+  leagueTable = leagueTable[order(leagueTable$team),]  
+  leagueTable$pos = 1:20
+  lastDay = data$day[1]
+  matchesToCount = c()
+  
+  for(i in data$idMatch){
+    match = data[ data$idMatch == i,]
+    if(match$day == lastDay){
+      matchesToCount = c(matchesToCount, list(match))
+    }
+    else{
+      #TODO do it better (export to other function)
+      leagueTable = updateLeagueTable(leagueTable, matchesToCount)
+      
+      matchesToCount = c(list(match))
+      lastDay = match$day
+      
+    }
+    
+    
+    data$home_pos[ data$idMatch == i] = leagueTable$pos[ leagueTable$team == match$home_team_fk]
+    data$away_pos[ data$idMatch == i] = leagueTable$pos[ leagueTable$team == match$away_team_fk]
+  }
+  leagueTable = updateLeagueTable(leagueTable, matchesToCount)
+  
+  return(data)
+}
+
 
 updateLeagueTable <-function(leagueTable, matchesToCount){
   for(savedMatch in matchesToCount){
@@ -157,6 +199,7 @@ updateLeagueTable <-function(leagueTable, matchesToCount){
   leagueTable$pos = 1:20
   return(leagueTable)
 }
+
 
 jaccardIndex <-function(vec1, vec2){
   n1 = length(vec1)
