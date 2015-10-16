@@ -1,1316 +1,289 @@
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-1  1  4  3  2  2  2  5  2  3   2   1   4   4
-1 -> 4 :  0.3087071 ( 203 / 117 / 293 ) 
-4 -> 3 :  0.2225201 ( 293 / 83 / 163 ) 
-3 -> 2 :  0.1402597 ( 163 / 54 / 276 ) 
-2 -> 2 :  0.4072165 ( 276 / 158 / 270 ) 
-2 -> 2 :  0.2493766 ( 270 / 100 / 231 ) 
-2 -> 5 :  0.3687151 ( 231 / 132 / 259 ) 
-5 -> 2 :  0.3830409 ( 259 / 131 / 214 ) 
-2 -> 3 :  0.2786458 ( 214 / 107 / 277 ) 
-3 -> 2 :  0.3512064 ( 277 / 131 / 227 ) 
-2 -> 1 :  0.3457627 ( 227 / 102 / 170 ) 
-1 -> 4 :  0.2941176 ( 170 / 70 / 138 ) 
-4 -> 4 :  0.2711864 ( 138 / 64 / 162 ) 
-[1] 5
-              club count
-1     Leeds United    32
-2       Sunderland    20
-3          Chelsea    19
-4          Everton    18
-5 Blackburn Rovers    15
-[1] 5
-              club count
-1     Leeds United    29
-2 Blackburn Rovers    21
-3       Sunderland    19
-4 Bolton Wanderers    18
-5          Everton    18
-[1] 5
-              club count
-1     Leeds United    19
-2 Blackburn Rovers    17
-3      Aston Villa    12
-4  Birmingham City    12
-5           Fulham    11
-[1] 5
-              club count
-1          Everton    27
-2 Blackburn Rovers    24
-3           Fulham    24
-4  Birmingham City    22
-5      Aston Villa    20
-[1] 5
-              club count
-1 Blackburn Rovers    38
-2          Everton    26
-3        Newcastle    25
-4 Bolton Wanderers    24
-5           Fulham    21
-[1] 5
-              club count
-1 Blackburn Rovers    27
-2          Everton    21
-3          Chelsea    20
-4           Fulham    19
-5  Manchester City    15
-[1] 5
-              club count
-1 Blackburn Rovers    32
-2   Wigan Athletic    19
-3          Everton    18
-4           Fulham    18
-5          Chelsea    16
-[1] 5
-              club count
-1 Blackburn Rovers    25
-2       Portsmouth    17
-3       Sunderland    17
-4   Wigan Athletic    15
-5        Hull City    14
-[1] 5
-              club count
-1 Blackburn Rovers    32
-2 Bolton Wanderers    27
-3        Hull City    21
-4   Wigan Athletic    21
-5       Stoke City    20
-[1] 5
-                     club count
-1        Bolton Wanderers    25
-2        Blackburn Rovers    18
-3              Sunderland    18
-4                 Everton    16
-5 Wolverhampton Wanderers    16
-[1] 5
-                 club count
-1      Wigan Athletic    18
-2    Bolton Wanderers    14
-3           Newcastle    14
-4 Queens Park Rangers    14
-5     Manchester City    12
-[1] 5
-                 club count
-1 Queens Park Rangers    14
-2           Newcastle    13
-3          Sunderland    13
-4             Chelsea     8
-5     Manchester City     8
-[1] 5
-         club count
-1   Newcastle    22
-2  Sunderland    20
-3   Hull City    16
-4   Tottenham    12
-5 Aston Villa    11
-[1] "Often top clubs"
-                      club count
-5         Blackburn Rovers    10
-4                  Everton     7
-2               Sunderland     6
-6         Bolton Wanderers     5
-9                   Fulham     5
-3                  Chelsea     4
-10               Newcastle     4
-12          Wigan Athletic     4
-1             Leeds United     3
-7              Aston Villa     3
-11         Manchester City     3
-14               Hull City     3
-8          Birmingham City     2
-17     Queens Park Rangers     2
-13              Portsmouth     1
-15              Stoke City     1
-16 Wolverhampton Wanderers     1
-18               Tottenham     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-2  2  4  3  2  2  2  5  2  3   2   1   4   4
-2 -> 4 :  0.2060606 ( 304 / 102 / 293 ) 
-4 -> 3 :  0.2225201 ( 293 / 83 / 163 ) 
-3 -> 2 :  0.1402597 ( 163 / 54 / 276 ) 
-2 -> 2 :  0.4072165 ( 276 / 158 / 270 ) 
-2 -> 2 :  0.2493766 ( 270 / 100 / 231 ) 
-2 -> 5 :  0.3687151 ( 231 / 132 / 259 ) 
-5 -> 2 :  0.3830409 ( 259 / 131 / 214 ) 
-2 -> 3 :  0.2786458 ( 214 / 107 / 277 ) 
-3 -> 2 :  0.3512064 ( 277 / 131 / 227 ) 
-2 -> 1 :  0.3457627 ( 227 / 102 / 170 ) 
-1 -> 4 :  0.2941176 ( 170 / 70 / 138 ) 
-4 -> 4 :  0.2711864 ( 138 / 64 / 162 ) 
-[1] 5
-               club count
-1     Middlesbrough    28
-2 Charlton Athletic    25
-3         Tottenham    24
-4       Aston Villa    23
-5       Southampton    23
-[1] 5
-              club count
-1     Leeds United    29
-2 Blackburn Rovers    21
-3       Sunderland    19
-4 Bolton Wanderers    18
-5          Everton    18
-[1] 5
-              club count
-1     Leeds United    19
-2 Blackburn Rovers    17
-3      Aston Villa    12
-4  Birmingham City    12
-5           Fulham    11
-[1] 5
-              club count
-1          Everton    27
-2 Blackburn Rovers    24
-3           Fulham    24
-4  Birmingham City    22
-5      Aston Villa    20
-[1] 5
-              club count
-1 Blackburn Rovers    38
-2          Everton    26
-3        Newcastle    25
-4 Bolton Wanderers    24
-5           Fulham    21
-[1] 5
-              club count
-1 Blackburn Rovers    27
-2          Everton    21
-3          Chelsea    20
-4           Fulham    19
-5  Manchester City    15
-[1] 5
-              club count
-1 Blackburn Rovers    32
-2   Wigan Athletic    19
-3          Everton    18
-4           Fulham    18
-5          Chelsea    16
-[1] 5
-              club count
-1 Blackburn Rovers    25
-2       Portsmouth    17
-3       Sunderland    17
-4   Wigan Athletic    15
-5        Hull City    14
-[1] 5
-              club count
-1 Blackburn Rovers    32
-2 Bolton Wanderers    27
-3        Hull City    21
-4   Wigan Athletic    21
-5       Stoke City    20
-[1] 5
-                     club count
-1        Bolton Wanderers    25
-2        Blackburn Rovers    18
-3              Sunderland    18
-4                 Everton    16
-5 Wolverhampton Wanderers    16
-[1] 5
-                 club count
-1      Wigan Athletic    18
-2    Bolton Wanderers    14
-3           Newcastle    14
-4 Queens Park Rangers    14
-5     Manchester City    12
-[1] 5
-                 club count
-1 Queens Park Rangers    14
-2           Newcastle    13
-3          Sunderland    13
-4             Chelsea     8
-5     Manchester City     8
-[1] 5
-         club count
-1   Newcastle    22
-2  Sunderland    20
-3   Hull City    16
-4   Tottenham    12
-5 Aston Villa    11
-[1] "Often top clubs"
-                      club count
-7         Blackburn Rovers     9
-10                 Everton     6
-8               Sunderland     5
-9         Bolton Wanderers     5
-12                  Fulham     5
-4              Aston Villa     4
-13               Newcastle     4
-16          Wigan Athletic     4
-14                 Chelsea     3
-15         Manchester City     3
-18               Hull City     3
-3                Tottenham     2
-6             Leeds United     2
-11         Birmingham City     2
-21     Queens Park Rangers     2
-1            Middlesbrough     1
-2        Charlton Athletic     1
-5              Southampton     1
-17              Portsmouth     1
-19              Stoke City     1
-20 Wolverhampton Wanderers     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-3  3  5  2  1  3  1  3  1  4   1   3   3   3
-3 -> 5 :  0.3506098 ( 233 / 115 / 210 ) 
-5 -> 2 :  0.3300248 ( 210 / 133 / 326 ) 
-2 -> 1 :  0.5025773 ( 326 / 195 / 257 ) 
-1 -> 3 :  0.4066265 ( 257 / 135 / 210 ) 
-3 -> 1 :  0.3624161 ( 210 / 108 / 196 ) 
-1 -> 3 :  0.3248175 ( 196 / 89 / 167 ) 
-3 -> 1 :  0.3079365 ( 167 / 97 / 245 ) 
-1 -> 4 :  0.4131148 ( 245 / 126 / 186 ) 
-4 -> 1 :  0.3712375 ( 186 / 111 / 224 ) 
-1 -> 3 :  0.2966361 ( 224 / 97 / 200 ) 
-3 -> 3 :  0.4423676 ( 200 / 142 / 263 ) 
-3 -> 3 :  0.4866469 ( 263 / 164 / 238 ) 
-[1] 5
-           club count
-1     Leicester    20
-2 Derby Country    19
-3 Middlesbrough    17
-4     Tottenham    15
-5   Southampton    14
-[1] 5
-             club count
-1 Birmingham City    20
-2    Leeds United    16
-3       Leicester    16
-4   Middlesbrough    16
-5          Fulham    15
-[1] 5
-               club count
-1   Birmingham City    28
-2            Fulham    24
-3 Charlton Athletic    20
-4       Southampton    19
-5       Aston Villa    18
-[1] 5
-              club count
-1      Aston Villa    16
-2 Blackburn Rovers    16
-3          Everton    16
-4       Portsmouth    16
-5  Birmingham City    15
-[1] 5
-                  club count
-1          Aston Villa    15
-2    Charlton Athletic    14
-3      Manchester City    13
-4           Portsmouth    12
-5 West Bromwich Albion    12
-[1] 5
-             club count
-1 Manchester City    14
-2     Aston Villa    12
-3       Newcastle    12
-4      Portsmouth    12
-5  Wigan Athletic    12
-[1] 5
-              club count
-1  West Ham United    14
-2   Wigan Athletic    14
-3 Blackburn Rovers    13
-4    Middlesbrough    13
-5       Sunderland    13
-[1] 5
-              club count
-1       Sunderland    19
-2 Blackburn Rovers    18
-3 Bolton Wanderers    18
-4  West Ham United    18
-5       Portsmouth    16
-[1] 5
-              club count
-1       Stoke City    17
-2       Sunderland    14
-3 Blackburn Rovers    13
-4   Wigan Athletic    13
-5           Fulham    12
-[1] 5
-              club count
-1       Stoke City    27
-2 Blackburn Rovers    22
-3       Sunderland    20
-4           Fulham    15
-5   Wigan Athletic    14
-[1] 5
-            club count
-1      Newcastle    15
-2     Stoke City    15
-3         Fulham    14
-4 Wigan Athletic    14
-5     Sunderland    12
-[1] 5
-                  club count
-1           Stoke City    24
-2          Aston Villa    22
-3         Norwich City    22
-4               Fulham    17
-5 West Bromwich Albion    17
-[1] 5
-             club count
-1     Aston Villa    20
-2     Southampton    17
-3      Stoke City    17
-4 West Ham United    16
-5    Norwich City    13
-[1] "Often top clubs"
-                   club count
-8                Fulham     6
-10          Aston Villa     6
-11     Blackburn Rovers     5
-17       Wigan Athletic     5
-19           Sunderland     5
-21           Stoke City     5
-13           Portsmouth     4
-3         Middlesbrough     3
-5           Southampton     3
-6       Birmingham City     3
-18      West Ham United     3
-1             Leicester     2
-9     Charlton Athletic     2
-14      Manchester City     2
-15 West Bromwich Albion     2
-16            Newcastle     2
-22         Norwich City     2
-2         Derby Country     1
-4             Tottenham     1
-7          Leeds United     1
-12              Everton     1
-20     Bolton Wanderers     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-4  4  2  4  5  4  3  2  4  5   4   2   2   5
-4 -> 2 :  0.4101562 ( 180 / 105 / 181 ) 
-2 -> 4 :  0.2212121 ( 181 / 73 / 222 ) 
-4 -> 5 :  0.4417178 ( 222 / 144 / 248 ) 
-5 -> 4 :  0.4521739 ( 248 / 156 / 253 ) 
-4 -> 3 :  0.3372434 ( 253 / 115 / 203 ) 
-3 -> 2 :  0.4548736 ( 203 / 126 / 200 ) 
-2 -> 4 :  0.3803279 ( 200 / 116 / 221 ) 
-4 -> 5 :  0.4233333 ( 221 / 127 / 206 ) 
-5 -> 4 :  0.2874251 ( 206 / 96 / 224 ) 
-4 -> 2 :  0.2861272 ( 224 / 99 / 221 ) 
-2 -> 2 :  0.469697 ( 221 / 155 / 264 ) 
-2 -> 5 :  0.4380403 ( 264 / 152 / 235 ) 
-[1] 5
-               club count
-1 Manchester United    29
-2         Liverpool    25
-3           Arsenal    21
-4         Newcastle    18
-5           Chelsea    14
-[1] 5
-               club count
-1         Liverpool    27
-2 Manchester United    25
-3         Newcastle    21
-4           Arsenal    15
-5           Chelsea    14
-[1] 5
-               club count
-1 Manchester United    42
-2           Chelsea    34
-3         Liverpool    32
-4           Arsenal    24
-5         Newcastle    21
-[1] 5
-               club count
-1 Manchester United    40
-2           Chelsea    39
-3         Liverpool    37
-4           Arsenal    32
-5  Bolton Wanderers    21
-[1] 5
-               club count
-1 Manchester United    50
-2           Chelsea    45
-3         Liverpool    41
-4           Arsenal    39
-5     Middlesbrough    18
-[1] 5
-               club count
-1 Manchester United    48
-2         Liverpool    45
-3           Arsenal    34
-4           Chelsea    21
-5         Tottenham    15
-[1] 5
-               club count
-1 Manchester United    48
-2         Liverpool    42
-3           Arsenal    36
-4           Chelsea    26
-5         Tottenham    20
-[1] 5
-               club count
-1 Manchester United    53
-2         Liverpool    40
-3           Arsenal    38
-4           Chelsea    36
-5         Tottenham    29
-[1] 5
-               club count
-1           Chelsea    46
-2 Manchester United    41
-3           Arsenal    34
-4         Tottenham    30
-5         Liverpool    23
-[1] 5
-               club count
-1           Chelsea    40
-2         Tottenham    39
-3           Arsenal    36
-4 Manchester United    33
-5   Manchester City    17
-[1] 5
-             club count
-1       Tottenham    44
-2         Chelsea    38
-3         Arsenal    34
-4       Liverpool    29
-5 Manchester City    27
-[1] 5
-             club count
-1 Manchester City    46
-2       Tottenham    44
-3       Liverpool    42
-4         Chelsea    39
-5         Arsenal    29
-[1] 5
-             club count
-1         Chelsea    36
-2       Liverpool    36
-3 Manchester City    36
-4         Arsenal    29
-5       Tottenham    26
-[1] "Often top clubs"
-               club count
-3           Arsenal    13
-5           Chelsea    13
-2         Liverpool    12
-1 Manchester United    10
-8         Tottenham     8
-9   Manchester City     4
-4         Newcastle     3
-6  Bolton Wanderers     1
-7     Middlesbrough     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-5  5  1  4  5  4  3  2  4  5   4   2   2   5
-5 -> 1 :  0.2138728 ( 205 / 74 / 215 ) 
-1 -> 4 :  0.1684492 ( 215 / 63 / 222 ) 
-4 -> 5 :  0.4417178 ( 222 / 144 / 248 ) 
-5 -> 4 :  0.4521739 ( 248 / 156 / 253 ) 
-4 -> 3 :  0.3372434 ( 253 / 115 / 203 ) 
-3 -> 2 :  0.4548736 ( 203 / 126 / 200 ) 
-2 -> 4 :  0.3803279 ( 200 / 116 / 221 ) 
-4 -> 5 :  0.4233333 ( 221 / 127 / 206 ) 
-5 -> 4 :  0.2874251 ( 206 / 96 / 224 ) 
-4 -> 2 :  0.2861272 ( 224 / 99 / 221 ) 
-2 -> 2 :  0.469697 ( 221 / 155 / 264 ) 
-2 -> 5 :  0.4380403 ( 264 / 152 / 235 ) 
-[1] 5
-               club count
-1 Manchester United    23
-2           Arsenal    20
-3           Chelsea    18
-4         Liverpool    18
-5         Newcastle    17
-[1] 5
-               club count
-1 Manchester United    24
-2           Arsenal    23
-3           Chelsea    20
-4         Liverpool    19
-5         Newcastle    17
-[1] 5
-               club count
-1 Manchester United    42
-2           Chelsea    34
-3         Liverpool    32
-4           Arsenal    24
-5         Newcastle    21
-[1] 5
-               club count
-1 Manchester United    40
-2           Chelsea    39
-3         Liverpool    37
-4           Arsenal    32
-5  Bolton Wanderers    21
-[1] 5
-               club count
-1 Manchester United    50
-2           Chelsea    45
-3         Liverpool    41
-4           Arsenal    39
-5     Middlesbrough    18
-[1] 5
-               club count
-1 Manchester United    48
-2         Liverpool    45
-3           Arsenal    34
-4           Chelsea    21
-5         Tottenham    15
-[1] 5
-               club count
-1 Manchester United    48
-2         Liverpool    42
-3           Arsenal    36
-4           Chelsea    26
-5         Tottenham    20
-[1] 5
-               club count
-1 Manchester United    53
-2         Liverpool    40
-3           Arsenal    38
-4           Chelsea    36
-5         Tottenham    29
-[1] 5
-               club count
-1           Chelsea    46
-2 Manchester United    41
-3           Arsenal    34
-4         Tottenham    30
-5         Liverpool    23
-[1] 5
-               club count
-1           Chelsea    40
-2         Tottenham    39
-3           Arsenal    36
-4 Manchester United    33
-5   Manchester City    17
-[1] 5
-             club count
-1       Tottenham    44
-2         Chelsea    38
-3         Arsenal    34
-4       Liverpool    29
-5 Manchester City    27
-[1] 5
-             club count
-1 Manchester City    46
-2       Tottenham    44
-3       Liverpool    42
-4         Chelsea    39
-5         Arsenal    29
-[1] 5
-             club count
-1         Chelsea    36
-2       Liverpool    36
-3 Manchester City    36
-4         Arsenal    29
-5       Tottenham    26
-[1] "Often top clubs"
-               club count
-2           Arsenal    13
-3           Chelsea    13
-4         Liverpool    12
-1 Manchester United    10
-8         Tottenham     8
-9   Manchester City     4
-5         Newcastle     3
-6  Bolton Wanderers     1
-7     Middlesbrough     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-6 NA  3  1  3  5  5  1  5  1   3   4   1   2
-[1] NA
-3 -> 1 :  0.2751479 ( 234 / 93 / 197 ) 
-1 -> 3 :  0.2699387 ( 197 / 88 / 217 ) 
-3 -> 5 :  0.3452381 ( 217 / 116 / 235 ) 
-5 -> 5 :  0.3095238 ( 235 / 117 / 260 ) 
-5 -> 1 :  0.3167082 ( 260 / 127 / 268 ) 
-1 -> 5 :  0.2314225 ( 268 / 109 / 312 ) 
-5 -> 1 :  0.2537961 ( 312 / 117 / 266 ) 
-1 -> 3 :  0.2647059 ( 266 / 126 / 336 ) 
-3 -> 4 :  0.2903885 ( 336 / 142 / 295 ) 
-4 -> 1 :  0.2071269 ( 295 / 93 / 247 ) 
-1 -> 2 :  0.1956088 ( 247 / 98 / 352 ) 
-[1] 5
-               club count
-1 Charlton Athletic    21
-2            Fulham    19
-3     Middlesbrough    19
-4       Southampton    18
-5         Tottenham    17
-[1] 5
-               club count
-1 Charlton Athletic    16
-2       Southampton    16
-3         Newcastle    15
-4           Arsenal    12
-5            Fulham    12
-[1] 5
-                  club count
-1    Charlton Athletic    30
-2 West Bromwich Albion    16
-3      Birmingham City    13
-4              Chelsea    12
-5               Fulham    12
-[1] 5
-                  club count
-1    Charlton Athletic    31
-2 West Bromwich Albion    19
-3      Manchester City    16
-4            Tottenham    16
-5               Fulham    14
-[1] 5
-               club count
-1 Charlton Athletic    21
-2    Wigan Athletic    21
-3       Aston Villa    18
-4   Manchester City    18
-5           Everton    15
-[1] 5
-              club count
-1 Bolton Wanderers    20
-2  West Ham United    20
-3           Fulham    19
-4        Newcastle    19
-5          Everton    17
-[1] 5
-             club count
-1 Manchester City    30
-2          Fulham    25
-3     Aston Villa    22
-4         Everton    21
-5 West Ham United    20
-[1] 5
-             club count
-1          Fulham    29
-2 Birmingham City    21
-3      Sunderland    20
-4 Manchester City    18
-5      Stoke City    18
-[1] 5
-                     club count
-1                  Fulham    35
-2             Aston Villa    27
-3          Wigan Athletic    23
-4 Wolverhampton Wanderers    22
-5         Birmingham City    20
-[1] 5
-                     club count
-1              Stoke City    32
-2             Aston Villa    25
-3              Sunderland    24
-4                  Fulham    19
-5 Wolverhampton Wanderers    17
-[1] 5
-          club count
-1       Fulham    28
-2      Swansea    25
-3   Sunderland    17
-4 Norwich City    16
-5 Cardiff City    13
-[1] 5
-                  club count
-1 West Bromwich Albion    26
-2      West Ham United    23
-3          Southampton    21
-4           Stoke City    21
-5              Swansea    20
-[1] "Often top clubs"
-                      club count
-2                   Fulham    10
-1        Charlton Athletic     5
-11         Manchester City     4
-13             Aston Villa     4
-4              Southampton     3
-8     West Bromwich Albion     3
-9          Birmingham City     3
-14                 Everton     3
-16         West Ham United     3
-17              Sunderland     3
-18              Stoke City     3
-5                Tottenham     2
-6                Newcastle     2
-12          Wigan Athletic     2
-19 Wolverhampton Wanderers     2
-20                 Swansea     2
-3            Middlesbrough     1
-7                  Arsenal     1
-10                 Chelsea     1
-15        Bolton Wanderers     1
-21            Norwich City     1
-22            Cardiff City     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-7 NA NA  5  2  2  2  5  2  3   2   1   4   4
-[1] NA
-[1] NA
-5 -> 2 :  0.1779859 ( 227 / 76 / 276 ) 
-2 -> 2 :  0.4072165 ( 276 / 158 / 270 ) 
-2 -> 2 :  0.2493766 ( 270 / 100 / 231 ) 
-2 -> 5 :  0.3687151 ( 231 / 132 / 259 ) 
-5 -> 2 :  0.3830409 ( 259 / 131 / 214 ) 
-2 -> 3 :  0.2786458 ( 214 / 107 / 277 ) 
-3 -> 2 :  0.3512064 ( 277 / 131 / 227 ) 
-2 -> 1 :  0.3457627 ( 227 / 102 / 170 ) 
-1 -> 4 :  0.2941176 ( 170 / 70 / 138 ) 
-4 -> 4 :  0.2711864 ( 138 / 64 / 162 ) 
-[1] 5
-               club count
-1           Everton    18
-2   Manchester City    18
-3       Southampton    18
-4       Aston Villa    15
-5 Charlton Athletic    15
-[1] 5
-              club count
-1          Everton    27
-2 Blackburn Rovers    24
-3           Fulham    24
-4  Birmingham City    22
-5      Aston Villa    20
-[1] 5
-              club count
-1 Blackburn Rovers    38
-2          Everton    26
-3        Newcastle    25
-4 Bolton Wanderers    24
-5           Fulham    21
-[1] 5
-              club count
-1 Blackburn Rovers    27
-2          Everton    21
-3          Chelsea    20
-4           Fulham    19
-5  Manchester City    15
-[1] 5
-              club count
-1 Blackburn Rovers    32
-2   Wigan Athletic    19
-3          Everton    18
-4           Fulham    18
-5          Chelsea    16
-[1] 5
-              club count
-1 Blackburn Rovers    25
-2       Portsmouth    17
-3       Sunderland    17
-4   Wigan Athletic    15
-5        Hull City    14
-[1] 5
-              club count
-1 Blackburn Rovers    32
-2 Bolton Wanderers    27
-3        Hull City    21
-4   Wigan Athletic    21
-5       Stoke City    20
-[1] 5
-                     club count
-1        Bolton Wanderers    25
-2        Blackburn Rovers    18
-3              Sunderland    18
-4                 Everton    16
-5 Wolverhampton Wanderers    16
-[1] 5
-                 club count
-1      Wigan Athletic    18
-2    Bolton Wanderers    14
-3           Newcastle    14
-4 Queens Park Rangers    14
-5     Manchester City    12
-[1] 5
-                 club count
-1 Queens Park Rangers    14
-2           Newcastle    13
-3          Sunderland    13
-4             Chelsea     8
-5     Manchester City     8
-[1] 5
-         club count
-1   Newcastle    22
-2  Sunderland    20
-3   Hull City    16
-4   Tottenham    12
-5 Aston Villa    11
-[1] "Often top clubs"
-                      club count
-6         Blackburn Rovers     7
-1                  Everton     6
-2          Manchester City     4
-7                   Fulham     4
-9                Newcastle     4
-10        Bolton Wanderers     4
-12          Wigan Athletic     4
-14              Sunderland     4
-4              Aston Villa     3
-11                 Chelsea     3
-15               Hull City     3
-18     Queens Park Rangers     2
-3              Southampton     1
-5        Charlton Athletic     1
-8          Birmingham City     1
-13              Portsmouth     1
-16              Stoke City     1
-17 Wolverhampton Wanderers     1
-19               Tottenham     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-8 NA NA NA  4  1  4  1  5  1   3   4   1   2
-[1] NA
-[1] NA
-[1] NA
-4 -> 1 :  0.3377193 ( 138 / 77 / 167 ) 
-1 -> 4 :  0.1766382 ( 167 / 62 / 246 ) 
-4 -> 1 :  0.1498881 ( 246 / 67 / 268 ) 
-1 -> 5 :  0.2314225 ( 268 / 109 / 312 ) 
-5 -> 1 :  0.2537961 ( 312 / 117 / 266 ) 
-1 -> 3 :  0.2647059 ( 266 / 126 / 336 ) 
-3 -> 4 :  0.2903885 ( 336 / 142 / 295 ) 
-4 -> 1 :  0.2071269 ( 295 / 93 / 247 ) 
-1 -> 2 :  0.1956088 ( 247 / 98 / 352 ) 
-[1] 5
-              club count
-1      Aston Villa    10
-2 Blackburn Rovers    10
-3 Bolton Wanderers    10
-4       Portsmouth     9
-5        Tottenham     9
-[1] 5
-              club count
-1       Portsmouth    15
-2           Fulham    12
-3    Middlesbrough    12
-4 Bolton Wanderers    11
-5      Aston Villa    10
-[1] 5
-              club count
-1  West Ham United    26
-2    Middlesbrough    22
-3 Bolton Wanderers    21
-4 Blackburn Rovers    20
-5        Newcastle    19
-[1] 5
-              club count
-1 Bolton Wanderers    20
-2  West Ham United    20
-3           Fulham    19
-4        Newcastle    19
-5          Everton    17
-[1] 5
-             club count
-1 Manchester City    30
-2          Fulham    25
-3     Aston Villa    22
-4         Everton    21
-5 West Ham United    20
-[1] 5
-             club count
-1          Fulham    29
-2 Birmingham City    21
-3      Sunderland    20
-4 Manchester City    18
-5      Stoke City    18
-[1] 5
-                     club count
-1                  Fulham    35
-2             Aston Villa    27
-3          Wigan Athletic    23
-4 Wolverhampton Wanderers    22
-5         Birmingham City    20
-[1] 5
-                     club count
-1              Stoke City    32
-2             Aston Villa    25
-3              Sunderland    24
-4                  Fulham    19
-5 Wolverhampton Wanderers    17
-[1] 5
-          club count
-1       Fulham    28
-2      Swansea    25
-3   Sunderland    17
-4 Norwich City    16
-5 Cardiff City    13
-[1] 5
-                  club count
-1 West Bromwich Albion    26
-2      West Ham United    23
-3          Southampton    21
-4           Stoke City    21
-5              Swansea    20
-[1] "Often top clubs"
-                      club count
-6                   Fulham     7
-1              Aston Villa     5
-3         Bolton Wanderers     4
-8          West Ham United     4
-13              Sunderland     3
-14              Stoke City     3
-2         Blackburn Rovers     2
-4               Portsmouth     2
-7            Middlesbrough     2
-9                Newcastle     2
-10                 Everton     2
-11         Manchester City     2
-12         Birmingham City     2
-16 Wolverhampton Wanderers     2
-17                 Swansea     2
-5                Tottenham     1
-15          Wigan Athletic     1
-18            Norwich City     1
-19            Cardiff City     1
-20    West Bromwich Albion     1
-21             Southampton     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-9 NA NA NA NA NA NA  4  5  1   3   4   1   2
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-4 -> 5 :  0.1816239 ( 241 / 85 / 312 ) 
-5 -> 1 :  0.2537961 ( 312 / 117 / 266 ) 
-1 -> 3 :  0.2647059 ( 266 / 126 / 336 ) 
-3 -> 4 :  0.2903885 ( 336 / 142 / 295 ) 
-4 -> 1 :  0.2071269 ( 295 / 93 / 247 ) 
-1 -> 2 :  0.1956088 ( 247 / 98 / 352 ) 
-[1] 5
-              club count
-1          Everton    19
-2       Portsmouth    19
-3      Aston Villa    18
-4    Middlesbrough    17
-5 Bolton Wanderers    14
-[1] 5
-             club count
-1 Manchester City    30
-2          Fulham    25
-3     Aston Villa    22
-4         Everton    21
-5 West Ham United    20
-[1] 5
-             club count
-1          Fulham    29
-2 Birmingham City    21
-3      Sunderland    20
-4 Manchester City    18
-5      Stoke City    18
-[1] 5
-                     club count
-1                  Fulham    35
-2             Aston Villa    27
-3          Wigan Athletic    23
-4 Wolverhampton Wanderers    22
-5         Birmingham City    20
-[1] 5
-                     club count
-1              Stoke City    32
-2             Aston Villa    25
-3              Sunderland    24
-4                  Fulham    19
-5 Wolverhampton Wanderers    17
-[1] 5
-          club count
-1       Fulham    28
-2      Swansea    25
-3   Sunderland    17
-4 Norwich City    16
-5 Cardiff City    13
-[1] 5
-                  club count
-1 West Bromwich Albion    26
-2      West Ham United    23
-3          Southampton    21
-4           Stoke City    21
-5              Swansea    20
-[1] "Often top clubs"
-                      club count
-7                   Fulham     5
-3              Aston Villa     4
-10              Sunderland     3
-11              Stoke City     3
-1                  Everton     2
-6          Manchester City     2
-8          West Ham United     2
-9          Birmingham City     2
-13 Wolverhampton Wanderers     2
-14                 Swansea     2
-2               Portsmouth     1
-4            Middlesbrough     1
-5         Bolton Wanderers     1
-12          Wigan Athletic     1
-15            Norwich City     1
-16            Cardiff City     1
-17    West Bromwich Albion     1
-18             Southampton     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-10 NA NA NA NA NA NA NA  3  2   3   4   1   2
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-3 -> 2 :  0.1890034 ( 145 / 55 / 201 ) 
-2 -> 3 :  0.1673913 ( 201 / 77 / 336 ) 
-3 -> 4 :  0.2903885 ( 336 / 142 / 295 ) 
-4 -> 1 :  0.2071269 ( 295 / 93 / 247 ) 
-1 -> 2 :  0.1956088 ( 247 / 98 / 352 ) 
-[1] 5
-              club count
-1 Bolton Wanderers    13
-2           Fulham    10
-3      Aston Villa     9
-4          Everton     9
-5       Portsmouth     9
-[1] 5
-             club count
-1 West Ham United    17
-2 Manchester City    16
-3     Aston Villa    15
-4          Fulham    15
-5  Wigan Athletic    15
-[1] 5
-                     club count
-1                  Fulham    35
-2             Aston Villa    27
-3          Wigan Athletic    23
-4 Wolverhampton Wanderers    22
-5         Birmingham City    20
-[1] 5
-                     club count
-1              Stoke City    32
-2             Aston Villa    25
-3              Sunderland    24
-4                  Fulham    19
-5 Wolverhampton Wanderers    17
-[1] 5
-          club count
-1       Fulham    28
-2      Swansea    25
-3   Sunderland    17
-4 Norwich City    16
-5 Cardiff City    13
-[1] 5
-                  club count
-1 West Bromwich Albion    26
-2      West Ham United    23
-3          Southampton    21
-4           Stoke City    21
-5              Swansea    20
-[1] "Often top clubs"
-                      club count
-2                   Fulham     5
-3              Aston Villa     4
-6          West Ham United     2
-8           Wigan Athletic     2
-9  Wolverhampton Wanderers     2
-11              Stoke City     2
-12              Sunderland     2
-13                 Swansea     2
-1         Bolton Wanderers     1
-4                  Everton     1
-5               Portsmouth     1
-7          Manchester City     1
-10         Birmingham City     1
-14            Norwich City     1
-15            Cardiff City     1
-16    West Bromwich Albion     1
-17             Southampton     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-11 NA NA NA NA NA NA NA NA NA   5   2   2   5
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-5 -> 2 :  0.1456954 ( 125 / 44 / 221 ) 
-2 -> 2 :  0.469697 ( 221 / 155 / 264 ) 
-2 -> 5 :  0.4380403 ( 264 / 152 / 235 ) 
-[1] 5
-               club count
-1 Manchester United    18
-2           Arsenal    16
-3         Liverpool    15
-4           Chelsea    14
-5         Tottenham    13
-[1] 5
-             club count
-1       Tottenham    44
-2         Chelsea    38
-3         Arsenal    34
-4       Liverpool    29
-5 Manchester City    27
-[1] 5
-             club count
-1 Manchester City    46
-2       Tottenham    44
-3       Liverpool    42
-4         Chelsea    39
-5         Arsenal    29
-[1] 5
-             club count
-1         Chelsea    36
-2       Liverpool    36
-3 Manchester City    36
-4         Arsenal    29
-5       Tottenham    26
-[1] "Often top clubs"
-               club count
-2           Arsenal     4
-3         Liverpool     4
-4           Chelsea     4
-5         Tottenham     4
-6   Manchester City     3
-1 Manchester United     1
-[1] ""
-[1] "----------------------------"
-[1] ""
-   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-12 NA NA NA NA NA NA NA NA NA  NA   5   5   2
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-[1] NA
-5 -> 5 :  0.1840796 ( 251 / 74 / 225 ) 
-5 -> 2 :  0.2302772 ( 225 / 108 / 352 ) 
-[1] 5
-                  club count
-1              Everton    22
-2               Fulham    20
-3    Manchester United    18
-4            Newcastle    16
-5 West Bromwich Albion    16
-[1] 5
-                  club count
-1          Aston Villa    24
-2 West Bromwich Albion    20
-3           Stoke City    16
-4            Newcastle    15
-5         Norwich City    14
-[1] 5
-                  club count
-1 West Bromwich Albion    26
-2      West Ham United    23
-3          Southampton    21
-4           Stoke City    21
-5              Swansea    20
-[1] "Often top clubs"
-                   club count
-5  West Bromwich Albion     3
-4             Newcastle     2
-7            Stoke City     2
-1               Everton     1
-2                Fulham     1
-3     Manchester United     1
-6           Aston Villa     1
-8          Norwich City     1
-9       West Ham United     1
-10          Southampton     1
-11              Swansea     1
 [1] "----------------------------"
 [1] "transitions"
-   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
-1   1  4  3  2  2  2  5  2  3   2   1   4   4
-2   2  4  3  2  2  2  5  2  3   2   1   4   4
-3   3  5  2  1  3  1  3  1  4   1   3   3   3
-4   4  2  4  5  4  3  2  4  5   4   2   2   5
-5   5  1  4  5  4  3  2  4  5   4   2   2   5
-6  NA  3  1  3  5  5  1  5  1   3   4   1   2
-7  NA NA  5  2  2  2  5  2  3   2   1   4   4
-8  NA NA NA  4  1  4  1  5  1   3   4   1   2
-9  NA NA NA NA NA NA  4  5  1   3   4   1   2
-10 NA NA NA NA NA NA NA  3  2   3   4   1   2
-11 NA NA NA NA NA NA NA NA NA   5   2   2   5
-12 NA NA NA NA NA NA NA NA NA  NA   5   5   2
 [1] "----------------------------"
 [1] "clustDistribution"
-   X203L X304L X233L X180L X205L
-1    203   304   233   180   205
-2    215   181   234   293   210
-3    197   326   163   222   227
-4    257   276   217   138   248
-5    167   270   210   253   235
-6    196   231   203   246   260
-7    268   200   167   241   259
-8    245   214   145   221   312
-9    266   201   277   186   206
-10   224   227   336   224   125
-11   170   221   200   295   251
-12   247   264   263   138   225
-13   152   352   238   162   235
-null device 
-          1 
+[1] c1 c2 c3 c4 c5
+<0 wierszy> (lub 'row.names' o zerowej długości)
+Called from: plot.window(...)
 [1] "----------------------------"
 [1] "----------------------------"
 [1] "New transitions"
-null device 
-          1 
-     V1   V2   V3   V4   V5   V6   V7   V8   V9  V10 V11 V12 V13
-1    c1   c1   c1   c1   c1   c1   c1   c1   c1   c1  c1  c1  c1
-2    c2   c1   c1   c1   c1   c1   c1   c1   c1   c1  c1  c1  c1
-3    c3   c3   c3   c3   c3   c3   c3   c3   c3   c3  c3  c3  c3
-4    c4   c4   c5   c5   c5   c5   c5   c5   c5   c5  c5  c5  c5
-5    c5   c5   c5   c5   c5   c5   c5   c5   c5   c5  c5  c5  c5
-6  <NA>   c6   c6   c6   c6   c6   c8   c8   c8   c8  c8  c8  c8
-7  <NA> <NA>   c7   c1   c1   c1   c1   c1   c1   c1  c1  c1  c1
-8  <NA> <NA> <NA>   c8   c8   c8   c8   c8   c8   c8  c8  c8  c8
-9  <NA> <NA> <NA> <NA> <NA> <NA>   c9   c8   c8   c8  c8  c8  c8
-10 <NA> <NA> <NA> <NA> <NA> <NA> <NA>  c10  c10   c8  c8  c8  c8
-11 <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA>  c11  c5  c5  c5
-12 <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA> <NA> c12 c12  c8
 [1] "----------------------------"
 [1] "New cluster distribution"
-null device 
-          1 
-    V1  V2  V3  V4  V5  V6  V7  V8  V9 V10 V11 V12 V13
-1  203 304 233 180 205  NA  NA  NA  NA  NA  NA  NA  NA
-2  293  NA 210 181 215 234  NA  NA  NA  NA  NA  NA  NA
-3  163  NA 326  NA 222 197 227  NA  NA  NA  NA  NA  NA
-4  276  NA 257  NA 248 217  NA 138  NA  NA  NA  NA  NA
-5  270  NA 210  NA 253 235  NA 167  NA  NA  NA  NA  NA
-6  231  NA 196  NA 203 260  NA 246  NA  NA  NA  NA  NA
-7  259  NA 167  NA 200  NA  NA 268 241  NA  NA  NA  NA
-8  214  NA 245  NA 221  NA  NA 312  NA 145  NA  NA  NA
-9  277  NA 186  NA 206  NA  NA 266  NA 201  NA  NA  NA
-10 227  NA 224  NA 224  NA  NA 336  NA  NA 125  NA  NA
-11 170  NA 200  NA 221  NA  NA 295  NA  NA  NA 251  NA
-12 138  NA 263  NA 264  NA  NA 247  NA  NA  NA 225  NA
-13 162  NA 238  NA 235  NA  NA 352  NA  NA  NA  NA 152
+Called from: plot.window(...)
+[1] c1 c2 c3 c4 c5
+<0 rows> (or 0-length row.names)
+[1] "----------------------------"
+[1] "----------------------------"
+[1] "Means and standard deviation"
+[1] "Mean"
+   home_shots_av10 away_shots_av10 diff_shots_av10 home_shots_on_target_av10
+1         12.63392        9.451938        3.181981                  6.231155
+2         12.65953        9.552328        3.107202                  6.460330
+3         12.78378        9.732205        3.051571                  6.829944
+4         12.69708        9.645690        3.051395                  6.857989
+5         12.66631        9.579455        3.086855                  6.743883
+6         12.66295        9.596357        3.066595                  6.675311
+7         13.03636       10.038025        2.998337                  6.941201
+8         13.37369       10.412986        2.960700                  7.264368
+9         13.67550       10.699445        2.976054                  7.543980
+10        13.92788       11.009899        2.917981                  7.753770
+11        14.13563       11.109491        3.026139                  7.926921
+12        14.39907       11.367153        3.031922                  7.282606
+13        14.51349       11.364002        3.149488                  6.237643
+   away_shots_on_target_av10 diff_shots_on_target_av10 home_corners_av10
+1                   4.625556                  1.605598          6.427935
+2                   4.817372                  1.642959          6.400588
+3                   5.073256                  1.756688          6.342905
+4                   5.037667                  1.820322          6.113922
+5                   4.894685                  1.849198          6.070340
+6                   4.898097                  1.777214          6.152690
+7                   5.237738                  1.703462          6.274716
+8                   5.584842                  1.679527          6.281514
+9                   5.797261                  1.746719          6.181018
+10                  6.040103                  1.713667          6.197414
+11                  6.184867                  1.742054          6.300116
+12                  5.725270                  1.557335          6.287091
+13                  4.852905                  1.384738          6.215734
+   away_corners_av10 diff_corners_av10 home_fouls_av10 away_fouls_av10
+1           4.759557          1.668378        12.90048        13.58618
+2           4.776693          1.623894        12.84071        13.40509
+3           4.862797          1.480108        12.47420        13.21266
+4           4.766807          1.347115        12.69694        13.51643
+5           4.789685          1.280654        12.57568        13.27629
+6           4.798495          1.354195        12.56034        12.96026
+7           4.890678          1.384038        11.98141        12.40154
+8           4.891877          1.389637        11.74378        12.32925
+9           4.903772          1.277246        11.36262        11.99572
+10          4.975566          1.221848        11.00936        11.50665
+11          4.928313          1.371803        10.59169        10.95567
+12          4.850624          1.436468        10.38516        10.77246
+13          4.706663          1.509071        10.59898        11.03850
+   diff_fouls_av10 home_yellows_av10 away_yellows_av10 diff_yellows_av10
+1       -0.6857032          1.332592          1.783702        -0.4511096
+2       -0.5643756          1.335481          1.745723        -0.4102420
+3       -0.7384583          1.235882          1.617142        -0.3812599
+4       -0.8194932          1.224034          1.657134        -0.4330997
+5       -0.7006091          1.224658          1.687157        -0.4624988
+6       -0.3999180          1.365170          1.819665        -0.4544955
+7       -0.4201254          1.367468          1.819751        -0.4522826
+8       -0.5854746          1.371960          1.848792        -0.4768316
+9       -0.6330929          1.344108          1.833943        -0.4898347
+10      -0.4972902          1.382340          1.819983        -0.4376434
+11      -0.3639816          1.364253          1.771820        -0.4075677
+12      -0.3872984          1.407143          1.742687        -0.3355442
+13      -0.4395204          1.440040          1.812440        -0.3724001
+   home_reds_av10 away_reds_av10 diff_reds_av10
+1      0.08458571     0.10863104    -0.02404533
+2      0.07787575     0.11301559    -0.03513984
+3      0.05855723     0.10200170    -0.04344447
+4      0.05998730     0.10093786    -0.04095056
+5      0.05918533     0.10476050    -0.04557517
+6      0.06865745     0.10342279    -0.03476534
+7      0.06635904     0.09425095    -0.02789191
+8      0.06597100     0.09383416    -0.02786316
+9      0.06591088     0.10427288    -0.03836201
+10     0.07125259     0.10210857    -0.03085598
+11     0.06786414     0.09136502    -0.02350088
+12     0.06407225     0.08534301    -0.02127075
+13     0.06318102     0.09059754    -0.02741652
+[1] "----------------------------"
+[1] "Standard deviation"
+   home_shots_av10 away_shots_av10 diff_shots_av10 home_shots_on_target_av10
+1         2.456844        1.865221        3.155542                  1.672711
+2         2.196342        1.763724        2.773594                  1.520057
+3         2.271129        1.869634        2.852335                  1.530576
+4         2.355054        1.975553        2.987509                  1.490397
+5         2.542317        2.107134        3.251239                  1.577651
+6         2.562285        2.090096        3.290241                  1.612781
+7         2.754802        2.130735        3.457602                  1.776975
+8         2.921509        2.209031        3.647800                  1.883460
+9         2.814712        2.210194        3.607474                  1.833511
+10        2.693560        2.406189        3.638469                  1.808300
+11        2.677110        2.411320        3.623723                  1.844648
+12        2.862547        2.551570        3.830280                  2.202519
+13        2.919306        2.437290        3.770675                  2.233303
+   away_shots_on_target_av10 diff_shots_on_target_av10 home_corners_av10
+1                   1.095194                  1.978412          1.354523
+2                   1.198427                  1.817262          1.268251
+3                   1.316621                  1.899811          1.218854
+4                   1.351373                  1.926677          1.260676
+5                   1.345365                  2.022545          1.268537
+6                   1.270663                  2.050362          1.228314
+7                   1.375376                  2.211100          1.260482
+8                   1.401790                  2.326395          1.312317
+9                   1.443487                  2.345932          1.364718
+10                  1.546997                  2.378702          1.376568
+11                  1.610704                  2.448445          1.374998
+12                  1.855261                  2.488418          1.348191
+13                  1.763243                  2.232397          1.323407
+   away_corners_av10 diff_corners_av10 home_fouls_av10 away_fouls_av10
+1          1.1863319          1.771867        2.042675        1.965815
+2          1.0596711          1.613386        1.775721        1.734083
+3          0.9959881          1.555669        1.603517        1.619218
+4          0.9773728          1.579490        1.582433        1.562034
+5          1.0281417          1.619199        1.758080        1.687385
+6          1.0529925          1.593817        1.798305        1.687543
+7          1.0990725          1.656657        1.702151        1.661289
+8          1.0606361          1.667544        1.509937        1.574317
+9          1.0442877          1.714010        1.380861        1.456991
+10         1.0681503          1.766300        1.521792        1.555512
+11         1.1413129          1.812721        1.337975        1.365218
+12         1.2054999          1.817866        1.328657        1.387165
+13         1.1344911          1.729048        1.342004        1.360204
+   diff_fouls_av10 home_yellows_av10 away_yellows_av10 diff_yellows_av10
+1         2.714280         0.5264122         0.4929117         0.7308504
+2         2.357894         0.4512377         0.4741807         0.6470646
+3         2.297809         0.4331687         0.4431393         0.5767390
+4         2.239222         0.3971897         0.4697689         0.5665808
+5         2.405715         0.3958723         0.4503881         0.5651581
+6         2.398503         0.3976243         0.4428327         0.5912942
+7         2.369101         0.4225942         0.4551506         0.6135608
+8         2.201805         0.4382266         0.4320073         0.6116902
+9         2.038073         0.4214202         0.4388365         0.6053882
+10        1.954990         0.4280137         0.4139382         0.5853774
+11        1.774535         0.3870218         0.4519795         0.5823650
+12        1.852106         0.4087559         0.4367941         0.5891941
+13        1.862103         0.4033289         0.4644669         0.6025543
+   home_reds_av10 away_reds_av10 diff_reds_av10
+1      0.11602756     0.13136135      0.1707669
+2      0.09615338     0.10310391      0.1398669
+3      0.07989944     0.10029175      0.1283728
+4      0.08046480     0.09465966      0.1209312
+5      0.07988475     0.10600506      0.1284154
+6      0.08611426     0.10867639      0.1367430
+7      0.08435343     0.10209337      0.1318412
+8      0.08247593     0.09424502      0.1247759
+9      0.08069472     0.10538073      0.1312749
+10     0.09005345     0.10560805      0.1380400
+11     0.08965161     0.10512887      0.1374612
+12     0.08612330     0.10278114      0.1346287
+13     0.07726233     0.10663723      0.1328419
+png 
+  2 
+[1] "----------------------------"
+[1] "----------------------------"
+[1] "Means and standard deviation for clusters"
+[1] "----------------------------"
+[1] "home_shots_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_shots_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "diff_shots_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "home_shots_on_target_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_shots_on_target_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "diff_shots_on_target_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "home_corners_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_corners_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "diff_corners_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "home_fouls_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_fouls_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "diff_fouls_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "home_yellows_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_yellows_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "diff_yellows_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "home_reds_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_reds_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "diff_reds_av10"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "home_pos"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "away_pos"
+[1] "Mean"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "Standard deviation"
+ramka danych z zerową liczbą kolumn oraz 13 wierszami
+[1] "----------------------------"
+[1] "Importance of clusters"
+Called from: top level 

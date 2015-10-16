@@ -1,17 +1,6 @@
 source("classification/clusstering.R")
 source("classification/plots.R")
 library(caret)
-set.seed(5)
-
-#params
-nClusters = 5
-clusterAlg = "km"
-freqProp = TRUE
-freqFacets = FALSE
-freqIsLine = FALSE
-clubFreqProp = TRUE
-clubFreqSide = "home"
-topNClubs = 5
 
 matches = NULL
 data = NULL
@@ -23,6 +12,19 @@ if(!exists("data")){
   data = prepareDataForClassification(matches)
   backupData = data
 }
+
+set.seed(5)
+
+#params
+nClusters = 5
+clusterAlg = "HC"
+freqProp = TRUE
+freqFacets = FALSE
+freqIsLine = FALSE
+clubFreqProp = TRUE
+clubFreqSide = "home"
+topNClubs = 5
+
 
 #clustering
 clusteredData = clustering2(data, nClusters, clusterAlg)
@@ -136,11 +138,11 @@ sink()
 
 #creating plots 
 for(i in 1:13){
-  generateScatterPlots(clusteredData[[i]], i)
-  generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine)
-  generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide)
-  generateMostCommonCLusterPlot(clusteredData[[i]], i)
-  generateDensityPlots(clusteredData[[i]], i)
+#   generateScatterPlots(clusteredData[[i]], i)
+#   generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine)
+#   generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide)
+#   generateMostCommonCLusterPlot(clusteredData[[i]], i)
+#   generateDensityPlots(clusteredData[[i]], i)
 }
 # generateScatterPlots(clusteredData[[14]], "all")
 # generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets, freqIsLine)

@@ -163,7 +163,7 @@ generateMostCommonCLusterPlot <- function(data, n){
 plotTransitions <- function(trRows){
   fileName = "plots/plotTransitions.png"
   png(filename = fileName, width = 1024, height = 1024)
-  matplot(t(trRows), type = "l")
+  matplot(t(trRows), type = "b")
   dev.off()
 }
 
@@ -178,7 +178,7 @@ plotNewTransitions <- function(trRows){
   }
   fileName = "plots/plotNewTransitions.png"
   png(filename = fileName, width = 1024, height = 1024)
-  matplot(t(trRows), type = "l")
+  matplot(t(trRows), type = "b")
   dev.off()
 }
 
@@ -186,14 +186,14 @@ plotNewTransitions <- function(trRows){
 plotClustDistribution <- function(clustDistribution){
   fileName = "plots/plotClusterDistribution.png"
   png(filename = fileName, width = 1024, height = 1024)
-  matplot(clustDistribution, type = "l")
+  matplot(clustDistribution, type = "b")
   dev.off()
 }
 
 plotNewClustDistribution <- function(clustDistribution){
   fileName = "plots/plotNewClusterDistribution.png"
   png(filename = fileName, width = 1024, height = 1024)
-  matplot(clustDistribution, type = "l")
+  matplot(clustDistribution, type = "b")
   dev.off()
 }
 
@@ -257,51 +257,51 @@ generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
   
   means$id = 1:13
   means = melt(means, id.vars = "id")
-  colnames(means) = c("season", "feature", "mean")
+  colnames(means) = c("period", "feature", "mean")
   
   stdDevs$id = 1:13
   stdDevs = melt(stdDevs, id.vars = "id")
-  colnames(stdDevs) = c("season", "feature", "stdDev")
+  colnames(stdDevs) = c("period", "feature", "stdDev")
   df = merge(means, stdDevs, sort = FALSE)
   
   #shots
   png(filename = "plots/meansAndSDFeaturesPlots/shots.png", width = 1024, height = 1024)
-  p = ggplot(df[ df$feature %in% shotLabels, ], aes(x = season, y = mean, colour = feature)) + 
+  p = ggplot(df[ df$feature %in% shotLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
 
   #shots on target  
   png(filename = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png", width = 1024, height = 1024)
-  p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = season, y = mean, colour = feature)) + 
+  p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
   
   #corners
   png(filename = "plots/meansAndSDFeaturesPlots/corners.png", width = 1024, height = 1024)
-  p = ggplot(df[ df$feature %in% cornerLabels, ], aes(x = season, y = mean, colour = feature)) + 
+  p = ggplot(df[ df$feature %in% cornerLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
   
   #fouls
   png(filename = "plots/meansAndSDFeaturesPlots/fouls.png", width = 1024, height = 1024)
-  p = ggplot(df[ df$feature %in% foulsLabels, ], aes(x = season, y = mean, colour = feature)) + 
+  p = ggplot(df[ df$feature %in% foulsLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
   
   #yellow cards 
   png(filename = "plots/meansAndSDFeaturesPlots/yellows.png", width = 1024, height = 1024)
-  p = ggplot(df[ df$feature %in% yellowLabels, ], aes(x = season, y = mean, colour = feature)) + 
+  p = ggplot(df[ df$feature %in% yellowLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
   
   #red cards 
   png(filename = "plots/meansAndSDFeaturesPlots/reds.png", width = 1024, height = 1024)
-  p = ggplot(df[ df$feature %in% redLabels, ], aes(x = season, y = mean, colour = feature)) + 
+  p = ggplot(df[ df$feature %in% redLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
@@ -367,11 +367,16 @@ generateImportancePlots <-function(importanceData){
   dev.off()
 }
 
-silhouettePlot <- function(df){
+silhouettePlot <- function(df, alg){
   df$id = 1:13
   df = melt(df, id.vars = "id")
-  png(filename = "plots/silhouette.png", width = 1024, height = 1024)
-  p = ggplot(df, aes(x = id, y = value, colour = variable)) + geom_line() + geom_point()
+  colnames(df) = c("period", "number_of_clusters", "silhouette_coefficient")
+  fileName = paste("plots/silhouette", alg, ".png", sep = "")
+  png(filename = fileName, width = 1024, height = 1024)
+  p = ggplot(df, aes(x = period, y = silhouette_coefficient, colour = number_of_clusters)) + 
+    geom_line() + geom_point() + ylab("silhouette coefficient") + 
+    guides(fill=guide_legend(title="number of clusters"))
+
   print(p)
   dev.off()
   

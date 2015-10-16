@@ -128,6 +128,7 @@ clusteringOnePart <-function(data, nClusters, typeOf = "hc"){
     df = data.frame(clusters)
     data$cluster = df$clusters[match(rownames(data), rownames(df))]
   }else if( typeOf == "km"){
+    set.seed(5)
     km = kmeans(dataForClustering, centers = nClusters)
     clusters = km$cluster
     df = data.frame(clusters)
@@ -598,7 +599,8 @@ estimatingNumberOfClusters <- function(data, alg){
   splitedData = splitDataToPeriods(data, 3)
   sil = rep(0, 13)
   df = as.data.frame(matrix(0, ncol = 13, nrow = 0))
-  for(j in 2:10){
+  for(j in 5:20){
+    set.seed(5)
     for(i in 1:13){
       tmp = splitedData[[i]]
       distances = getDistances(tmp)
@@ -609,7 +611,7 @@ estimatingNumberOfClusters <- function(data, alg){
     df = rbind(df, sil)
   }
   df = t(df)
-  colnames(df) = 2:10
+  colnames(df) = 5:20
   rownames(df) = 1:13
   df = as.data.frame(df)
   return(df)
