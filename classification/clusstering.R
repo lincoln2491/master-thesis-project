@@ -1,6 +1,8 @@
 source("classification/classificationUtils.R")
 library(gtools)
 library(cluster)
+library(stats)
+library("Kendall")
 
 getDataForCluster <- function(data, clusters, clusterNumber){
   cl = clusters[ clusters == clusterNumber]
@@ -450,6 +452,9 @@ calculateImportance <- function(clusteredData){
     tmpRes = numeric()
     for(l in 1:length(labels)){
       label = labels[l]
+      if(k ==8){
+        print("p")
+      }
       df = data.frame(data$newCluster, data[label])
       colnames(df) = c("newCluster", label)
       means = aggregate(df[2], by=list(data$newCluster), mean)
@@ -458,15 +463,18 @@ calculateImportance <- function(clusteredData){
       std.devs = aggregate(df[2], by=list(data$newCluster), sd)
       std.devs = as.list(std.devs[2])
       std.devs= unlist(std.devs)
-      pairwise.score <- matrix(nrow = length(means), ncol = length(means))
+      pairwise.score = matrix(nrow = length(means), ncol = length(means))
       for (i in 1:length(means)){
         for (j in 1:length(means)){
           if (i != j){
-            pairwise.score[i,j] <- abs(means[[i]] - means[[j]])^2 / (std.devs[[i]] * std.devs[[j]])
+            pairwise.score[i,j] = abs(means[[i]] - means[[j]])^2 / (std.devs[[i]] * std.devs[[j]])
           }
         }
       }
-      attribute.importance <- sum(pairwise.score, na.rm = TRUE)
+      attribute.importance = sum(pairwise.score, na.rm = TRUE)
+      if(k ==8){
+        print("p")
+      }
       tmpRes[label] = attribute.importance
     }
     tmpRes = data.frame(feature = names(tmpRes), importance = tmpRes)
@@ -616,3 +624,151 @@ estimatingNumberOfClusters <- function(data, alg){
   df = as.data.frame(df)
   return(df)
 }
+
+crossCorrelation <- function(val1, val2){
+  cc = ccf(val1, val2, plot = FALSE)
+  cc = cc[0]
+  cc = unlist(cc)
+  cc = cc["acf"]
+  cc = as.numeric(cc)
+  return(cc)
+  
+  if(length(val1) != length(val2)){
+    stop("Different lenghts")
+  }
+  m1 = mean(val1)
+  m2 = mean(val2)
+  sd1 = sd(val1)
+  sd2 = sd(val2)
+  l1 = vector(mode="numeric", length=0)
+  l2 = vector(mode="numeric", length=0)
+  for(i in val1){
+    tmp = (i - m1)/sd1
+    l1 = append(l1, tmp)
+  }
+  
+  for(i in val2){
+    tmp = (i - m2)/sd2
+    l2 = append(l2, tmp)
+  }
+  len = length(l1)
+  mul = l1 * l2
+  result = sum(mul)/(len-1)
+  return(result)
+}
+
+calculateCrossCorrelations <- function(data){
+  shotLabels = c( "home_shots_av10",
+                  "away_shots_av10",
+                  "diff_shots_av10")
+  shotOnTargetLabels = c("home_shots_on_target_av10",
+                         "away_shots_on_target_av10",
+                         "diff_shots_on_target_av10")
+  cornerLabels = c("home_corners_av10",
+                   "away_corners_av10",
+                   "diff_corners_av10")
+  foulsLabels = c("home_fouls_av10",
+                  "away_fouls_av10",
+                  "diff_fouls_av10")
+  yellowLabels = c("home_yellows_av10",
+                   "away_yellows_av10",
+                   "diff_yellows_av10")
+  redLabels = c("home_reds_av10",
+                "away_reds_av10",
+                "diff_reds_av10")
+  labels = list(shotLabels, shotOnTargetLabels, cornerLabels, 
+             foulsLabels, yellowLabels, redLabels)
+  res = list()
+  for(tmpLabels in labels){
+    label1 = tmpLabels[1]
+    label2 = tmpLabels[2]
+    
+    tmp1 = lapply(data, function(x) mean(x[[label1]]))
+    tmp2 = lapply(data, function(x) mean(x[[label2]]))
+  
+    tmp1$all = NULL
+    tmp2$all = NULL
+    
+    tmp1 = unlist(tmp1)
+    tmp2 = unlist(tmp2)
+    
+    cc = crossCorrelation(tmp1, tmp2)
+    newName = paste(label1, label2, sep = "-")
+    res[newName] = cc
+    
+  }
+  return(res)
+  
+}
+
+
+percentMean <-function(data, feature){
+  min = lapply(KMclusteredData, function(x) min(x[[feature]]))
+  max = lapply(KMclusteredData, function(x) max(x[[feature]]))
+  mean = lapply(KMclusteredData, function(x) mean(x[[feature]]))
+  min$all = NULL
+  max$all = NULL
+  mean$all = NULL
+  max = unlist(max)
+  min = unlist(min)
+  mean = unlist(mean)
+  
+  res = (mean - min)/(max - min)
+  return(res)
+}
+
+calculateKendallAndSpaermanPeriods <-function(importance){
+  df = data.frame(periods= numeric(0), method = numeric(0), kendall= integer(0))
+  for(i in 1:12){
+    tmp1 = importance[[i]]
+    tmp2 = importance[[i+1]]
+    val = Kendall(tmp1$feature, tmp2$feature)
+    val = val$tau
+    val = val[[1]]
+    df = rbind(df, list(i, 1, val))
+  }
+  
+  for(i in 1:12){
+    tmp1 = importance[[i]]
+    tmp2 = importance[[i+1]]
+    val = cor(as.numeric(tmp1$feature), 
+              as.numeric(tmp2$feature), method = "spearman")
+    df = rbind(df, list(i, 2, val))
+  }
+  colnames(df) = c("periods", "method", "correlation")
+  
+  df$method[df$method == 1] = "kendall"
+  df$method[df$method == 2] = "spearman"
+  df$periods = as.factor(paste(df$periods, df$periods + 1, sep = "-"))
+  levels(df$periods) = c("1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8",
+                          "8-9", "9-10", "10-11", "11-12", "12-13")
+  
+  return(df)
+}
+
+calculateKendallAndSpaermanAlg <-function(importance1, importance2){
+  df = data.frame(period= numeric(0), method = numeric(0), kendall= integer(0))
+  for(i in 1:13){
+    tmp1 = importance1[[i]]
+    tmp2 = importance2[[i]]
+    val = Kendall(tmp1$feature, tmp2$feature)
+    val = val$tau
+    val = val[[1]]
+    df = rbind(df, list(i, 1, val))
+  }
+  colnames(df) = c("period", "method", "correlation")
+  
+  for(i in 1:13){
+    tmp1 = importance1[[i]]
+    tmp2 = importance2[[i]]
+    val = cor(as.numeric(tmp1$feature), 
+              as.numeric(tmp2$feature), method = "spearman")
+    df = rbind(df, list(i, 2, val))
+  }
+  
+  df$method[df$method == 1] = "kendall"
+  df$method[df$method == 2] = "spearman"
+  return(df)
+}
+
+

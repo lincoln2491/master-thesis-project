@@ -381,3 +381,19 @@ silhouettePlot <- function(df, alg){
   dev.off()
   
 }
+
+correlationPlot <-function(df){
+  png(filename = "plots/correlation.png", width = 1024, height = 1024)
+  p = ggplot(df, aes(x = period, y = correlation, color = method)) + 
+    geom_line() + geom_point()
+  print(p)
+  dev.off()
+}
+
+correlationPeriodsPlot <-function(df){
+  png(filename = "plots/correlationPeriods.png", width = 1024, height = 1024)
+  p = ggplot(df, aes(x = periods, y = correlation, color = method)) + 
+    geom_line(aes(group = method)) + geom_point()
+  print(p)
+  dev.off()
+}

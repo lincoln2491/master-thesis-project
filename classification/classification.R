@@ -1,14 +1,17 @@
 source("classification/clusstering.R")
+library("caret")
 
-classification <-function(data){
+classification <-function(data, label){
   tmp = data[complete.cases(data),]
   dataForClassification = getFilteredData(tmp)
   
-  dataForClassification$result = tmp$result
-  part = createDataPartition(dataForClassification$result, p = 0.75, list = FALSE)
+  dataForClassification$class = tmp[,label]
+  part = createDataPartition(dataForClassification$class, p = 0.75, list = FALSE)
   training = dataForClassification[ part, ]
   test = dataForClassification[ -part, ]
-  fitControl <- trainControl(method = "repeatedcv", number = 10, repeats = 10)
-  model = train(result ~ ., data = training, method = "rf", trControl = fitControl)
-  return(model)
+  set.seed(5)
+  model = train(class ~ ., data = training, method = "rf")
+  res = c(model = model, part = part)
+  return(res)
 }
+

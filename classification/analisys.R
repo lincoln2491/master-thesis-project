@@ -17,7 +17,7 @@ set.seed(5)
 
 #params
 nClusters = 5
-clusterAlg = "HC"
+clusterAlg = "km"
 freqProp = TRUE
 freqFacets = FALSE
 freqIsLine = FALSE
