@@ -427,7 +427,7 @@ normalizeClusterNames <-function(clusteredData, tr){
   return(list( data = clusteredData, newTr = tr))
 }
 
-calculateImportance <- function(clusteredData){
+calculateImportance <- function(clusteredData, c = 0.0001){
   labels = c( "home_shots_av10",
               "away_shots_av10",
               "diff_shots_av10",
@@ -467,7 +467,8 @@ calculateImportance <- function(clusteredData){
       for (i in 1:length(means)){
         for (j in 1:length(means)){
           if (i != j){
-            pairwise.score[i,j] = abs(means[[i]] - means[[j]])^2 / (std.devs[[i]] * std.devs[[j]])
+            pairwise.score[i,j] = abs(means[[i]] - means[[j]])^2 /
+              ((std.devs[[i]] + c) * (std.devs[[j]] + c ))
           }
         }
       }
