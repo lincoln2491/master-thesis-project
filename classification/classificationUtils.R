@@ -40,43 +40,119 @@ getData <- function(){
   return(results)
 }
 
-
-prepareDataForClassification <- function(data){
-  newData = data.frame(  data$idMatch )
-  setnames(newData, "data.idMatch", "idMatch")
-  newData$season_fk = as.factor(data$season_fk) 
-  newData$home_team_fk = as.factor(data$home_team_fk) 
-  newData$away_team_fk = as.factor(data$away_team_fk)
-    
-  newData$home_pos = as.integer(data$home_pos) 
-  newData$away_pos = as.integer(data$away_pos)
-  
-  newData$home_couch_fk = as.factor(data$home_couch_fk) 
-  newData$away_couch_fk = as.factor(data$away_couch_fk)
-  
-  newData$day_of_season = as.integer(data$day_of_season)
-  newData$date = data$date
-  newData$year = as.integer(data$year) 
-  newData$month = as.integer(data$month) 
-  newData$day = as.integer(data$day) 
-  attributes = c("goals", "goals_half_time", "shots", "shots_on_target",
-               "corners", "fouls", "yellows", "reds")
-  
-  for(attr in attributes){
-    attrName = paste("home_", attr,"_av10", sep="")
-    newData[[attrName]] = as.numeric(sapply(data$idMatch, function(x) getMean(x, data, attr)))
-    attrName2 = paste("away_", attr,"_av10", sep="")
-    newData[[attrName2]] = as.numeric(sapply(data$idMatch, function(x) getMean(x, data, attr, forWho = "away")))
-    attrName3 = paste("diff_", attr,"_av10", sep="")
-    newData[[attrName3]] = as.numeric(newData[[attrName]] - newData[[attrName2]])
+createRow <- function(data, isHome = TRUE, club, isFirst = TRUE){
+  newData = data.table("team" = club)
+  newData$type = ifelse(isHome, "home", "away")
+  newData$season = unique(data$season_fk)[1]
+  newData$round = ifelse(isFirst, 1, 2)
+  sufixes = c("goals",
+              "goals_half_time",
+              "shots",
+              "shots_on_target",
+              "corners",
+              "fouls",
+              "yellows",
+              "reds" ,
+              "shots_outside_target")
+  labels = sufixes
+  oponentLabels = sufixes
+  if(isHome){
+    data = data[data$home_team_fk == club,]
+    labels = paste("home", sufixes, sep = "_")
+    oponentLabels = paste("away", sufixes, sep = "_")
+  }
+  else{
+    data = data[data$away_team_fk == club,]
+    labels = paste("away", sufixes, sep = "_")
+    oponentLabels = paste("home", sufixes, sep = "_")
   }
   
-  newData$result = as.factor(data$result) 
+  newData$matches = nrow(data)
   
-  #newData$idMatch = NULL
+  summary = data[, labels]
+  summary = colMeans(summary)
+  summary = as.data.table(t(summary))
+  setnames(summary, colnames(summary), paste("av", sufixes, sep = "_") )
   
-  newData$month = newData$month - 7
-  newData$month[newData$month < 0] = newData$month[newData$month < 0] + 12
+  oponentSummary = data[, oponentLabels]
+  oponentSummary = colMeans(oponentSummary)
+  oponentSummary = as.data.table(t(oponentSummary))
+  setnames(oponentSummary, colnames(oponentSummary), paste("av", "op", sufixes, sep = "_") )
+  
+  newData = cbind(newData, summary, oponentSummary)
+  newData$wins =  ifelse(!is.na(table(data$result)["H"]), table(data$result)["H"], 0)
+  newData$draws = ifelse(!is.na(table(data$result)["D"]), table(data$result)["D"], 0)
+  newData$loses = ifelse(!is.na(table(data$result)["L"]), table(data$result)["L"], 0)
+  if(!isHome){
+    tmp = newData$wins
+    newData$wins = newData$loses
+    newData$loses = tmp
+  }
+  return(newData)
+}
+
+prepareDataForClassification <- function(data){
+  newData = data.table()
+  seasons = unique(data$season_fk)
+  for(season in seasons){
+    tmpData = data[ data$season_fk == season,]
+    clubs = unique(tmpData$home_team_fk)
+    firstRound = tmpData[1:190, ]
+    secondRound = tmpData[191:380, ]
+    for(club in clubs){
+      homeF = createRow(firstRound, isHome = TRUE, club, TRUE)
+      awayF = createRow(firstRound, isHome = FALSE, club, TRUE)
+      homeS = createRow(secondRound, isHome = TRUE, club, FALSE)
+      awayS = createRow(secondRound, isHome = FALSE, club, FALSE)
+      
+      newData = rbind(newData, homeF, awayF, homeS, awayS)
+    }
+    
+  }
+  
+  newData$av_points = (newData$wins * 3 + newData$draws) / newData$matches
+  
+  
+  
+  
+  
+#   newData = data.frame(  data$idMatch )
+#   setnames(newData, "data.idMatch", "idMatch")
+#   newData$season_fk = as.factor(data$season_fk) 
+#   newData$home_team_fk = as.factor(data$home_team_fk) 
+#   newData$away_team_fk = as.factor(data$away_team_fk)
+#     
+#   newData$home_pos = as.integer(data$home_pos) 
+#   newData$away_pos = as.integer(data$away_pos)
+#   
+#   newData$home_couch_fk = as.factor(data$home_couch_fk) 
+#   newData$away_couch_fk = as.factor(data$away_couch_fk)
+#   
+#   newData$day_of_season = as.integer(data$day_of_season)
+#   newData$date = data$date
+#   newData$year = as.integer(data$year) 
+#   newData$month = as.integer(data$month) 
+#   newData$day = as.integer(data$day) 
+#   
+#   seasons = unique
+#   attributes = c("goals", "goals_half_time", "shots", "shots_on_target",
+#                "corners", "fouls", "yellows", "reds")
+#   
+#   for(attr in attributes){
+#     attrName = paste("home_", attr,"_av10", sep="")
+#     newData[[attrName]] = as.numeric(sapply(data$idMatch, function(x) getMean(x, data, attr)))
+#     attrName2 = paste("away_", attr,"_av10", sep="")
+#     newData[[attrName2]] = as.numeric(sapply(data$idMatch, function(x) getMean(x, data, attr, forWho = "away")))
+#     attrName3 = paste("diff_", attr,"_av10", sep="")
+#     newData[[attrName3]] = as.numeric(newData[[attrName]] - newData[[attrName2]])
+#   }
+#   
+#   newData$result = as.factor(data$result) 
+#   
+#   #newData$idMatch = NULL
+#   
+#   newData$month = newData$month - 7
+#   newData$month[newData$month < 0] = newData$month[newData$month < 0] + 12
   return(newData)
 }
 
