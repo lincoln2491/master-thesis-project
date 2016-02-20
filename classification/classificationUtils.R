@@ -111,7 +111,9 @@ prepareDataForClassification <- function(data){
   }
   
   newData$av_points = (newData$wins * 3 + newData$draws) / newData$matches
+  newData$av_op_points = (newData$loses * 3 + newData$draws) / newData$matches
   
+  newData$id = 1:nrow(newData)
   
   
   
@@ -157,7 +159,8 @@ prepareDataForClassification <- function(data){
 }
 
 
-getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10, forWho = "home"){
+getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10, 
+                                     forWho = "home"){
   thisMatch = data[ data$idMatch == idMatch,]
   matchId = thisMatch$idMatch
   clubId = NA

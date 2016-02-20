@@ -4,31 +4,29 @@ library("reshape2")
 #generating scatter plots of features
 #TODO do it better
 generateScatterPlots <- function(data, n){
-  #   labels = c("home_goals_av10", "away_goals_av10", "diff_goals_av10", "home_goals_half_time_av10", "away_goals_half_time_av10",
-  #              "diff_goals_half_time_av10", "home_shots_av10", "away_shots_av10",
-  #              "diff_shots_av10", "home_shots_on_target_av10", "away_shots_on_target_av10",
-  #              "diff_shots_on_target_av10", "home_corners_av10", "away_corners_av10",
-  #              "diff_corners_av10", "home_fouls_av10", "away_fouls_av10", "diff_fouls_av10",
-  #              "home_yellows_av10", "away_yellows_av10", "diff_yellows_av10", "home_reds_av10",
-  #              "away_reds_av10","diff_reds_av10")  
-  labels = c( "season_fk", "home_shots_av10",
-                       "away_shots_av10",
-                       "diff_shots_av10",
-                       "home_shots_on_target_av10",
-                       "away_shots_on_target_av10",
-                       "diff_shots_on_target_av10",
-                       "home_corners_av10",
-                       "away_corners_av10",
-                       "diff_corners_av10",
-                       "home_fouls_av10",
-                       "away_fouls_av10",
-                       "diff_fouls_av10",
-                       "home_yellows_av10",
-                       "away_yellows_av10",
-                       "diff_yellows_av10",
-                       "home_reds_av10",
-                       "away_reds_av10",
-                       "diff_reds_av10" )
+  labels = c( "av_goals",
+              "av_goals_half_time",
+              "av_shots",
+              "av_shots_on_target",
+              "av_corners",
+              "av_fouls",
+              "av_yellows",
+              "av_reds",
+              "av_shots_outside_target",
+              "av_op_goals",
+              "av_op_goals_half_time",
+              "av_op_shots",
+              "av_op_shots_on_target",
+              "av_op_corners",
+              "av_op_fouls",
+              "av_op_yellows",
+              "av_op_reds",
+              "av_op_shots_outside_target",
+              "wins",
+              "draws",
+              "loses",
+              "av_points",
+              "av_op_points")
   combination = combn(labels, 2)
   res = "newCluster"
   data$newCluster = as.factor(data$newCluster)
@@ -56,24 +54,29 @@ createAndSaveHeatmaps <-function(c1, c2, c3, c4, c5, clubs, m){
 
 
 generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = FALSE){
-  labelsToInlcude = c( "season_fk", "home_shots_av10",
-                       "away_shots_av10",
-                       "diff_shots_av10",
-                       "home_shots_on_target_av10",
-                       "away_shots_on_target_av10",
-                       "diff_shots_on_target_av10",
-                       "home_corners_av10",
-                       "away_corners_av10",
-                       "diff_corners_av10",
-                       "home_fouls_av10",
-                       "away_fouls_av10",
-                       "diff_fouls_av10",
-                       "home_yellows_av10",
-                       "away_yellows_av10",
-                       "diff_yellows_av10",
-                       "home_reds_av10",
-                       "away_reds_av10",
-                       "diff_reds_av10" )
+  labelsToInlcude = c( "av_goals",
+                       "av_goals_half_time",
+                       "av_shots",
+                       "av_shots_on_target",
+                       "av_corners",
+                       "av_fouls",
+                       "av_yellows",
+                       "av_reds",
+                       "av_shots_outside_target",
+                       "av_op_goals",
+                       "av_op_goals_half_time",
+                       "av_op_shots",
+                       "av_op_shots_on_target",
+                       "av_op_corners",
+                       "av_op_fouls",
+                       "av_op_yellows",
+                       "av_op_reds",
+                       "av_op_shots_outside_target",
+                       "wins",
+                       "draws",
+                       "loses",
+                       "av_points",
+                       "av_op_points")
   plotLimit = ifelse(isProp == TRUE, 1, 60)
   for(i in 1:length(labelsToInlcude)){
     label = labelsToInlcude[i]
@@ -113,40 +116,26 @@ generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = 
 }
 
 generateClubsFreqPlots <- function(data, n, isProp = FALSE, side = "home"){
-  tab = table(data$home_team_fk, data$newCluster)
-  tab2 = table(data$away_team_fk, data$newCluster)
+  tab = table(data$team, data$newCluster)
   if(isProp == TRUE){
     tab = prop.table(tab, 1)
-    tab2 = prop.table(tab2, 1)
   }
   tab = data.frame(tab)
-  tab2 = data.frame(tab2)
   if(isProp == TRUE){
     tab = tab[ complete.cases(tab), ]
-    tab2 = tab[ complete.cases(tab2), ]
   }
   plotLimit = ifelse(isProp == TRUE, 1, 60)
   #   tab = tab[ tab$Freq > 0, ]
   
-  if(side == "home" || side == "both"){
-    fileName = paste("plots/clubFrequencyPlots/", n, "-home", ".png", sep = "")
-    png(filename = fileName, width = 1024, height = 1024)
-    p = qplot(tab$Var1, tab$Freq, data = tab, group = tab$Var2, color = tab$Var2, main = "home_team_fk") + 
-      geom_line() +  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-      expand_limits(y = c(0, plotLimit))
-    print(p) 
-    dev.off()
-  }
-  
-  if(side == "away" || side == "both"){
-    fileName = paste("plots/clubFrequencyPlots/", n, "-away", ".png", sep = "")
-    png(filename = fileName, width = 1024, height = 1024)
-    p = qplot(tab2$Var1, tab2$Freq, data = tab2, group = tab2$Var2, color = tab2$Var2, main = "away_team_fk") + 
-      geom_line() +  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-      expand_limits(y = c(0, plotLimit))
-    print(p)
-    dev.off()
-  }
+  # if(side == "home" || side == "both"){
+  fileName = paste("plots/clubFrequencyPlots/", n, "-home", ".png", sep = "")
+  png(filename = fileName, width = 1024, height = 1024)
+  p = qplot(tab$Var1, tab$Freq, data = tab, group = tab$Var2, color = tab$Var2, main = "home_team_fk") + 
+    geom_line() +  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+    expand_limits(y = c(0, plotLimit))
+  print(p) 
+  dev.off()
+  # }
 }
 
 
@@ -199,31 +188,29 @@ plotNewClustDistribution <- function(clustDistribution){
 
 
 generateDensityPlots <- function(tmp, n){
-  #   labels = c("home_goals_av10", "away_goals_av10", "diff_goals_av10", "home_goals_half_time_av10", "away_goals_half_time_av10",
-  #              "diff_goals_half_time_av10", "home_shots_av10", "away_shots_av10",
-  #              "diff_shots_av10", "home_shots_on_target_av10", "away_shots_on_target_av10",
-  #              "diff_shots_on_target_av10", "home_corners_av10", "away_corners_av10",
-  #              "diff_corners_av10", "home_fouls_av10", "away_fouls_av10", "diff_fouls_av10",
-  #              "home_yellows_av10", "away_yellows_av10", "diff_yellows_av10", "home_reds_av10",
-  #              "away_reds_av10","diff_reds_av10")  
-  labelsToInlcude = c( "season_fk", "home_shots_av10",
-                       "away_shots_av10",
-                       "diff_shots_av10",
-                       "home_shots_on_target_av10",
-                       "away_shots_on_target_av10",
-                       "diff_shots_on_target_av10",
-                       "home_corners_av10",
-                       "away_corners_av10",
-                       "diff_corners_av10",
-                       "home_fouls_av10",
-                       "away_fouls_av10",
-                       "diff_fouls_av10",
-                       "home_yellows_av10",
-                       "away_yellows_av10",
-                       "diff_yellows_av10",
-                       "home_reds_av10",
-                       "away_reds_av10",
-                       "diff_reds_av10" )
+  labelsToInlcude = c( "av_goals",
+                       "av_goals_half_time",
+                       "av_shots",
+                       "av_shots_on_target",
+                       "av_corners",
+                       "av_fouls",
+                       "av_yellows",
+                       "av_reds",
+                       "av_shots_outside_target",
+                       "av_op_goals",
+                       "av_op_goals_half_time",
+                       "av_op_shots",
+                       "av_op_shots_on_target",
+                       "av_op_corners",
+                       "av_op_fouls",
+                       "av_op_yellows",
+                       "av_op_reds",
+                       "av_op_shots_outside_target",
+                       "wins",
+                       "draws",
+                       "loses",
+                       "av_points",
+                       "av_op_points")
   for(i in 1:length(labelsToInlcude)){
     lab = as.character(labelsToInlcude[i] )
     fileName = paste("plots/densityPlots/", i,"-", n, ".png", sep = "")
@@ -236,24 +223,20 @@ generateDensityPlots <- function(tmp, n){
 }
 
 generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
-  shotLabels = c( "home_shots_av10",
-                   "away_shots_av10",
-                   "diff_shots_av10")
-  shotOnTargetLabels = c("home_shots_on_target_av10",
-                         "away_shots_on_target_av10",
-                         "diff_shots_on_target_av10")
-  cornerLabels = c("home_corners_av10",
-                  "away_corners_av10",
-                  "diff_corners_av10")
-  foulsLabels = c("home_fouls_av10",
-                  "away_fouls_av10",
-                  "diff_fouls_av10")
-  yellowLabels = c("home_yellows_av10",
-                   "away_yellows_av10",
-                   "diff_yellows_av10")
-  redLabels = c("home_reds_av10",
-                "away_reds_av10",
-                "diff_reds_av10")
+  shotLabels = c( "av_shots",
+                   "av_op_shots")
+  shotOnTargetLabels = c("av_shots_on_target",
+                         "av_op_shots_on_target")
+  shotOutsideTargetLabels = c("av_shots_outside_target",
+                         "av_op_shots_outside_target")
+  cornerLabels = c("av_corners",
+                  "av_op_corners")
+  foulsLabels = c("av_fouls",
+                  "av_op_fouls")
+  yellowLabels = c("av_yellows",
+                   "av_op_yellows")
+  redLabels = c("av_reds",
+                "av_op_reds")
   
   means$id = 1:13
   means = melt(means, id.vars = "id")
@@ -274,6 +257,13 @@ generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
   #shots on target  
   png(filename = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png", width = 1024, height = 1024)
   p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
+  print(p)
+  dev.off()
+  
+  #shots outside target  
+  png(filename = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png", width = 1024, height = 1024)
+  p = ggplot(df[ df$feature %in% shotOutsideTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   print(p)
   dev.off()
@@ -308,26 +298,24 @@ generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
 }
 
 generatePlotsOfMeansAndStandardDeviationsForClusters <-function(statistics){
-  labelsToInlcude = c( "home_shots_av10",
-                       "away_shots_av10",
-                       "diff_shots_av10",
-                       "home_shots_on_target_av10",
-                       "away_shots_on_target_av10",
-                       "diff_shots_on_target_av10",
-                       "home_corners_av10",
-                       "away_corners_av10",
-                       "diff_corners_av10",
-                       "home_fouls_av10",
-                       "away_fouls_av10",
-                       "diff_fouls_av10",
-                       "home_yellows_av10",
-                       "away_yellows_av10",
-                       "diff_yellows_av10",
-                       "home_reds_av10",
-                       "away_reds_av10",
-                       "diff_reds_av10",
-                       "home_pos",
-                       "away_pos")
+  labelsToInlcude = c( "av_goals",
+                       "av_goals_half_time",
+                       "av_shots",
+                       "av_shots_on_target",
+                       "av_corners",
+                       "av_fouls",
+                       "av_yellows",
+                       "av_reds",
+                       "av_shots_outside_target",
+                       "av_op_goals",
+                       "av_op_goals_half_time",
+                       "av_op_shots",
+                       "av_op_shots_on_target",
+                       "av_op_corners",
+                       "av_op_fouls",
+                       "av_op_yellows",
+                       "av_op_reds",
+                       "av_op_shots_outside_target")
   for(label in labelsToInlcude){
     tmp = statistics[[label]]
     means = tmp$means

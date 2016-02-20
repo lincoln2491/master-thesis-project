@@ -7,7 +7,7 @@ data = NULL
 backupData = NULL
 
 #load data if not loaded
-if(!exists("data")){
+if(is.null(data)){
   matches = getData()
   data = prepareDataForClassification(matches)
   backupData = data
@@ -138,14 +138,14 @@ sink()
 
 #creating plots 
 for(i in 1:13){
-#   generateScatterPlots(clusteredData[[i]], i)
-#   generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine)
-#   generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide)
-#   generateMostCommonCLusterPlot(clusteredData[[i]], i)
-#   generateDensityPlots(clusteredData[[i]], i)
+  generateScatterPlots(clusteredData[[i]], i)
+  generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine)
+  generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide)
+  generateMostCommonCLusterPlot(clusteredData[[i]], i)
+  generateDensityPlots(clusteredData[[i]], i)
 }
-# generateScatterPlots(clusteredData[[14]], "all")
-# generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets, freqIsLine)
-# generateClubsFreqPlots(clusteredData[[14]], 14, clubFreqProp, clubFreqSide)
-# generateMostCommonCLusterPlot(clusteredData[[14]], 14)
+generateScatterPlots(clusteredData[[14]], "all")
+generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets, freqIsLine)
+generateClubsFreqPlots(clusteredData[[14]], 14, clubFreqProp, clubFreqSide)
+generateMostCommonCLusterPlot(clusteredData[[14]], 14)
 

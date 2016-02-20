@@ -38,11 +38,11 @@ createCountTableInClusters <- function(c1, c2, c3, c4, c5, clubs){
 }
 
 splitDataToPeriods <- function(data, yearsInPeriod){
-  seasons = unique(data$season_fk)
+  seasons = unique(data$season)
   resultData = list()
   for(i in 1:(length(seasons) -yearsInPeriod + 1)){
     end = i + yearsInPeriod -1
-    tmpData = data[ data$season_fk %in% seasons[i:end],]
+    tmpData = data[ data$season %in% seasons[i:end],]
     name = paste(seasons[i], seasons[end], sep = "-")
     resultData[[name]] = tmpData
   }
@@ -100,7 +100,7 @@ clustering <-function(data, nClusters){
 
 clustering2 <-function(data, nClusters, typeOf){
   splitedData = splitDataToPeriods(data, 3)
-  splitedData[["all"]] = data
+  #splitedData[["all"]] = data
   
   splitedData = lapply(splitedData, clusteringOnePart, nClusters = nClusters, typeOf = typeOf)
   
@@ -112,14 +112,8 @@ clusteringOnePart <-function(data, nClusters, typeOf = "hc"){
   data = data[complete.cases(data),]
   
   dataForClustering = getFilteredData(data)
-  
-#   dataForClustering = dataForClustering[complete.cases(dataForClustering),]
-  
-  dataForClustering$season_fk = NULL
-  
-
-  
-  dataForClustering = data.frame(sapply(dataForClustering, normalize01))
+    
+  dataForClustering = data.table(sapply(dataForClustering, normalize01))
   clusters = NULL  
 
   if(typeOf == "hc"){
@@ -149,39 +143,35 @@ normalize01 <- function(x) {
   return ((x - min(x)) / (max(x) - min(x)))
 }
 
-getFilteredData <- function(data){
-  #   labelsToEclude = c("idMatch", "home_team_fk", "away_team_fk", "home_couch_fk", 
-  #                      "away_couch_fk", "day_of_season", "date", "year", "month", "day")  
-  #   dataForClustering = data[ !(names(data) %in% labelsToEclude)]
-  #   
-  labelsToInlcude = c( "home_shots_av10",
-                       "away_shots_av10",
-                       "diff_shots_av10",
-                       "home_shots_on_target_av10",
-                       "away_shots_on_target_av10",
-                       "diff_shots_on_target_av10",
-                       "home_corners_av10",
-                       "away_corners_av10",
-                       "diff_corners_av10",
-                       "home_fouls_av10",
-                       "away_fouls_av10",
-                       "diff_fouls_av10",
-                       "home_yellows_av10",
-                       "away_yellows_av10",
-                       "diff_yellows_av10",
-                       "home_reds_av10",
-                       "away_reds_av10",
-                       "diff_reds_av10" )
-  dataForClustering = data[ (names(data) %in% labelsToInlcude)]
+getFilteredData <- function(data){  
+  labelsToInlcude = c("av_goals",
+                      "av_goals_half_time",
+                      "av_shots",
+                      "av_shots_on_target",
+                      "av_corners",
+                      "av_fouls",
+                      "av_yellows",
+                      "av_reds",
+                      "av_shots_outside_target",
+                      "av_op_goals",
+                      "av_op_goals_half_time",
+                      "av_op_shots",
+                      "av_op_shots_on_target",
+                      "av_op_corners",
+                      "av_op_fouls",
+                      "av_op_yellows",
+                      "av_op_reds",
+                      "av_op_shots_outside_target")
+  dataForClustering = data[, labelsToInlcude, with = FALSE ]
   return(dataForClustering)
 }
 
 #TODO change to most newCluster
 getMostCommonClusterForClub <- function(data){
-  tab = table(data$home_team_fk, data$cluster)
+  tab = table(data$team, data$cluster)
   tabCl = table(data$cluster)
   tab = data.frame(tab)
-  result = data.frame(unique(data$home_team_fk))
+  result = data.frame(unique(data$team))
   colnames(result) = "team"
   result$MCCluster = sapply(result$team, function(x){
     club = x
@@ -286,7 +276,7 @@ printTopNTeams <- function(clusteredData, trRow, n){
       next
     }
     tmp = tmp[ tmp$cluster == cNumber, ]
-    tab = table(tmp$home_team_fk)
+    tab = table(tmp$team)
     tab = tab[order(tab, decreasing = TRUE)]
     tab = data.frame(tab[1:n])
     colnames(tab) = c("count")
@@ -294,8 +284,8 @@ printTopNTeams <- function(clusteredData, trRow, n){
     colnames(tab) = c("club", "count")
     rownames(tab) = NULL
     tab = tab[ tab$count > 0, ]
-    for(i in 1:nrow(tab)){
-      key = as.character(tab[i, 1])
+    for(j in 1:nrow(tab)){
+      key = as.character(tab[j, 1])
       if(key %in% names(commonsClubs)){
         commonsClubs[key] = as.numeric(commonsClubs[key]) + 1
       }
@@ -328,9 +318,9 @@ jaccardForTransitions <- function(clusteredData, trRow){
     cNumber2 = as.numeric(trRow[i+1])
     tmp = tmp[ tmp$cluster == cNumber, ]
     tmp2 = tmp2[ tmp2$cluster == cNumber2, ]
-    cat(cNumber, "->", cNumber2, ": ", jaccardIndex(tmp$idMatch, tmp2$idMatch), 
-        "(", length(tmp$idMatch), "/", lengthOfIntersect(tmp$idMatch, tmp2$idMatch),
-        "/", length(tmp2$idMatch), ")", "\n")
+    cat(cNumber, "->", cNumber2, ": ", jaccardIndex(tmp$id, tmp2$id), 
+        "(", length(tmp$id), "/", lengthOfIntersect(tmp$id, tmp2$id),
+        "/", length(tmp2$id), ")", "\n")
   }
 }
 
@@ -428,34 +418,34 @@ normalizeClusterNames <-function(clusteredData, tr){
 }
 
 calculateImportance <- function(clusteredData, c = 0.0001){
-  labels = c( "home_shots_av10",
-              "away_shots_av10",
-              "diff_shots_av10",
-              "home_shots_on_target_av10",
-              "away_shots_on_target_av10",
-              "diff_shots_on_target_av10",
-              "home_corners_av10",
-              "away_corners_av10",
-              "diff_corners_av10",
-              "home_fouls_av10",
-              "away_fouls_av10",
-              "diff_fouls_av10",
-              "home_yellows_av10",
-              "away_yellows_av10",
-              "diff_yellows_av10",
-              "home_reds_av10",
-              "away_reds_av10",
-              "diff_reds_av10" )
+  labels = c( "av_goals",
+              "av_goals_half_time",
+              "av_shots",
+              "av_shots_on_target",
+              "av_corners",
+              "av_fouls",
+              "av_yellows",
+              "av_reds",
+              "av_shots_outside_target",
+              "av_op_goals",
+              "av_op_goals_half_time",
+              "av_op_shots",
+              "av_op_shots_on_target",
+              "av_op_corners",
+              "av_op_fouls",
+              "av_op_yellows",
+              "av_op_reds",
+              "av_op_shots_outside_target" )
   importance = list()
   for(k in 1:13){
     data = clusteredData[[k]]
     tmpRes = numeric()
     for(l in 1:length(labels)){
       label = labels[l]
-      if(k ==8){
-        print("p")
-      }
-      df = data.frame(data$newCluster, data[label])
+      # if(k ==8){
+      #   print("p")
+      # }
+      df = data.frame(data$newCluster, data[,label, with = FALSE])
       colnames(df) = c("newCluster", label)
       means = aggregate(df[2], by=list(data$newCluster), mean)
       means = as.list(means[2])
@@ -473,9 +463,9 @@ calculateImportance <- function(clusteredData, c = 0.0001){
         }
       }
       attribute.importance = sum(pairwise.score, na.rm = TRUE)
-      if(k ==8){
-        print("p")
-      }
+      # if(k ==8){
+      #   print("p")
+      # }
       tmpRes[label] = attribute.importance
     }
     tmpRes = data.frame(feature = names(tmpRes), importance = tmpRes)
@@ -499,24 +489,24 @@ mergeImportance <-function(importance){
 }
 
 calculateMeansAndSDForFeatures <-function(clusteredData){
-  labels = c( "home_shots_av10",
-              "away_shots_av10",
-              "diff_shots_av10",
-              "home_shots_on_target_av10",
-              "away_shots_on_target_av10",
-              "diff_shots_on_target_av10",
-              "home_corners_av10",
-              "away_corners_av10",
-              "diff_corners_av10",
-              "home_fouls_av10",
-              "away_fouls_av10",
-              "diff_fouls_av10",
-              "home_yellows_av10",
-              "away_yellows_av10",
-              "diff_yellows_av10",
-              "home_reds_av10",
-              "away_reds_av10",
-              "diff_reds_av10" )
+  labels = c("av_goals",
+             "av_goals_half_time",
+             "av_shots",
+             "av_shots_on_target",
+             "av_corners",
+             "av_fouls",
+             "av_yellows",
+             "av_reds",
+             "av_shots_outside_target",
+             "av_op_goals",
+             "av_op_goals_half_time",
+             "av_op_shots",
+             "av_op_shots_on_target",
+             "av_op_corners",
+             "av_op_fouls",
+             "av_op_yellows",
+             "av_op_reds",
+             "av_op_shots_outside_target")
   nrows = length(labels)
   means = data.frame(matrix(0, ncol = nrows, nrow = 13))
   stdDevs = data.frame(matrix(0, ncol = nrows, nrow = 13))
@@ -541,26 +531,24 @@ calculateMeansAndSDForFeatures <-function(clusteredData){
 }
 
 calculateMeasnAndSDOfClusters <-function(data){
-  labels = c( "home_shots_av10",
-              "away_shots_av10",
-              "diff_shots_av10",
-              "home_shots_on_target_av10",
-              "away_shots_on_target_av10",
-              "diff_shots_on_target_av10",
-              "home_corners_av10",
-              "away_corners_av10",
-              "diff_corners_av10",
-              "home_fouls_av10",
-              "away_fouls_av10",
-              "diff_fouls_av10",
-              "home_yellows_av10",
-              "away_yellows_av10",
-              "diff_yellows_av10",
-              "home_reds_av10",
-              "away_reds_av10",
-              "diff_reds_av10",
-              "home_pos",
-              "away_pos")
+  labels = c( "av_goals",
+              "av_goals_half_time",
+              "av_shots",
+              "av_shots_on_target",
+              "av_corners",
+              "av_fouls",
+              "av_yellows",
+              "av_reds",
+              "av_shots_outside_target",
+              "av_op_goals",
+              "av_op_goals_half_time",
+              "av_op_shots",
+              "av_op_shots_on_target",
+              "av_op_corners",
+              "av_op_fouls",
+              "av_op_yellows",
+              "av_op_reds",
+              "av_op_shots_outside_target")
   clusters = list()
   for(i in 1:13){
     tmp = data[[i]]
@@ -581,11 +569,11 @@ calculateMeasnAndSDOfClusters <-function(data){
     tmpRes = list()
     for(i in 1:13){
       tmpData = data[[i]]
-      for(cluster in clusters){
-        mean = mean(tmpData[tmpData$newCluster == cluster, label])
-        stdDev = sd(tmpData[tmpData$newCluster == cluster, label])
-        means[i, cluster] = mean
-        stdDevs[i, cluster] = stdDev
+      for(clusterToCheck in clusters){
+        mean = mean(tmpData[newCluster == clusterToCheck, get(label)])
+        stdDev = sd(tmpData[newCluster == clusterToCheck, get(label)])
+        means[i, clusterToCheck] = mean
+        stdDevs[i, clusterToCheck] = stdDev
       }
     }
     
