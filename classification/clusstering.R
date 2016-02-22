@@ -1,4 +1,4 @@
-source("classification/classificationUtils.R")
+debugSource("classification/classificationUtils.R")
 library(gtools)
 library(cluster)
 library(stats)

@@ -110,8 +110,10 @@ prepareDataForClassification <- function(data){
     
   }
   
+  
   newData$av_points = (newData$wins * 3 + newData$draws) / newData$matches
   newData$av_op_points = (newData$loses * 3 + newData$draws) / newData$matches
+  newData = updateTablePlace(newData)
   
   newData$id = 1:nrow(newData)
   
@@ -156,6 +158,17 @@ prepareDataForClassification <- function(data){
 #   newData$month = newData$month - 7
 #   newData$month[newData$month < 0] = newData$month[newData$month < 0] + 12
   return(newData)
+}
+
+updateTablePlace <- function(data){
+  data$leaguePosition = factor(NA, levels = c("top", "medium", "bottom"))
+  for(season in unique(data$season)){
+    q = quantile(data$av_points[data$season == season], c(0.33, 0.66))
+    data$leaguePosition[ data$season == season & data$av_points < q[1]] = "bottom"
+    data$leaguePosition[ data$season == season & between(data$av_points, q[1], q[2]) ] = "medium"
+    data$leaguePosition[ data$season == season & data$av_points > q[2] ] = "top"
+  }
+  return(data)
 }
 
 
