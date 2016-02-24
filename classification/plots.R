@@ -52,7 +52,6 @@ createAndSaveHeatmaps <-function(c1, c2, c3, c4, c5, clubs, m){
   }
 }
 
-
 generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = FALSE){
   labelsToInlcude = c( "av_goals",
                        "av_goals_half_time",
@@ -138,7 +137,6 @@ generateClubsFreqPlots <- function(data, n, isProp = FALSE, side = "home"){
   # }
 }
 
-
 generateMostCommonCLusterPlot <- function(data, n){
   tmp = getMostCommonClusterForClub(data)
   fileName = paste("plots/mostCommonClubPlots//", n, ".png", sep = "")
@@ -171,7 +169,6 @@ plotNewTransitions <- function(trRows){
   dev.off()
 }
 
-
 plotClustDistribution <- function(clustDistribution){
   fileName = "plots/plotClusterDistribution.png"
   png(filename = fileName, width = 1024, height = 1024)
@@ -185,7 +182,6 @@ plotNewClustDistribution <- function(clustDistribution){
   matplot(clustDistribution, type = "b")
   dev.off()
 }
-
 
 generateDensityPlots <- function(tmp, n){
   labelsToInlcude = c( "av_goals",
@@ -384,4 +380,21 @@ correlationPeriodsPlot <-function(df){
     geom_line(aes(group = method)) + geom_point()
   print(p)
   dev.off()
+}
+
+generatePlacesPerClusterPlot <- function(data, i, saveToFile = FALSE){
+  tab = table(data$newCluster, data$leaguePosition )
+  tab = as.data.frame(tab)
+  colnames(tab) = c("newCluster", "leaguePos", "count")
+  
+  p = ggplot(tab, aes(x = newCluster, y = count, colour = leaguePos, group = leaguePos)) + 
+    geom_point() + geom_line()
+  if(saveToFile){
+    fileName = paste("plots/placesPerCLusterPlot/", i, ".png", sep = "")
+    png(filename = "plots/placesPerCLusterPlot/importancePositionPlot.png", width = 1024, height = 1024)
+    print(p)
+    dev.off()
+  }else{
+    print(p)
+  }
 }

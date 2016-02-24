@@ -1,0 +1,2207 @@
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+1  1  2  5  3  2  3  1  5  1   4   1   5   1
+1 -> 2 :  0.2424242 ( 33 / 16 / 49 ) 
+2 -> 5 :  0.3896104 ( 49 / 30 / 58 ) 
+5 -> 3 :  0.02830189 ( 58 / 3 / 51 ) 
+3 -> 2 :  0.4545455 ( 51 / 30 / 45 ) 
+2 -> 3 :  0.4210526 ( 45 / 24 / 36 ) 
+3 -> 1 :  0.3478261 ( 36 / 16 / 26 ) 
+1 -> 5 :  0.4146341 ( 26 / 17 / 32 ) 
+5 -> 1 :  0.3728814 ( 32 / 22 / 49 ) 
+1 -> 4 :  0.4444444 ( 49 / 32 / 55 ) 
+4 -> 1 :  0.2151899 ( 55 / 17 / 41 ) 
+1 -> 5 :  0.2527473 ( 41 / 23 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 1
+          club count
+1      Everton     4
+2      Arsenal     3
+3 Leeds United     3
+4   Sunderland     3
+5  Aston Villa     2
+[1] 2
+         club count
+1      Fulham     5
+2     Arsenal     4
+3 Aston Villa     4
+4   Liverpool     4
+5 Southampton     4
+[1] 3
+              club count
+1          Arsenal     6
+2          Everton     6
+3  Birmingham City     5
+4 Blackburn Rovers     4
+5           Fulham     4
+[1] 4
+               club count
+1           Chelsea     8
+2           Arsenal     7
+3 Manchester United     7
+4  Bolton Wanderers     6
+5         Liverpool     6
+[1] 5
+               club count
+1           Chelsea     8
+2 Manchester United     8
+3           Arsenal     7
+4         Liverpool     7
+5  Bolton Wanderers     4
+[1] 6
+               club count
+1 Manchester United     8
+2           Chelsea     7
+3         Liverpool     7
+4           Arsenal     6
+5         Tottenham     4
+[1] 7
+               club count
+1         Liverpool     7
+2 Manchester United     7
+3           Arsenal     6
+4           Chelsea     5
+5         Tottenham     1
+[1] 8
+               club count
+1         Liverpool     8
+2           Chelsea     7
+3           Arsenal     6
+4 Manchester United     6
+5         Tottenham     4
+[1] 9
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3 Manchester United     8
+4         Liverpool     6
+5   Manchester City     5
+[1] 10
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3   Manchester City     8
+4 Manchester United     7
+5         Liverpool     6
+[1] 11
+             club count
+1         Arsenal     6
+2 Manchester City     5
+3       Newcastle     5
+4         Everton     4
+5         Chelsea     3
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+2            Arsenal    13
+11           Chelsea     9
+12 Manchester United     9
+7          Liverpool     8
+1            Everton     4
+5        Aston Villa     3
+14         Tottenham     3
+15   Manchester City     3
+6             Fulham     2
+8        Southampton     2
+13  Bolton Wanderers     2
+17    Wigan Athletic     2
+3       Leeds United     1
+4         Sunderland     1
+9    Birmingham City     1
+10  Blackburn Rovers     1
+16         Newcastle     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+2  2  4  2  2  4  5  4  2  4   2   2   4   5
+2 -> 4 :  0.2906977 ( 56 / 25 / 55 ) 
+4 -> 2 :  0.2093023 ( 55 / 18 / 49 ) 
+2 -> 2 :  0.1372549 ( 49 / 14 / 67 ) 
+2 -> 4 :  0.3333333 ( 67 / 30 / 53 ) 
+4 -> 5 :  0.3972603 ( 53 / 29 / 49 ) 
+5 -> 4 :  0.4383562 ( 49 / 32 / 56 ) 
+4 -> 2 :  0.3205128 ( 56 / 25 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 1
+               club count
+1 Charlton Athletic     7
+2     Derby Country     5
+3        Sunderland     5
+4       Southampton     4
+5         Tottenham     4
+[1] 2
+               club count
+1 Charlton Athletic     5
+2      Leeds United     5
+3         Tottenham     5
+4  Bolton Wanderers     4
+5           Everton     4
+[1] 3
+               club count
+1   Birmingham City     7
+2            Fulham     5
+3  Blackburn Rovers     4
+4         Newcastle     4
+5 Charlton Athletic     3
+[1] 4
+               club count
+1            Fulham     6
+2       Aston Villa     5
+3   Birmingham City     5
+4 Charlton Athletic     5
+5           Everton     5
+[1] 5
+               club count
+1       Aston Villa     6
+2 Charlton Athletic     6
+3        Portsmouth     6
+4            Fulham     3
+5     Middlesbrough     3
+[1] 6
+               club count
+1        Portsmouth     5
+2   West Ham United     5
+3 Charlton Athletic     4
+4            Fulham     4
+5         Newcastle     4
+[1] 7
+              club count
+1 Bolton Wanderers     5
+2    Middlesbrough     5
+3       Portsmouth     5
+4           Fulham     4
+5        Newcastle     4
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+10                  Fulham     8
+1        Charlton Athletic     6
+13             Aston Villa     6
+7         Bolton Wanderers     5
+11        Blackburn Rovers     4
+5                Tottenham     3
+9          Birmingham City     3
+12               Newcastle     3
+14              Portsmouth     3
+16         West Ham United     3
+17              Stoke City     3
+3               Sunderland     2
+8                  Everton     2
+15           Middlesbrough     2
+18    West Bromwich Albion     2
+20 Wolverhampton Wanderers     2
+21            Norwich City     2
+22     Queens Park Rangers     2
+2            Derby Country     1
+4              Southampton     1
+6             Leeds United     1
+19          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+3  3  3  3  3  2  3  1  5  1   4   1   5   1
+3 -> 3 :  0.03846154 ( 60 / 4 / 48 ) 
+3 -> 3 :  0.3846154 ( 48 / 25 / 42 ) 
+3 -> 3 :  0.5245902 ( 42 / 32 / 51 ) 
+3 -> 2 :  0.4545455 ( 51 / 30 / 45 ) 
+2 -> 3 :  0.4210526 ( 45 / 24 / 36 ) 
+3 -> 1 :  0.3478261 ( 36 / 16 / 26 ) 
+1 -> 5 :  0.4146341 ( 26 / 17 / 32 ) 
+5 -> 1 :  0.3728814 ( 32 / 22 / 49 ) 
+1 -> 4 :  0.4444444 ( 49 / 32 / 55 ) 
+4 -> 1 :  0.2151899 ( 55 / 17 / 41 ) 
+1 -> 5 :  0.2527473 ( 41 / 23 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 1
+               club count
+1       Aston Villa     4
+2 Charlton Athletic     4
+3           Chelsea     4
+4         Liverpool     4
+5       Southampton     4
+[1] 2
+               club count
+1 Manchester United     8
+2           Arsenal     7
+3           Chelsea     6
+4         Newcastle     6
+5         Liverpool     5
+[1] 3
+               club count
+1           Chelsea     7
+2 Manchester United     7
+3           Arsenal     6
+4         Liverpool     6
+5  Bolton Wanderers     4
+[1] 4
+               club count
+1           Chelsea     8
+2           Arsenal     7
+3 Manchester United     7
+4  Bolton Wanderers     6
+5         Liverpool     6
+[1] 5
+               club count
+1           Chelsea     8
+2 Manchester United     8
+3           Arsenal     7
+4         Liverpool     7
+5  Bolton Wanderers     4
+[1] 6
+               club count
+1 Manchester United     8
+2           Chelsea     7
+3         Liverpool     7
+4           Arsenal     6
+5         Tottenham     4
+[1] 7
+               club count
+1         Liverpool     7
+2 Manchester United     7
+3           Arsenal     6
+4           Chelsea     5
+5         Tottenham     1
+[1] 8
+               club count
+1         Liverpool     8
+2           Chelsea     7
+3           Arsenal     6
+4 Manchester United     6
+5         Tottenham     4
+[1] 9
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3 Manchester United     8
+4         Liverpool     6
+5   Manchester City     5
+[1] 10
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3   Manchester City     8
+4 Manchester United     7
+5         Liverpool     6
+[1] 11
+             club count
+1         Arsenal     6
+2 Manchester City     5
+3       Newcastle     5
+4         Everton     4
+5         Chelsea     3
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+3            Chelsea    12
+7            Arsenal    12
+6  Manchester United    11
+4          Liverpool    10
+9   Bolton Wanderers     3
+10         Tottenham     3
+11   Manchester City     3
+1        Aston Villa     2
+5        Southampton     2
+8          Newcastle     2
+12           Everton     2
+13    Wigan Athletic     2
+2  Charlton Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+4  4  4  2  2  4  5  4  2  4   2   2   4   5
+4 -> 4 :  0.1134021 ( 53 / 11 / 55 ) 
+4 -> 2 :  0.2093023 ( 55 / 18 / 49 ) 
+2 -> 2 :  0.1372549 ( 49 / 14 / 67 ) 
+2 -> 4 :  0.3333333 ( 67 / 30 / 53 ) 
+4 -> 5 :  0.3972603 ( 53 / 29 / 49 ) 
+5 -> 4 :  0.4383562 ( 49 / 32 / 56 ) 
+4 -> 2 :  0.3205128 ( 56 / 25 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 1
+           club count
+1 Middlesbrough     6
+2  Leeds United     4
+3     Tottenham     4
+4   Aston Villa     3
+5       Everton     3
+[1] 2
+               club count
+1 Charlton Athletic     5
+2      Leeds United     5
+3         Tottenham     5
+4  Bolton Wanderers     4
+5           Everton     4
+[1] 3
+               club count
+1   Birmingham City     7
+2            Fulham     5
+3  Blackburn Rovers     4
+4         Newcastle     4
+5 Charlton Athletic     3
+[1] 4
+               club count
+1            Fulham     6
+2       Aston Villa     5
+3   Birmingham City     5
+4 Charlton Athletic     5
+5           Everton     5
+[1] 5
+               club count
+1       Aston Villa     6
+2 Charlton Athletic     6
+3        Portsmouth     6
+4            Fulham     3
+5     Middlesbrough     3
+[1] 6
+               club count
+1        Portsmouth     5
+2   West Ham United     5
+3 Charlton Athletic     4
+4            Fulham     4
+5         Newcastle     4
+[1] 7
+              club count
+1 Bolton Wanderers     5
+2    Middlesbrough     5
+3       Portsmouth     5
+4           Fulham     4
+5        Newcastle     4
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+9                   Fulham     8
+4              Aston Villa     7
+6        Charlton Athletic     5
+7         Bolton Wanderers     5
+10        Blackburn Rovers     4
+1            Middlesbrough     3
+3                Tottenham     3
+5                  Everton     3
+8          Birmingham City     3
+11               Newcastle     3
+12              Portsmouth     3
+13         West Ham United     3
+14              Stoke City     3
+2             Leeds United     2
+15    West Bromwich Albion     2
+18 Wolverhampton Wanderers     2
+19            Norwich City     2
+20     Queens Park Rangers     2
+16              Sunderland     1
+17          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+5  5  3  3  3  2  3  1  5  1   4   1   5   1
+5 -> 3 :  0.4098361 ( 38 / 25 / 48 ) 
+3 -> 3 :  0.3846154 ( 48 / 25 / 42 ) 
+3 -> 3 :  0.5245902 ( 42 / 32 / 51 ) 
+3 -> 2 :  0.4545455 ( 51 / 30 / 45 ) 
+2 -> 3 :  0.4210526 ( 45 / 24 / 36 ) 
+3 -> 1 :  0.3478261 ( 36 / 16 / 26 ) 
+1 -> 5 :  0.4146341 ( 26 / 17 / 32 ) 
+5 -> 1 :  0.3728814 ( 32 / 22 / 49 ) 
+1 -> 4 :  0.4444444 ( 49 / 32 / 55 ) 
+4 -> 1 :  0.2151899 ( 55 / 17 / 41 ) 
+1 -> 5 :  0.2527473 ( 41 / 23 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 1
+               club count
+1 Manchester United     9
+2           Arsenal     6
+3           Chelsea     6
+4         Liverpool     5
+5         Newcastle     4
+[1] 2
+               club count
+1 Manchester United     8
+2           Arsenal     7
+3           Chelsea     6
+4         Newcastle     6
+5         Liverpool     5
+[1] 3
+               club count
+1           Chelsea     7
+2 Manchester United     7
+3           Arsenal     6
+4         Liverpool     6
+5  Bolton Wanderers     4
+[1] 4
+               club count
+1           Chelsea     8
+2           Arsenal     7
+3 Manchester United     7
+4  Bolton Wanderers     6
+5         Liverpool     6
+[1] 5
+               club count
+1           Chelsea     8
+2 Manchester United     8
+3           Arsenal     7
+4         Liverpool     7
+5  Bolton Wanderers     4
+[1] 6
+               club count
+1 Manchester United     8
+2           Chelsea     7
+3         Liverpool     7
+4           Arsenal     6
+5         Tottenham     4
+[1] 7
+               club count
+1         Liverpool     7
+2 Manchester United     7
+3           Arsenal     6
+4           Chelsea     5
+5         Tottenham     1
+[1] 8
+               club count
+1         Liverpool     8
+2           Chelsea     7
+3           Arsenal     6
+4 Manchester United     6
+5         Tottenham     4
+[1] 9
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3 Manchester United     8
+4         Liverpool     6
+5   Manchester City     5
+[1] 10
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3   Manchester City     8
+4 Manchester United     7
+5         Liverpool     6
+[1] 11
+             club count
+1         Arsenal     6
+2 Manchester City     5
+3       Newcastle     5
+4         Everton     4
+5         Chelsea     3
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+2            Arsenal    13
+1  Manchester United    12
+3            Chelsea    12
+4          Liverpool    10
+5          Newcastle     3
+6   Bolton Wanderers     3
+7          Tottenham     3
+8    Manchester City     3
+9            Everton     2
+10    Wigan Athletic     2
+11       Southampton     1
+12       Aston Villa     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+6 NA  1  1  1  4  5  4  2  4   2   2   4   5
+[1] NA
+1 -> 1 :  0.04651163 ( 39 / 4 / 51 ) 
+1 -> 1 :  0 ( 51 / 0 / 28 ) 
+1 -> 4 :  0 ( 28 / 0 / 53 ) 
+4 -> 5 :  0.3972603 ( 53 / 29 / 49 ) 
+5 -> 4 :  0.4383562 ( 49 / 32 / 56 ) 
+4 -> 2 :  0.3205128 ( 56 / 25 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 2
+              club count
+1        Leicester     4
+2  Birmingham City     3
+3 Blackburn Rovers     3
+4     Leeds United     3
+5    Middlesbrough     3
+[1] 3
+               club count
+1 Charlton Athletic     5
+2       Southampton     5
+3         Tottenham     5
+4       Aston Villa     4
+5  Blackburn Rovers     3
+[1] 4
+               club count
+1  Blackburn Rovers     5
+2           Everton     3
+3 Manchester United     3
+4         Newcastle     3
+5   Birmingham City     2
+[1] 5
+               club count
+1       Aston Villa     6
+2 Charlton Athletic     6
+3        Portsmouth     6
+4            Fulham     3
+5     Middlesbrough     3
+[1] 6
+               club count
+1        Portsmouth     5
+2   West Ham United     5
+3 Charlton Athletic     4
+4            Fulham     4
+5         Newcastle     4
+[1] 7
+              club count
+1 Bolton Wanderers     5
+2    Middlesbrough     5
+3       Portsmouth     5
+4           Fulham     4
+5        Newcastle     4
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+3         Blackburn Rovers     6
+9              Aston Villa     6
+14                  Fulham     6
+16        Bolton Wanderers     4
+2          Birmingham City     3
+5            Middlesbrough     3
+6        Charlton Athletic     3
+12               Newcastle     3
+13              Portsmouth     3
+15         West Ham United     3
+17              Stoke City     3
+8                Tottenham     2
+18    West Bromwich Albion     2
+21 Wolverhampton Wanderers     2
+22            Norwich City     2
+23     Queens Park Rangers     2
+1                Leicester     1
+4             Leeds United     1
+7              Southampton     1
+10                 Everton     1
+11       Manchester United     1
+19              Sunderland     1
+20          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+7 NA  5  5  3  2  3  1  5  1   4   1   5   1
+[1] NA
+5 -> 5 :  0.01904762 ( 49 / 2 / 58 ) 
+5 -> 3 :  0.02830189 ( 58 / 3 / 51 ) 
+3 -> 2 :  0.4545455 ( 51 / 30 / 45 ) 
+2 -> 3 :  0.4210526 ( 45 / 24 / 36 ) 
+3 -> 1 :  0.3478261 ( 36 / 16 / 26 ) 
+1 -> 5 :  0.4146341 ( 26 / 17 / 32 ) 
+5 -> 1 :  0.3728814 ( 32 / 22 / 49 ) 
+1 -> 4 :  0.4444444 ( 49 / 32 / 55 ) 
+4 -> 1 :  0.2151899 ( 55 / 17 / 41 ) 
+1 -> 5 :  0.2527473 ( 41 / 23 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 2
+               club count
+1 Charlton Athletic     5
+2       Aston Villa     4
+3       Southampton     4
+4  Bolton Wanderers     3
+5           Chelsea     3
+[1] 3
+              club count
+1          Arsenal     6
+2          Everton     6
+3  Birmingham City     5
+4 Blackburn Rovers     4
+5           Fulham     4
+[1] 4
+               club count
+1           Chelsea     8
+2           Arsenal     7
+3 Manchester United     7
+4  Bolton Wanderers     6
+5         Liverpool     6
+[1] 5
+               club count
+1           Chelsea     8
+2 Manchester United     8
+3           Arsenal     7
+4         Liverpool     7
+5  Bolton Wanderers     4
+[1] 6
+               club count
+1 Manchester United     8
+2           Chelsea     7
+3         Liverpool     7
+4           Arsenal     6
+5         Tottenham     4
+[1] 7
+               club count
+1         Liverpool     7
+2 Manchester United     7
+3           Arsenal     6
+4           Chelsea     5
+5         Tottenham     1
+[1] 8
+               club count
+1         Liverpool     8
+2           Chelsea     7
+3           Arsenal     6
+4 Manchester United     6
+5         Tottenham     4
+[1] 9
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3 Manchester United     8
+4         Liverpool     6
+5   Manchester City     5
+[1] 10
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3   Manchester City     8
+4 Manchester United     7
+5         Liverpool     6
+[1] 11
+             club count
+1         Arsenal     6
+2 Manchester City     5
+3       Newcastle     5
+4         Everton     4
+5         Chelsea     3
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+6            Arsenal    11
+5            Chelsea    10
+11 Manchester United     9
+12         Liverpool     7
+4   Bolton Wanderers     3
+7            Everton     3
+13         Tottenham     3
+14   Manchester City     3
+2        Aston Villa     2
+3        Southampton     2
+16    Wigan Athletic     2
+1  Charlton Athletic     1
+8    Birmingham City     1
+9   Blackburn Rovers     1
+10            Fulham     1
+15         Newcastle     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+8 NA NA  4  2  4  5  4  2  4   2   2   4   5
+[1] NA
+[1] NA
+4 -> 2 :  0.3896104 ( 40 / 30 / 67 ) 
+2 -> 4 :  0.3333333 ( 67 / 30 / 53 ) 
+4 -> 5 :  0.3972603 ( 53 / 29 / 49 ) 
+5 -> 4 :  0.4383562 ( 49 / 32 / 56 ) 
+4 -> 2 :  0.3205128 ( 56 / 25 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 3
+               club count
+1 Charlton Athletic     4
+2           Everton     3
+3      Leeds United     3
+4        Portsmouth     3
+5         Tottenham     3
+[1] 4
+               club count
+1            Fulham     6
+2       Aston Villa     5
+3   Birmingham City     5
+4 Charlton Athletic     5
+5           Everton     5
+[1] 5
+               club count
+1       Aston Villa     6
+2 Charlton Athletic     6
+3        Portsmouth     6
+4            Fulham     3
+5     Middlesbrough     3
+[1] 6
+               club count
+1        Portsmouth     5
+2   West Ham United     5
+3 Charlton Athletic     4
+4            Fulham     4
+5         Newcastle     4
+[1] 7
+              club count
+1 Bolton Wanderers     5
+2    Middlesbrough     5
+3       Portsmouth     5
+4           Fulham     4
+5        Newcastle     4
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+6                   Fulham     7
+7              Aston Villa     6
+1        Charlton Athletic     4
+4               Portsmouth     4
+12        Bolton Wanderers     4
+10         West Ham United     3
+13              Stoke City     3
+17        Blackburn Rovers     3
+2                  Everton     2
+5                Tottenham     2
+8          Birmingham City     2
+9            Middlesbrough     2
+11               Newcastle     2
+14    West Bromwich Albion     2
+18 Wolverhampton Wanderers     2
+19            Norwich City     2
+20     Queens Park Rangers     2
+3             Leeds United     1
+15              Sunderland     1
+16          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+  V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+9 NA NA NA  4  3  1  2  1  5   5   4   5   1
+[1] NA
+[1] NA
+[1] NA
+4 -> 3 :  0.2395833 ( 47 / 23 / 72 ) 
+3 -> 1 :  0.1666667 ( 72 / 21 / 75 ) 
+1 -> 2 :  0.1010101 ( 75 / 10 / 34 ) 
+2 -> 1 :  0.1547619 ( 34 / 13 / 63 ) 
+1 -> 5 :  0.3111111 ( 63 / 28 / 55 ) 
+5 -> 5 :  0.4225352 ( 55 / 30 / 46 ) 
+5 -> 4 :  0.2439024 ( 46 / 20 / 56 ) 
+4 -> 5 :  0.2285714 ( 56 / 24 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 4
+               club count
+1 Charlton Athletic     6
+2       Southampton     5
+3       Aston Villa     4
+4  Bolton Wanderers     3
+5     Middlesbrough     3
+[1] 5
+               club count
+1 Charlton Athletic     6
+2       Aston Villa     5
+3   Manchester City     5
+4    Wigan Athletic     5
+5   Birmingham City     4
+[1] 6
+              club count
+1 Blackburn Rovers     7
+2          Arsenal     6
+3       Portsmouth     6
+4      Aston Villa     5
+5        Liverpool     5
+[1] 7
+               club count
+1           Chelsea     4
+2         Tottenham     4
+3           Arsenal     3
+4           Everton     3
+5 Manchester United     3
+[1] 8
+              club count
+1          Everton     8
+2      Aston Villa     5
+3           Fulham     5
+4 Bolton Wanderers     4
+5          Chelsea     4
+[1] 9
+               club count
+1            Fulham     6
+2  Blackburn Rovers     5
+3       Aston Villa     4
+4           Everton     4
+5 Manchester United     4
+[1] 10
+               club count
+1           Everton     6
+2  Blackburn Rovers     4
+3 Manchester United     4
+4   Birmingham City     3
+5           Chelsea     3
+[1] 11
+            club count
+1        Everton     5
+2     Stoke City     4
+3     Sunderland     4
+4        Swansea     4
+5 Wigan Athletic     4
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+3        Aston Villa     6
+15           Everton     6
+16 Manchester United     5
+7     Wigan Athletic     4
+10           Arsenal     4
+13           Chelsea     4
+9   Blackburn Rovers     3
+1  Charlton Athletic     2
+2        Southampton     2
+4   Bolton Wanderers     2
+8    Birmingham City     2
+17            Fulham     2
+5      Middlesbrough     1
+6    Manchester City     1
+11        Portsmouth     1
+12         Liverpool     1
+14         Tottenham     1
+18        Stoke City     1
+19        Sunderland     1
+20           Swansea     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+10 NA NA NA  5  3  1  2  1  5   5   4   5   1
+[1] NA
+[1] NA
+[1] NA
+5 -> 3 :  0.19 ( 47 / 19 / 72 ) 
+3 -> 1 :  0.1666667 ( 72 / 21 / 75 ) 
+1 -> 2 :  0.1010101 ( 75 / 10 / 34 ) 
+2 -> 1 :  0.1547619 ( 34 / 13 / 63 ) 
+1 -> 5 :  0.3111111 ( 63 / 28 / 55 ) 
+5 -> 5 :  0.4225352 ( 55 / 30 / 46 ) 
+5 -> 4 :  0.2439024 ( 46 / 20 / 56 ) 
+4 -> 5 :  0.2285714 ( 56 / 24 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 4
+             club count
+1         Arsenal     4
+2 Birmingham City     4
+3          Fulham     4
+4       Liverpool     4
+5         Everton     3
+[1] 5
+               club count
+1 Charlton Athletic     6
+2       Aston Villa     5
+3   Manchester City     5
+4    Wigan Athletic     5
+5   Birmingham City     4
+[1] 6
+              club count
+1 Blackburn Rovers     7
+2          Arsenal     6
+3       Portsmouth     6
+4      Aston Villa     5
+5        Liverpool     5
+[1] 7
+               club count
+1           Chelsea     4
+2         Tottenham     4
+3           Arsenal     3
+4           Everton     3
+5 Manchester United     3
+[1] 8
+              club count
+1          Everton     8
+2      Aston Villa     5
+3           Fulham     5
+4 Bolton Wanderers     4
+5          Chelsea     4
+[1] 9
+               club count
+1            Fulham     6
+2  Blackburn Rovers     5
+3       Aston Villa     4
+4           Everton     4
+5 Manchester United     4
+[1] 10
+               club count
+1           Everton     6
+2  Blackburn Rovers     4
+3 Manchester United     4
+4   Birmingham City     3
+5           Chelsea     3
+[1] 11
+            club count
+1        Everton     5
+2     Stoke City     4
+3     Sunderland     4
+4        Swansea     4
+5 Wigan Athletic     4
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+5            Everton     7
+1            Arsenal     5
+7        Aston Villa     5
+14 Manchester United     5
+9     Wigan Athletic     4
+12           Chelsea     4
+2    Birmingham City     3
+3             Fulham     3
+10  Blackburn Rovers     3
+4          Liverpool     2
+6  Charlton Athletic     1
+8    Manchester City     1
+11        Portsmouth     1
+13         Tottenham     1
+15  Bolton Wanderers     1
+16        Stoke City     1
+17        Sunderland     1
+18           Swansea     1
+19       Southampton     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+11 NA NA NA NA  1  5  4  2  4   2   2   4   5
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+1 -> 5 :  0.05128205 ( 33 / 4 / 49 ) 
+5 -> 4 :  0.4383562 ( 49 / 32 / 56 ) 
+4 -> 2 :  0.3205128 ( 56 / 25 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 5
+              club count
+1 Bolton Wanderers     4
+2          Everton     4
+3  Birmingham City     3
+4 Blackburn Rovers     3
+5           Fulham     3
+[1] 6
+               club count
+1        Portsmouth     5
+2   West Ham United     5
+3 Charlton Athletic     4
+4            Fulham     4
+5         Newcastle     4
+[1] 7
+              club count
+1 Bolton Wanderers     5
+2    Middlesbrough     5
+3       Portsmouth     5
+4           Fulham     4
+5        Newcastle     4
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+5                   Fulham     6
+1         Bolton Wanderers     5
+4         Blackburn Rovers     4
+17             Aston Villa     4
+7          West Ham United     3
+11              Stoke City     3
+3          Birmingham City     2
+6               Portsmouth     2
+9                Newcastle     2
+12    West Bromwich Albion     2
+16 Wolverhampton Wanderers     2
+18            Norwich City     2
+19     Queens Park Rangers     2
+2                  Everton     1
+8        Charlton Athletic     1
+10           Middlesbrough     1
+13              Sunderland     1
+14               Tottenham     1
+15          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+12 NA NA NA NA  5  1  2  1  5   5   4   5   1
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+5 -> 1 :  0.3023256 ( 37 / 26 / 75 ) 
+1 -> 2 :  0.1010101 ( 75 / 10 / 34 ) 
+2 -> 1 :  0.1547619 ( 34 / 13 / 63 ) 
+1 -> 5 :  0.3111111 ( 63 / 28 / 55 ) 
+5 -> 5 :  0.4225352 ( 55 / 30 / 46 ) 
+5 -> 4 :  0.2439024 ( 46 / 20 / 56 ) 
+4 -> 5 :  0.2285714 ( 56 / 24 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 5
+              club count
+1 Blackburn Rovers     6
+2           Fulham     4
+3        Newcastle     4
+4          Arsenal     3
+5          Chelsea     3
+[1] 6
+              club count
+1 Blackburn Rovers     7
+2          Arsenal     6
+3       Portsmouth     6
+4      Aston Villa     5
+5        Liverpool     5
+[1] 7
+               club count
+1           Chelsea     4
+2         Tottenham     4
+3           Arsenal     3
+4           Everton     3
+5 Manchester United     3
+[1] 8
+              club count
+1          Everton     8
+2      Aston Villa     5
+3           Fulham     5
+4 Bolton Wanderers     4
+5          Chelsea     4
+[1] 9
+               club count
+1            Fulham     6
+2  Blackburn Rovers     5
+3       Aston Villa     4
+4           Everton     4
+5 Manchester United     4
+[1] 10
+               club count
+1           Everton     6
+2  Blackburn Rovers     4
+3 Manchester United     4
+4   Birmingham City     3
+5           Chelsea     3
+[1] 11
+            club count
+1        Everton     5
+2     Stoke City     4
+3     Sunderland     4
+4        Swansea     4
+5 Wigan Athletic     4
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+10           Everton     6
+4            Arsenal     5
+5            Chelsea     5
+11 Manchester United     5
+1   Blackburn Rovers     4
+7        Aston Villa     4
+2             Fulham     3
+17    Wigan Athletic     3
+3          Newcastle     1
+6         Portsmouth     1
+8          Liverpool     1
+9          Tottenham     1
+12  Bolton Wanderers     1
+13   Birmingham City     1
+14        Stoke City     1
+15        Sunderland     1
+16           Swansea     1
+18       Southampton     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+13 NA NA NA NA NA  2  5  1  5   5   4   5   1
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+2 -> 5 :  0.2212389 ( 59 / 25 / 79 ) 
+5 -> 1 :  0.2566372 ( 79 / 29 / 63 ) 
+1 -> 5 :  0.3111111 ( 63 / 28 / 55 ) 
+5 -> 5 :  0.4225352 ( 55 / 30 / 46 ) 
+5 -> 4 :  0.2439024 ( 46 / 20 / 56 ) 
+4 -> 5 :  0.2285714 ( 56 / 24 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 6
+               club count
+1         Tottenham     5
+2    Wigan Athletic     5
+3       Aston Villa     4
+4 Charlton Athletic     4
+5           Everton     4
+[1] 7
+              club count
+1          Everton     8
+2   Wigan Athletic     7
+3  West Ham United     6
+4 Bolton Wanderers     5
+5    Middlesbrough     5
+[1] 8
+              club count
+1          Everton     8
+2      Aston Villa     5
+3           Fulham     5
+4 Bolton Wanderers     4
+5          Chelsea     4
+[1] 9
+               club count
+1            Fulham     6
+2  Blackburn Rovers     5
+3       Aston Villa     4
+4           Everton     4
+5 Manchester United     4
+[1] 10
+               club count
+1           Everton     6
+2  Blackburn Rovers     4
+3 Manchester United     4
+4   Birmingham City     3
+5           Chelsea     3
+[1] 11
+            club count
+1        Everton     5
+2     Stoke City     4
+3     Sunderland     4
+4        Swansea     4
+5 Wigan Athletic     4
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+5            Everton     7
+2     Wigan Athletic     5
+3        Aston Villa     4
+12 Manchester United     4
+10           Chelsea     3
+7   Bolton Wanderers     2
+9             Fulham     2
+11  Blackburn Rovers     2
+17           Arsenal     2
+1          Tottenham     1
+4  Charlton Athletic     1
+6    West Ham United     1
+8      Middlesbrough     1
+13   Birmingham City     1
+14        Stoke City     1
+15        Sunderland     1
+16           Swansea     1
+18       Southampton     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+14 NA NA NA NA NA  4  4  2  4   2   2   4   5
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+4 -> 4 :  0.01315789 ( 21 / 1 / 56 ) 
+4 -> 2 :  0.3205128 ( 56 / 25 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 6
+              club count
+1 Blackburn Rovers     3
+2 Bolton Wanderers     3
+3          Everton     3
+4  Manchester City     3
+5    Middlesbrough     2
+[1] 7
+              club count
+1 Bolton Wanderers     5
+2    Middlesbrough     5
+3       Portsmouth     5
+4           Fulham     4
+5        Newcastle     4
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+2         Bolton Wanderers     5
+1         Blackburn Rovers     4
+7                   Fulham     4
+17             Aston Villa     4
+9               Stoke City     3
+5            Middlesbrough     2
+10         West Ham United     2
+12    West Bromwich Albion     2
+16 Wolverhampton Wanderers     2
+18            Norwich City     2
+19     Queens Park Rangers     2
+3                  Everton     1
+4          Manchester City     1
+6               Portsmouth     1
+8                Newcastle     1
+11         Birmingham City     1
+13              Sunderland     1
+14               Tottenham     1
+15          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+15 NA NA NA NA NA NA  3  2  4   2   2   4   5
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+3 -> 2 :  0.03370787 ( 45 / 3 / 47 ) 
+2 -> 4 :  0.03191489 ( 47 / 3 / 50 ) 
+4 -> 2 :  0.03669725 ( 50 / 4 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 7
+              club count
+1 Blackburn Rovers     7
+2      Aston Villa     4
+3           Fulham     4
+4  Manchester City     3
+5        Newcastle     3
+[1] 8
+              club count
+1 Bolton Wanderers     5
+2           Fulham     4
+3       Stoke City     4
+4  West Ham United     4
+5  Birmingham City     3
+[1] 9
+                  club count
+1 West Bromwich Albion     6
+2           Sunderland     5
+3            Tottenham     4
+4       Wigan Athletic     4
+5     Blackburn Rovers     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+2              Aston Villa     5
+1         Blackburn Rovers     4
+3                   Fulham     4
+6         Bolton Wanderers     3
+7               Stoke City     3
+8          West Ham United     2
+10    West Bromwich Albion     2
+14 Wolverhampton Wanderers     2
+15            Norwich City     2
+16     Queens Park Rangers     2
+4          Manchester City     1
+5                Newcastle     1
+9          Birmingham City     1
+11              Sunderland     1
+12               Tottenham     1
+13          Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+16 NA NA NA NA NA NA NA  3  2   2   2   4   5
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+3 -> 2 :  0.07608696 ( 50 / 7 / 49 ) 
+2 -> 2 :  0.4358974 ( 49 / 34 / 63 ) 
+2 -> 2 :  0.4204545 ( 63 / 37 / 62 ) 
+2 -> 4 :  0.3571429 ( 62 / 30 / 52 ) 
+4 -> 5 :  0.325 ( 52 / 26 / 54 ) 
+[1] 8
+              club count
+1 Blackburn Rovers     6
+2  Manchester City     4
+3      Aston Villa     3
+4 Bolton Wanderers     3
+5           Fulham     3
+[1] 9
+              club count
+1 Bolton Wanderers     6
+2  West Ham United     5
+3        Hull City     4
+4       Stoke City     4
+5      Aston Villa     3
+[1] 10
+                     club count
+1        Bolton Wanderers     7
+2 Wolverhampton Wanderers     7
+3              Stoke City     6
+4        Blackburn Rovers     5
+5             Aston Villa     4
+[1] 11
+                     club count
+1             Aston Villa     6
+2              Stoke City     6
+3 Wolverhampton Wanderers     5
+4        Blackburn Rovers     4
+5        Bolton Wanderers     4
+[1] 12
+                  club count
+1          Aston Villa     5
+2               Fulham     5
+3         Norwich City     5
+4 West Bromwich Albion     5
+5  Queens Park Rangers     4
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                      club count
+3              Aston Villa     6
+4         Bolton Wanderers     4
+1         Blackburn Rovers     3
+5                   Fulham     3
+8               Stoke City     3
+6          West Ham United     2
+9  Wolverhampton Wanderers     2
+10            Norwich City     2
+12     Queens Park Rangers     2
+2          Manchester City     1
+7                Hull City     1
+11    West Bromwich Albion     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+17 NA NA NA NA NA NA NA  4  1   4   1   5   1
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+4 -> 1 :  0 ( 48 / 0 / 49 ) 
+1 -> 4 :  0.4444444 ( 49 / 32 / 55 ) 
+4 -> 1 :  0.2151899 ( 55 / 17 / 41 ) 
+1 -> 5 :  0.2527473 ( 41 / 23 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 8
+              club count
+1          Arsenal     5
+2  West Ham United     5
+3 Blackburn Rovers     4
+4      Aston Villa     3
+5  Manchester City     3
+[1] 9
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3 Manchester United     8
+4         Liverpool     6
+5   Manchester City     5
+[1] 10
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3   Manchester City     8
+4 Manchester United     7
+5         Liverpool     6
+[1] 11
+             club count
+1         Arsenal     6
+2 Manchester City     5
+3       Newcastle     5
+4         Everton     4
+5         Chelsea     3
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+1            Arsenal     6
+5    Manchester City     4
+6            Chelsea     4
+7  Manchester United     4
+4        Aston Villa     2
+8          Liverpool     2
+10           Everton     2
+11    Wigan Athletic     2
+2    West Ham United     1
+3   Blackburn Rovers     1
+9          Newcastle     1
+12       Southampton     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+18 NA NA NA NA NA NA NA NA  3   4   1   5   1
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+3 -> 4 :  0.06976744 ( 37 / 6 / 55 ) 
+4 -> 1 :  0.2151899 ( 55 / 17 / 41 ) 
+1 -> 5 :  0.2527473 ( 41 / 23 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 9
+            club count
+1      Newcastle     4
+2        Arsenal     3
+3        Everton     3
+4      Liverpool     3
+5 Wigan Athletic     3
+[1] 10
+               club count
+1           Chelsea     9
+2           Arsenal     8
+3   Manchester City     8
+4 Manchester United     7
+5         Liverpool     6
+[1] 11
+             club count
+1         Arsenal     6
+2 Manchester City     5
+3       Newcastle     5
+4         Everton     4
+5         Chelsea     3
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                club count
+2            Arsenal     5
+3            Everton     3
+5     Wigan Athletic     3
+6            Chelsea     3
+8  Manchester United     3
+1          Newcastle     2
+4          Liverpool     2
+7    Manchester City     2
+9        Southampton     1
+10       Aston Villa     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+19 NA NA NA NA NA NA NA NA NA   1   5   5   1
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+1 -> 5 :  0.1408451 ( 38 / 10 / 43 ) 
+5 -> 5 :  0.2210526 ( 43 / 21 / 73 ) 
+5 -> 1 :  0.4303797 ( 73 / 34 / 40 ) 
+[1] 10
+             club count
+1  Wigan Athletic     4
+2     Aston Villa     3
+3 Manchester City     3
+4       Newcastle     3
+5 West Ham United     3
+[1] 11
+                  club count
+1               Fulham     5
+2          Aston Villa     4
+3 West Bromwich Albion     4
+4         Norwich City     3
+5     Blackburn Rovers     2
+[1] 12
+               club count
+1 Manchester United     5
+2    Wigan Athletic     5
+3           Arsenal     4
+4           Chelsea     4
+5           Everton     4
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                   club count
+1        Wigan Athletic     3
+2           Aston Villa     3
+10    Manchester United     2
+11              Arsenal     2
+3       Manchester City     1
+4             Newcastle     1
+5       West Ham United     1
+6                Fulham     1
+7  West Bromwich Albion     1
+8          Norwich City     1
+9      Blackburn Rovers     1
+12              Chelsea     1
+13              Everton     1
+14          Southampton     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+20 NA NA NA NA NA NA NA NA NA   3   3   1   1
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+3 -> 3 :  0.04109589 ( 38 / 3 / 38 ) 
+3 -> 1 :  0.5106383 ( 38 / 24 / 33 ) 
+1 -> 1 :  0.01388889 ( 33 / 1 / 40 ) 
+[1] 10
+                  club count
+1               Fulham     5
+2 West Bromwich Albion     5
+3          Aston Villa     3
+4           Sunderland     3
+5            Tottenham     3
+[1] 11
+               club count
+1 Manchester United     7
+2           Chelsea     6
+3         Liverpool     6
+4         Tottenham     6
+5   Manchester City     5
+[1] 12
+             club count
+1         Chelsea     6
+2       Liverpool     6
+3 Manchester City     6
+4         Arsenal     5
+5       Tottenham     5
+[1] 13
+               club count
+1 Manchester United     3
+2       Southampton     3
+3    Wigan Athletic     3
+4           Arsenal     2
+5       Aston Villa     2
+[1] "Often top clubs"
+                   club count
+5             Tottenham     3
+3           Aston Villa     2
+6     Manchester United     2
+7               Chelsea     2
+8             Liverpool     2
+9       Manchester City     2
+10              Arsenal     2
+1                Fulham     1
+2  West Bromwich Albion     1
+4            Sunderland     1
+11          Southampton     1
+12       Wigan Athletic     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+21 NA NA NA NA NA NA NA NA NA  NA  NA   2   5
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+2 -> 5 :  0.2318841 ( 31 / 16 / 54 ) 
+[1] 12
+              club count
+1        Newcastle     4
+2       Stoke City     4
+3       Sunderland     4
+4 Blackburn Rovers     2
+5 Bolton Wanderers     2
+[1] 13
+                 club count
+1     West Ham United     5
+2         Aston Villa     4
+3              Fulham     4
+4        Norwich City     4
+5 Queens Park Rangers     4
+[1] "Often top clubs"
+                  club count
+1            Newcastle     1
+2           Stoke City     1
+3           Sunderland     1
+4     Blackburn Rovers     1
+5     Bolton Wanderers     1
+6      West Ham United     1
+7          Aston Villa     1
+8               Fulham     1
+9         Norwich City     1
+10 Queens Park Rangers     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+22 NA NA NA NA NA NA NA NA NA  NA  NA   3   3
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+3 -> 3 :  0.2875 ( 51 / 23 / 52 ) 
+[1] 12
+               club count
+1           Everton     4
+2 Manchester United     4
+3       Southampton     4
+4           Swansea     4
+5       Aston Villa     3
+[1] 13
+       club count
+1   Chelsea     6
+2 Liverpool     5
+3 Tottenham     5
+4   Arsenal     4
+5   Everton     4
+[1] "Often top clubs"
+               club count
+1           Everton     2
+2 Manchester United     1
+3       Southampton     1
+4           Swansea     1
+5       Aston Villa     1
+6           Chelsea     1
+7         Liverpool     1
+8         Tottenham     1
+9           Arsenal     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+23 NA NA NA NA NA NA NA NA NA  NA  NA  NA   2
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] 13
+                  club count
+1       Crystal Palace     6
+2 West Bromwich Albion     6
+3          Aston Villa     5
+4            Newcastle     5
+5           Sunderland     5
+[1] "Often top clubs"
+                  club count
+1       Crystal Palace     1
+2 West Bromwich Albion     1
+3          Aston Villa     1
+4            Newcastle     1
+5           Sunderland     1
+[1] ""
+[1] "----------------------------"
+[1] ""
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+24 NA NA NA NA NA NA NA NA NA  NA  NA  NA   4
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] NA
+[1] 13
+             club count
+1 Manchester City     6
+2         Arsenal     5
+3         Chelsea     4
+4         Everton     3
+5       Liverpool     3
+[1] "Often top clubs"
+             club count
+1 Manchester City     1
+2         Arsenal     1
+3         Chelsea     1
+4         Everton     1
+5       Liverpool     1
+[1] "----------------------------"
+[1] "transitions"
+   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13
+1   1  2  5  3  2  3  1  5  1   4   1   5   1
+2   2  4  2  2  4  5  4  2  4   2   2   4   5
+3   3  3  3  3  2  3  1  5  1   4   1   5   1
+4   4  4  2  2  4  5  4  2  4   2   2   4   5
+5   5  3  3  3  2  3  1  5  1   4   1   5   1
+6  NA  1  1  1  4  5  4  2  4   2   2   4   5
+7  NA  5  5  3  2  3  1  5  1   4   1   5   1
+8  NA NA  4  2  4  5  4  2  4   2   2   4   5
+9  NA NA NA  4  3  1  2  1  5   5   4   5   1
+10 NA NA NA  5  3  1  2  1  5   5   4   5   1
+11 NA NA NA NA  1  5  4  2  4   2   2   4   5
+12 NA NA NA NA  5  1  2  1  5   5   4   5   1
+13 NA NA NA NA NA  2  5  1  5   5   4   5   1
+14 NA NA NA NA NA  4  4  2  4   2   2   4   5
+15 NA NA NA NA NA NA  3  2  4   2   2   4   5
+16 NA NA NA NA NA NA NA  3  2   2   2   4   5
+17 NA NA NA NA NA NA NA  4  1   4   1   5   1
+18 NA NA NA NA NA NA NA NA  3   4   1   5   1
+19 NA NA NA NA NA NA NA NA NA   1   5   5   1
+20 NA NA NA NA NA NA NA NA NA   3   3   1   1
+21 NA NA NA NA NA NA NA NA NA  NA  NA   2   5
+22 NA NA NA NA NA NA NA NA NA  NA  NA   3   3
+23 NA NA NA NA NA NA NA NA NA  NA  NA  NA   2
+24 NA NA NA NA NA NA NA NA NA  NA  NA  NA   4
+[1] "----------------------------"
+[1] "clustDistribution"
+   X33L X56L X60L X53L X38L
+1    33   56   60   53   38
+2    39   49   48   55   49
+3    51   49   42   40   58
+4    28   67   51   47   47
+5    33   45   72   53   37
+6    75   59   36   21   49
+7    26   34   45   56   79
+8    63   47   50   48   32
+9    49   49   37   50   55
+10   38   63   38   55   46
+11   41   62   38   56   43
+12   33   31   51   52   73
+13   40   67   52   27   54
+null device 
+          1 
+[1] 0
