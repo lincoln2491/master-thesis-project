@@ -418,24 +418,24 @@ normalizeClusterNames <-function(clusteredData, tr){
 }
 
 calculateImportance <- function(clusteredData, c = 0.0001){
-  labels = c( "av_goals",
-              "av_goals_half_time",
-              "av_shots",
-              "av_shots_on_target",
-              "av_corners",
-              "av_fouls",
-              "av_yellows",
-              "av_reds",
-              "av_shots_outside_target",
-              "av_op_goals",
-              "av_op_goals_half_time",
-              "av_op_shots",
-              "av_op_shots_on_target",
-              "av_op_corners",
-              "av_op_fouls",
-              "av_op_yellows",
-              "av_op_reds",
-              "av_op_shots_outside_target" )
+  labels = c("av_goals",
+             "av_goals_half_time",
+             "av_shots",
+             "av_shots_on_target",
+             "av_corners",
+             "av_fouls",
+             "av_yellows",
+             "av_reds",
+             "av_shots_outside_target",
+             "av_op_goals",
+             "av_op_goals_half_time",
+             "av_op_shots",
+             "av_op_shots_on_target",
+             "av_op_corners",
+             "av_op_fouls",
+             "av_op_yellows",
+             "av_op_reds",
+             "av_op_shots_outside_target")
   importance = list()
   for(k in 1:13){
     data = clusteredData[[k]]
@@ -690,7 +690,6 @@ calculateCrossCorrelations <- function(data){
   
 }
 
-
 percentMean <-function(data, feature){
   min = lapply(KMclusteredData, function(x) min(x[[feature]]))
   max = lapply(KMclusteredData, function(x) max(x[[feature]]))
@@ -760,4 +759,12 @@ calculateKendallAndSpaermanAlg <-function(importance1, importance2){
   return(df)
 }
 
-
+importanceAtK <- function(importance, k = 5){
+  tmp = lapply(importance, function(x) as.data.frame(x)$feature[1:5])
+  common = tmp[[1]]
+  for(i in 2:13){
+    t = tmp[[i]]
+    common = intersect(common, t)
+  }
+  return(common)
+}

@@ -171,7 +171,6 @@ updateTablePlace <- function(data){
   return(data)
 }
 
-
 getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10, 
                                      forWho = "home"){
   thisMatch = data[ data$idMatch == idMatch,]
@@ -198,7 +197,6 @@ getPreviosuMatchesOfTeam <- function(idMatch, data, howManyPreviousMatches = 10,
   
   return(tail(data, howManyPreviousMatches))
 }
-
 
 getMean <- function(id, data, columnName, howManyPreviousMatches = 10, forWho = "home"){
   thisMatch = data[ data$idMatch == id,]
@@ -258,7 +256,6 @@ addTablePlace <-function(data){
   return(data)
 }
 
-
 updateLeagueTable <-function(leagueTable, matchesToCount){
   for(savedMatch in matchesToCount){
     leagueTable$p[ leagueTable$team == savedMatch$home_team_fk] = leagueTable$p[ leagueTable$team == savedMatch$home_team_fk] + 1
@@ -291,7 +288,6 @@ updateLeagueTable <-function(leagueTable, matchesToCount){
   leagueTable$pos = 1:20
   return(leagueTable)
 }
-
 
 jaccardIndex <-function(vec1, vec2){
   n1 = length(vec1)
