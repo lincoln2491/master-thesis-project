@@ -387,8 +387,8 @@ generatePlacesPerClusterPlot <- function(data, i, saveToFile = FALSE){
   tab = as.data.frame(tab)
   colnames(tab) = c("newCluster", "leaguePos", "count")
   
-  p = ggplot(tab, aes(x = newCluster, y = count, colour = leaguePos, group = leaguePos)) + 
-    geom_point() + geom_line()
+  p = ggplot(tab, aes(x = newCluster, y = count, colour = leaguePos, group = leaguePos), ) + 
+    geom_point() + geom_line() + ggtitle(as.character(i))
   if(saveToFile){
     fileName = paste("plots/placesPerCLusterPlot/", i, ".png", sep = "")
     png(filename = "plots/placesPerCLusterPlot/importancePositionPlot.png", width = 1024, height = 1024)

@@ -144,8 +144,8 @@ normalize01 <- function(x) {
 }
 
 getFilteredData <- function(data){  
-  labelsToInlcude = c("av_goals",
-                      "av_goals_half_time",
+  labelsToInlcude = c(#"av_goals",
+                      #"av_goals_half_time",
                       "av_shots",
                       "av_shots_on_target",
                       "av_corners",
@@ -153,8 +153,8 @@ getFilteredData <- function(data){
                       "av_yellows",
                       "av_reds",
                       "av_shots_outside_target",
-                      "av_op_goals",
-                      "av_op_goals_half_time",
+                      #"av_op_goals",
+                      #"av_op_goals_half_time",
                       "av_op_shots",
                       "av_op_shots_on_target",
                       "av_op_corners",
@@ -418,8 +418,8 @@ normalizeClusterNames <-function(clusteredData, tr){
 }
 
 calculateImportance <- function(clusteredData, c = 0.0001){
-  labels = c("av_goals",
-             "av_goals_half_time",
+  labels = c(#"av_goals",
+             #"av_goals_half_time",
              "av_shots",
              "av_shots_on_target",
              "av_corners",
@@ -427,8 +427,8 @@ calculateImportance <- function(clusteredData, c = 0.0001){
              "av_yellows",
              "av_reds",
              "av_shots_outside_target",
-             "av_op_goals",
-             "av_op_goals_half_time",
+             #"av_op_goals",
+             #"av_op_goals_half_time",
              "av_op_shots",
              "av_op_shots_on_target",
              "av_op_corners",
