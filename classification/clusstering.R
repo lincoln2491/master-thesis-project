@@ -734,7 +734,7 @@ calculateKendallAndSpaermanPeriods <-function(importance){
   return(df)
 }
 
-calculateKendallAndSpaermanAlg <-function(importance1, importance2){
+impcalculateKendallAndSpaermanAlg <-function(importance1, importance2){
   df = data.frame(period= numeric(0), method = numeric(0), kendall= integer(0))
   for(i in 1:13){
     tmp1 = importance1[[i]]
@@ -767,4 +767,30 @@ importanceAtK <- function(importance, k = 5){
     common = intersect(common, t)
   }
   return(common)
+}
+
+meanAndSdOfImportance <- function(importance){
+  labels = c("av_shots", 
+             "av_corners",
+             "av_op_shots",
+             "av_op_shots_outside_target",
+             "av_shots_on_target",
+             "av_op_corners",
+             "av_shots_outside_target",
+             "av_op_shots_on_target",
+             "av_op_yellows",
+             "av_reds",
+             "av_op_reds",
+             "av_op_fouls",
+             "av_yellows",
+             "av_fouls")
+  dt = data.table(importance = character(0), mean = numeric(0), sd = numeric(0))
+  for(label in labels){
+    values = sapply(importance, function(x) {
+      x = as.data.frame(x)
+      x$importance[x$feature == label]
+    })
+    dt = rbind(dt, data.table(importance = label, mean = mean(values), sd = sd(values)))
+  }
+  return(dt)
 }
