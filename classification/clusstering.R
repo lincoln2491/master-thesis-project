@@ -3,6 +3,7 @@ library(gtools)
 library(cluster)
 library(stats)
 library("Kendall")
+library("forecast")
 
 getDataForCluster <- function(data, clusters, clusterNumber){
   cl = clusters[ clusters == clusterNumber]
@@ -769,7 +770,7 @@ importanceAtK <- function(importance, k = 5){
   return(common)
 }
 
-meanAndSdOfImportance <- function(importance){
+meanAndSdOfImportance <- function(importance, places = FALSE){
   labels = c("av_shots", 
              "av_corners",
              "av_op_shots",
@@ -784,6 +785,9 @@ meanAndSdOfImportance <- function(importance){
              "av_op_fouls",
              "av_yellows",
              "av_fouls")
+  if(places){
+    importance = changeImportanceValuesToPostions(importance)
+  }
   dt = data.table(importance = character(0), mean = numeric(0), sd = numeric(0))
   for(label in labels){
     values = sapply(importance, function(x) {
@@ -793,4 +797,42 @@ meanAndSdOfImportance <- function(importance){
     dt = rbind(dt, data.table(importance = label, mean = mean(values), sd = sd(values)))
   }
   return(dt)
+}
+
+changeImportanceToLevels <- function(data, quantiles = TRUE){
+  if(quantiles == TRUE){
+    levels = quantile(data$importance, c(0.33, 0.66))
+  }else{
+    levels = c(0.33 * max(data$importance), 0.66 * max(data$importance))
+  }
+  data$levelOfImportance = factor(NA, levels = c("high", "medium", "low"))
+  
+  data$levelOfImportance[data$importance <= levels[1]] = "low"
+  data$levelOfImportance[data$importance > levels[1] & data$importance <= levels[2] ] = "medium"
+  data$levelOfImportance[data$importance > levels[2]] = "high"
+  return(data)
+}
+
+calculateMovingAverage <-function(importance, size = 3, places = FALSE){
+  if(places){
+    importance = changeImportanceValuesToPostions(importance)
+  }
+  
+  df = Reduce(function(x, y) {merge(x, y, by = "feature")}, importance)
+  rownames(df) = df$feature
+  df$feature = NULL
+  df = t(apply(df, 1, function(x) ma(x, order = 3)))
+  df = df[, !apply(is.na(df), 2, all)]
+  colnames(df) = 1:(ncol(df))
+  df = as.data.frame(df)
+  return(df)
+}
+
+#'
+#' highest importance has fisrt position
+changeImportanceValuesToPostions <- function(importance){
+  for(i in 1:length(importance)){
+    importance[[i]]$importance = order(importance[[i]]$importance, decreasing = FALSE)
+  }
+  return(importance)
 }

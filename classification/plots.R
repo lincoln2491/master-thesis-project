@@ -387,11 +387,27 @@ generatePlacesPerClusterPlot <- function(data, i, saveToFile = FALSE){
   tab = as.data.frame(tab)
   colnames(tab) = c("newCluster", "leaguePos", "count")
   
-  p = ggplot(tab, aes(x = newCluster, y = count, colour = leaguePos, group = leaguePos), ) + 
+  p = ggplot(tab, aes(x = newCluster, y = count, colour = leaguePos, group = leaguePos) ) + 
     geom_point() + geom_line() + ggtitle(as.character(i))
   if(saveToFile){
     fileName = paste("plots/placesPerCLusterPlot/", i, ".png", sep = "")
     png(filename = "plots/placesPerCLusterPlot/importancePositionPlot.png", width = 1024, height = 1024)
+    print(p)
+    dev.off()
+  }else{
+    print(p)
+  }
+}
+
+createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
+  data$feature = rownames(data)
+  data = melt(data, id.vars = "feature")
+  colnames(data) = c("feature", "periods", "ma")
+  
+  p = ggplot(data, aes(x = periods, y = ma, group = feature, colour = feature)) + geom_line() + geom_point()
+  
+  if(saveToFile){
+    png(filename = "plots/importanceMovingAveragePlot.png", width = 1024, height = 1024)
     print(p)
     dev.off()
   }else{
