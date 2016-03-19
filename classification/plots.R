@@ -1,6 +1,16 @@
 library("ggplot2")
 library("reshape2")
 
+generatePlot <- function(p, saveToFile = FALSE, name){
+  if(saveToFile){
+    png(filename = name, width = 1024, height = 1024)
+    print(p)
+    dev.off()
+  }else{
+    print(p)
+  }
+}
+
 #generating scatter plots of features
 #TODO do it better
 generateScatterPlots <- function(data, n){
@@ -405,14 +415,8 @@ createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
   data = melt(data, id.vars = "feature")
   colnames(data) = c("feature", "periods", "ma")
   
+  filename = "plots/importanceMovingAveragePlot.png"
   p = ggplot(data, aes(x = periods, y = ma, group = feature, colour = feature)) + geom_line() + geom_point()
   
-  if(saveToFile){
-    png(filename = "plots/importanceMovingAveragePlot.png", width = 1024, height = 1024)
-    print(p)
-    dev.off()
-  }else{
-    print(p)
-  }
-  dev.off()
+  generatePlot(p, saveToFile, filename)
 }
