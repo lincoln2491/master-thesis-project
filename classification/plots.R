@@ -397,6 +397,7 @@ generatePlacesPerClusterPlot <- function(data, i, saveToFile = FALSE){
   }else{
     print(p)
   }
+  dev.off()
 }
 
 createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
@@ -413,4 +414,5 @@ createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
   }else{
     print(p)
   }
+  dev.off()
 }

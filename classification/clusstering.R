@@ -735,7 +735,7 @@ calculateKendallAndSpaermanPeriods <-function(importance){
   return(df)
 }
 
-impcalculateKendallAndSpaermanAlg <-function(importance1, importance2){
+calculateKendallAndSpaermanAlg <-function(importance1, importance2){
   df = data.frame(period= numeric(0), method = numeric(0), kendall= integer(0))
   for(i in 1:13){
     tmp1 = importance1[[i]]
@@ -823,7 +823,7 @@ calculateMovingAverage <-function(importance, size = 3, places = FALSE){
   df$feature = NULL
   df = t(apply(df, 1, function(x) ma(x, order = 3)))
   df = df[, !apply(is.na(df), 2, all)]
-  colnames(df) = 1:(ncol(df))
+  colnames(df) = sapply(1:(ncol(df)), function(x) paste(x, x+2, sep = "-"))
   df = as.data.frame(df)
   return(df)
 }
@@ -835,4 +835,77 @@ changeImportanceValuesToPostions <- function(importance){
     importance[[i]]$importance = order(importance[[i]]$importance, decreasing = FALSE)
   }
   return(importance)
+}
+
+
+calculateKendallAndSpearmanLevels <- function(importance, quantiles = TRUE){
+  for(i in 1:13){
+    importance[[i]] = changeImportanceToLevels(importance[[i]], quantiles)
+    or = order(importance[[i]]$feature)
+    importance[[i]] = importance[[i]][or, ]
+  }
+  
+  df = data.frame(periods= numeric(0), method = numeric(0), kendall= integer(0))
+  for(i in 1:12){
+    tmp1 = importance[[i]]
+    tmp2 = importance[[i+1]]
+    val = Kendall(tmp1$levelOfImportance, tmp2$levelOfImportance)
+    val = val$tau
+    val = val[[1]]
+    df = rbind(df, list(i, 1, val))
+  }
+  
+  for(i in 1:12){
+    tmp1 = importance[[i]]
+    tmp2 = importance[[i+1]]
+    val = cor(as.numeric(tmp1$levelOfImportance), 
+              as.numeric(tmp2$levelOfImportance), method = "spearman")
+    df = rbind(df, list(i, 2, val))
+  }
+  colnames(df) = c("periods", "method", "correlation")
+  
+  df$method[df$method == 1] = "kendall"
+  df$method[df$method == 2] = "spearman"
+  df$periods = as.factor(paste(df$periods, df$periods + 1, sep = "-"))
+  levels(df$periods) = c("1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8",
+                         "8-9", "9-10", "10-11", "11-12", "12-13")
+  
+  return(df)
+}
+
+calculateKendallAndSpaermanLevelsAlg <-function(importance1, importance2, quantiles = TRUE){
+  for(i in 1:13){
+    importance1[[i]] = changeImportanceToLevels(importance1[[i]], quantiles)
+    or = order(importance1[[i]]$feature)
+    importance1[[i]] = importance1[[i]][or, ]
+  }
+  
+  for(i in 1:13){
+    importance2[[i]] = changeImportanceToLevels(importance2[[i]], quantiles)
+    or = order(importance2[[i]]$feature)
+    importance2[[i]] = importance2[[i]][or, ]
+  }
+  
+  df = data.frame(period= numeric(0), method = numeric(0), kendall= integer(0))
+  for(i in 1:13){
+    tmp1 = importance1[[i]]
+    tmp2 = importance2[[i]]
+    val = Kendall(tmp1$levelOfImportance, tmp2$levelOfImportance)
+    val = val$tau
+    val = val[[1]]
+    df = rbind(df, list(i, 1, val))
+  }
+  colnames(df) = c("period", "method", "correlation")
+  
+  for(i in 1:13){
+    tmp1 = importance1[[i]]
+    tmp2 = importance2[[i]]
+    val = cor(as.numeric(tmp1$levelOfImportance), 
+              as.numeric(tmp2$levelOfImportance), method = "spearman")
+    df = rbind(df, list(i, 2, val))
+  }
+  
+  df$method[df$method == 1] = "kendall"
+  df$method[df$method == 2] = "spearman"
+  return(df)
 }
