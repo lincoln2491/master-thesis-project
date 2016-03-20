@@ -706,7 +706,7 @@ percentMean <-function(data, feature){
   return(res)
 }
 
-calculateKendallAndSpaermanPeriods <-function(importance){
+calculateKendallAndSpearmanPeriods <-function(importance){
   df = data.frame(periods= numeric(0), method = numeric(0), kendall= integer(0))
   for(i in 1:12){
     tmp1 = importance[[i]]
@@ -735,7 +735,7 @@ calculateKendallAndSpaermanPeriods <-function(importance){
   return(df)
 }
 
-calculateKendallAndSpaermanAlg <-function(importance1, importance2){
+calculateKendallAndSpearmanAlg <-function(importance1, importance2){
   df = data.frame(period= numeric(0), method = numeric(0), kendall= integer(0))
   for(i in 1:13){
     tmp1 = importance1[[i]]
@@ -873,7 +873,7 @@ calculateKendallAndSpearmanLevels <- function(importance, quantiles = TRUE){
   return(df)
 }
 
-calculateKendallAndSpaermanLevelsAlg <-function(importance1, importance2, quantiles = TRUE){
+calculateKendallAndSpearmanLevelsAlg <-function(importance1, importance2, quantiles = TRUE){
   for(i in 1:13){
     importance1[[i]] = changeImportanceToLevels(importance1[[i]], quantiles)
     or = order(importance1[[i]]$feature)
