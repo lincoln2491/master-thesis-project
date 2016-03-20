@@ -13,7 +13,7 @@ generatePlot <- function(p, saveToFile = FALSE, name){
 
 #generating scatter plots of features
 #TODO do it better
-generateScatterPlots <- function(data, n){
+generateScatterPlots <- function(data, n, saveToFile = FALSE){
   labels = c( "av_goals",
               "av_goals_half_time",
               "av_shots",
@@ -52,7 +52,7 @@ generateScatterPlots <- function(data, n){
   }
 }
 
-createAndSaveHeatmaps <-function(c1, c2, c3, c4, c5, clubs, m){
+createAndSaveHeatmaps <-function(c1, c2, c3, c4, c5, clubs, m, saveToFile = FALSE){
   for(i in 1:14){
     png(filename = paste("plots/", i, ".png", sep = ""), width = 1600, height = 900)
     df = createTable(c1, c2, c3, c4, c5, clubs, i)
@@ -62,7 +62,7 @@ createAndSaveHeatmaps <-function(c1, c2, c3, c4, c5, clubs, m){
   }
 }
 
-generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = FALSE){
+generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = FALSE, saveToFile = FALSE){
   labelsToInlcude = c( "av_goals",
                        "av_goals_half_time",
                        "av_shots",
@@ -103,12 +103,11 @@ generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = 
     #tab$Var1 = as.numeric(as.character(tab$Var1))
     
     fileName = paste("plots/frequencyPlots/", i,"-", n, ".png", sep = "")
-    png(filename = fileName, width = 1024, height = 1024)
     if(isFacets){
       tab = tab[ tab$Freq > 0, ]
       p = qplot(tab$Var1, tab$Freq, data = tab, facets = .~ Var2, main = label) + 
         expand_limits(y = c(0, plotLimit))
-      print(p)
+      generatePlot(p, saveToFile, fileName)
       
     }
     else{
@@ -118,13 +117,12 @@ generateFreqPlots <-function(data, n, isProp = FALSE, isFacets = TRUE, isLine = 
       }
       p = p + theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
         expand_limits(y = c(0, plotLimit))
-      print(p)
+      generatePlot(p, saveToFile, fileName)
     }
-    dev.off()
   }
 }
 
-generateClubsFreqPlots <- function(data, n, isProp = FALSE, side = "home"){
+generateClubsFreqPlots <- function(data, n, isProp = FALSE, side = "home", saveToFile = FALSE){
   tab = table(data$team, data$newCluster)
   if(isProp == TRUE){
     tab = prop.table(tab, 1)
@@ -138,33 +136,28 @@ generateClubsFreqPlots <- function(data, n, isProp = FALSE, side = "home"){
   
   # if(side == "home" || side == "both"){
   fileName = paste("plots/clubFrequencyPlots/", n, "-home", ".png", sep = "")
-  png(filename = fileName, width = 1024, height = 1024)
   p = qplot(tab$Var1, tab$Freq, data = tab, group = tab$Var2, color = tab$Var2, main = "home_team_fk") + 
     geom_line() +  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
     expand_limits(y = c(0, plotLimit))
-  print(p) 
-  dev.off()
-  # }
+  generatePlot(p, saveToFile, fileName)
 }
 
-generateMostCommonCLusterPlot <- function(data, n){
+generateMostCommonCLusterPlot <- function(data, n, saveToFile = FALSE){
   tmp = getMostCommonClusterForClub(data)
   fileName = paste("plots/mostCommonClubPlots//", n, ".png", sep = "")
-  png(filename = fileName, width = 1024, height = 1024)
   p = qplot(x = tmp$team, y = tmp$MCCluster) + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
 }
 
-plotTransitions <- function(trRows){
+plotTransitions <- function(trRows, saveToFile = FALSE){
   fileName = "plots/plotTransitions.png"
   png(filename = fileName, width = 1024, height = 1024)
   matplot(t(trRows), type = "b")
   dev.off()
 }
 
-plotNewTransitions <- function(trRows){
+plotNewTransitions <- function(trRows, saveToFile = FALSE){
   for(i in 1:13){
     for(j in 1:nrow(trRows)){
       if(is.na(trRows[j, i])){
@@ -179,21 +172,21 @@ plotNewTransitions <- function(trRows){
   dev.off()
 }
 
-plotClustDistribution <- function(clustDistribution){
+plotClustDistribution <- function(clustDistribution, saveToFile = FALSE){
   fileName = "plots/plotClusterDistribution.png"
   png(filename = fileName, width = 1024, height = 1024)
   matplot(clustDistribution, type = "b")
   dev.off()
 }
 
-plotNewClustDistribution <- function(clustDistribution){
+plotNewClustDistribution <- function(clustDistribution, saveToFile = FALSE){
   fileName = "plots/plotNewClusterDistribution.png"
   png(filename = fileName, width = 1024, height = 1024)
   matplot(clustDistribution, type = "b")
   dev.off()
 }
 
-generateDensityPlots <- function(tmp, n){
+generateDensityPlots <- function(tmp, n, saveToFile = FALSE){
   labelsToInlcude = c( "av_goals",
                        "av_goals_half_time",
                        "av_shots",
@@ -220,15 +213,13 @@ generateDensityPlots <- function(tmp, n){
   for(i in 1:length(labelsToInlcude)){
     lab = as.character(labelsToInlcude[i] )
     fileName = paste("plots/densityPlots/", i,"-", n, ".png", sep = "")
-    png(filename = fileName, width = 1024, height = 1024)
     p = ggplot(data = tmp, aes_string(color = "newCluster", x =  lab)) +
       geom_density() + xlab(lab)
-    print(p)
-    dev.off()
+    generatePlot(p, saveToFile, fileName)
   }
 }
 
-generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
+generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs, saveToFile = FALSE){
   shotLabels = c( "av_shots",
                    "av_op_shots")
   shotOnTargetLabels = c("av_shots_on_target",
@@ -254,56 +245,49 @@ generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs){
   df = merge(means, stdDevs, sort = FALSE)
   
   #shots
-  png(filename = "plots/meansAndSDFeaturesPlots/shots.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/shots.png"
   p = ggplot(df[ df$feature %in% shotLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
 
   #shots on target  
-  png(filename = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png"
   p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
   
   #shots outside target  
-  png(filename = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png"
   p = ggplot(df[ df$feature %in% shotOutsideTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
   
   #corners
-  png(filename = "plots/meansAndSDFeaturesPlots/corners.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/corners.png"
   p = ggplot(df[ df$feature %in% cornerLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
   
   #fouls
-  png(filename = "plots/meansAndSDFeaturesPlots/fouls.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/fouls.png"
   p = ggplot(df[ df$feature %in% foulsLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
   
   #yellow cards 
-  png(filename = "plots/meansAndSDFeaturesPlots/yellows.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/yellows.png"
   p = ggplot(df[ df$feature %in% yellowLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
   
   #red cards 
-  png(filename = "plots/meansAndSDFeaturesPlots/reds.png", width = 1024, height = 1024)
+  fileName = "plots/meansAndSDFeaturesPlots/reds.png"
   p = ggplot(df[ df$feature %in% redLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
 }
 
-generatePlotsOfMeansAndStandardDeviationsForClusters <-function(statistics){
+generatePlotsOfMeansAndStandardDeviationsForClusters <-function(statistics, saveToFile = FALSE){
   labelsToInlcude = c( "av_goals",
                        "av_goals_half_time",
                        "av_shots",
@@ -336,60 +320,52 @@ generatePlotsOfMeansAndStandardDeviationsForClusters <-function(statistics){
     
     df = merge(means, stdDevs, sort = FALSE)
     
-    filename = paste("plots/meansAndSDClustersPlots/", label, ".png", sep = "")
-    png(filename = filename, width = 1024, height = 1024)
+    fileName = paste("plots/meansAndSDClustersPlots/", label, ".png", sep = "")
+   
     p = ggplot(df, aes(x = season, y = mean, colour = cluster)) + geom_line() + 
       geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
-    print(p)
-    dev.off()
+    generatePlot(p, saveToFile, fileName)
   }
 }
 
-generateImportancePlots <-function(importanceData){
+generateImportancePlots <-function(importanceData, saveToFile = FALSE){
   df = mergeImportance(importanceData)
   
-  png(filename = "plots/importanceValuesPlot.png", width = 1024, height = 1024)
+  fileName = "plots/importanceValuesPlot.png"
   p = ggplot(df, aes(x = period, y = importance, colour = feature)) + 
     geom_point() + geom_line()
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
   
-  png(filename = "plots/importancePositionPlot.png", width = 1024, height = 1024)
+  fileName = "plots/importancePositionPlot.png"
   p = ggplot(df, aes(x = period, y = position, colour = feature)) + 
     geom_point() + geom_line()
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
 }
 
-silhouettePlot <- function(df, alg){
+silhouettePlot <- function(df, alg, saveToFile = FALSE){
   df$id = 1:13
   df = melt(df, id.vars = "id")
   colnames(df) = c("period", "number_of_clusters", "silhouette_coefficient")
   fileName = paste("plots/silhouette", alg, ".png", sep = "")
-  png(filename = fileName, width = 1024, height = 1024)
+  
   p = ggplot(df, aes(x = period, y = silhouette_coefficient, colour = number_of_clusters)) + 
     geom_line() + geom_point() + ylab("silhouette coefficient") + 
     guides(fill=guide_legend(title="number of clusters"))
-
-  print(p)
-  dev.off()
-  
+  generatePlot(p, saveToFile, fileName)
 }
 
-correlationPlot <-function(df){
-  png(filename = "plots/correlation.png", width = 1024, height = 1024)
+correlationPlot <-function(df, saveToFile = FALSE){
+  fileName = "plots/correlation.png"
   p = ggplot(df, aes(x = period, y = correlation, color = method)) + 
     geom_line() + geom_point()
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
 }
 
-correlationPeriodsPlot <-function(df){
-  png(filename = "plots/correlationPeriods.png", width = 1024, height = 1024)
+correlationPeriodsPlot <-function(df, saveToFile = FALSE){
+  fileName = "plots/correlationPeriods.png"
   p = ggplot(df, aes(x = periods, y = correlation, color = method)) + 
     geom_line(aes(group = method)) + geom_point()
-  print(p)
-  dev.off()
+  generatePlot(p, saveToFile, fileName)
 }
 
 generatePlacesPerClusterPlot <- function(data, i, saveToFile = FALSE){
@@ -399,15 +375,8 @@ generatePlacesPerClusterPlot <- function(data, i, saveToFile = FALSE){
   
   p = ggplot(tab, aes(x = newCluster, y = count, colour = leaguePos, group = leaguePos) ) + 
     geom_point() + geom_line() + ggtitle(as.character(i))
-  if(saveToFile){
-    fileName = paste("plots/placesPerCLusterPlot/", i, ".png", sep = "")
-    png(filename = "plots/placesPerCLusterPlot/importancePositionPlot.png", width = 1024, height = 1024)
-    print(p)
-    dev.off()
-  }else{
-    print(p)
-  }
-  dev.off()
+  fileName = paste("plots/placesPerCLusterPlot/", i, ".png", sep = "")
+  generatePlot(p, saveToFile, fileName)
 }
 
 createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
@@ -415,8 +384,8 @@ createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
   data = melt(data, id.vars = "feature")
   colnames(data) = c("feature", "periods", "ma")
   
-  filename = "plots/importanceMovingAveragePlot.png"
+  fileName = "plots/importanceMovingAveragePlot.png"
   p = ggplot(data, aes(x = periods, y = ma, group = feature, colour = feature)) + geom_line() + geom_point()
   
-  generatePlot(p, saveToFile, filename)
+  generatePlot(p, saveToFile, fileName)
 }

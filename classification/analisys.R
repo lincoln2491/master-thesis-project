@@ -31,7 +31,7 @@ clusteredData = clustering2(data, nClusters, clusterAlg)
 
 #matching clusters
 tr = matchClusters(clusteredData)
-plotTransitions(tr$trRows)
+plotTransitions(tr$trRows, saveToFile = TRUE)
 
 sink("classification/results.txt")
 
@@ -61,7 +61,7 @@ for(i in 1:13){
 
 print("clustDistribution")
 print(clustDistribution)
-plotClustDistribution(clustDistribution)
+plotClustDistribution(clustDistribution, saveToFile = TRUE)
 
 #calculating new cluster names
 newClusteredData = normalizeClusterNames(clusteredData, tr)
@@ -90,7 +90,7 @@ for(i in 1:13){
   }
 }
 
-plotNewClustDistribution(clustDistribution)
+plotNewClustDistribution(clustDistribution, saveToFile = TRUE)
 print(clustDistribution)
 
 #means and standard deviations
@@ -104,7 +104,7 @@ print(res$means)
 print("----------------------------")
 print("Standard deviation")
 print(res$stdDevs)
-generatePlotsOfMeansAndStandardDeviations(res$means, res$stdDevs)
+generatePlotsOfMeansAndStandardDeviations(res$means, res$stdDevs, saveToFile = TRUE)
 
 
 #means and standard deviations for clusters
@@ -121,7 +121,7 @@ for(label in names(res)){
   print("Standard deviation")
   print(tmp$stdDevs)
 }
-generatePlotsOfMeansAndStandardDeviationsForClusters(res)
+generatePlotsOfMeansAndStandardDeviationsForClusters(res, saveToFile = TRUE)
 
 print("----------------------------")
 print("Importance of clusters")
@@ -131,21 +131,21 @@ for(i in 1:13){
   print(i)
   print(importance)
 }
-generateImportancePlots(importance)
+generateImportancePlots(importance, saveToFile = TRUE)
 
 sink()
 
 
 #creating plots 
 for(i in 1:13){
-  generateScatterPlots(clusteredData[[i]], i)
-  generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine)
-  generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide)
-  generateMostCommonCLusterPlot(clusteredData[[i]], i)
-  generateDensityPlots(clusteredData[[i]], i)
+  generateScatterPlots(clusteredData[[i]], i, saveToFile = TRUE)
+  generateFreqPlots(clusteredData[[i]], i, freqProp, freqFacets, freqIsLine, saveToFile = TRUE)
+  generateClubsFreqPlots(clusteredData[[i]], i, clubFreqProp, clubFreqSide, saveToFile = TRUE)
+  generateMostCommonCLusterPlot(clusteredData[[i]], i, saveToFile = TRUE)
+  generateDensityPlots(clusteredData[[i]], i, saveToFile = TRUE)
 }
-generateScatterPlots(clusteredData[[14]], "all")
-generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets, freqIsLine)
-generateClubsFreqPlots(clusteredData[[14]], 14, clubFreqProp, clubFreqSide)
-generateMostCommonCLusterPlot(clusteredData[[14]], 14)
+generateScatterPlots(clusteredData[[14]], "all", saveToFile = TRUE)
+generateFreqPlots(clusteredData[[14]], "all", freqProp, freqFacets, freqIsLine, saveToFile = TRUE)
+generateClubsFreqPlots(clusteredData[[14]], 14, clubFreqProp, clubFreqSide, saveToFile = TRUE)
+generateMostCommonCLusterPlot(clusteredData[[14]], 14, saveToFile = TRUE)
 
