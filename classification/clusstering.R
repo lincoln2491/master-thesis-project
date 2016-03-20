@@ -728,10 +728,8 @@ calculateKendallAndSpearmanPeriods <-function(importance){
   
   df$method[df$method == 1] = "kendall"
   df$method[df$method == 2] = "spearman"
-  df$periods = as.factor(paste(df$periods, df$periods + 1, sep = "-"))
-  levels(df$periods) = c("1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8",
-                          "8-9", "9-10", "10-11", "11-12", "12-13")
-  
+  df$periods = factor(paste(df$periods, df$periods + 1, sep = "-"), 
+                      levels = c("1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", "9-10", "10-11", "11-12", "12-13"))
   return(df)
 }
 
@@ -866,9 +864,8 @@ calculateKendallAndSpearmanLevelsPeriods <- function(importance, quantiles = TRU
   
   df$method[df$method == 1] = "kendall"
   df$method[df$method == 2] = "spearman"
-  df$periods = as.factor(paste(df$periods, df$periods + 1, sep = "-"))
-  levels(df$periods) = c("1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8",
-                         "8-9", "9-10", "10-11", "11-12", "12-13")
+  df$periods = factor(paste(df$periods, df$periods + 1, sep = "-"), 
+                      levels = c("1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", "9-10", "10-11", "11-12", "12-13"))
   
   return(df)
 }
