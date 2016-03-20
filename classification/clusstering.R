@@ -838,7 +838,7 @@ changeImportanceValuesToPostions <- function(importance){
 }
 
 
-calculateKendallAndSpearmanLevels <- function(importance, quantiles = TRUE){
+calculateKendallAndSpearmanLevelsPeriods <- function(importance, quantiles = TRUE){
   for(i in 1:13){
     importance[[i]] = changeImportanceToLevels(importance[[i]], quantiles)
     or = order(importance[[i]]$feature)
