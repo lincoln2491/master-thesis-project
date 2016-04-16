@@ -906,3 +906,15 @@ calculateKendallAndSpearmanLevelsAlg <-function(importance1, importance2, quanti
   df$method[df$method == 2] = "spearman"
   return(df)
 }
+
+calculateFitFunction <- function(data, importance){
+  colnames = importance$feature
+  data$fit = 0
+  for(column in colnames){
+    val = importance$importance[importance$feature == column]
+    values = data[, column, with = FALSE]
+    values = normalize01(values) * val
+    data$fit = data$fit + values
+  }
+  return(data)
+}

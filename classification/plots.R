@@ -1,6 +1,6 @@
 library("ggplot2")
 library("reshape2")
-
+library("data.table")
 generatePlot <- function(p, saveToFile = FALSE, name){
   if(saveToFile){
     png(filename = name, width = 1024, height = 1024)
@@ -388,4 +388,32 @@ createImportanceMovingAveragePlots <- function(data, saveToFile = FALSE){
   p = ggplot(data, aes(x = periods, y = ma, group = feature, colour = feature)) + geom_line() + geom_point()
   
   generatePlot(p, saveToFile, fileName)
+}
+
+generatePlacesPlot <- function(data, saveToFile = FALSE, removeNotComplete = FALSE, maxNumberOfNA = 0){
+  if(removeNotComplete){
+    data = data[complete.cases(data),]
+  }else{
+    numNAs <- apply(data, 1, function(z) sum(is.na(z)))
+    data = data[!(numNAs> maxNumberOfNA),]
+  }
+  data = melt(data, id.vars = "team")
+  colnames(data) = c("team", "season", "place")
+  fileName = "plots/leaguePlacesPlot.png"
+  
+  p = ggplot(data, aes(x = season, y = place, group = team, colour = team)) + geom_line() + geom_point()
+  generatePlot(p, saveToFile, fileName)
+}
+
+generateTeamPlacesPlot <- function(data, saveToFile = FALSE){
+  teams = data$team
+  for(teamName in teams){
+    tmp = data[data$team == teamName]
+    tmp = melt(tmp, id.vars = "team")
+    colnames(tmp) = c("team", "season", "place")
+    fileName = paste("plots/places/", teamName, ".png", sep = "")
+
+    p = ggplot(tmp, aes(x = season, y = place, group = 1), title()) + ylim(1,20) + geom_line() + geom_point() + ggtitle(teamName)
+    generatePlot(p, saveToFile, fileName)
+  }
 }

@@ -256,6 +256,68 @@ addTablePlace <-function(data){
   return(data)
 }
 
+getTableForSeason <- function(data){
+  leagueTable = data.table(pos = 1:20, team = unique(data$home_team_fk), p =0, win = 0,
+                           draw = 0, lose = 0, gf = 0, ga = 0, gd = 0, point = 0)
+  leagueTable = leagueTable[order(leagueTable$team),]  
+  leagueTable$pos = 1:20
+  lastDay = data$day[1]
+  matchesToCount = c()
+  
+  for(i in data$idMatch){
+    match = data[ data$idMatch == i,]
+    if(match$day == lastDay){
+      matchesToCount = c(matchesToCount, list(match))
+    }
+    else{
+      #TODO do it better (export to other function)
+      leagueTable = updateLeagueTable(leagueTable, matchesToCount)
+      
+      matchesToCount = c(list(match))
+      lastDay = match$day
+      
+    }
+  }
+  leagueTable = updateLeagueTable(leagueTable, matchesToCount)
+  
+  return(leagueTable)
+}
+
+
+getAllTables <-function(data){
+  tables = list()  
+  for(key in unique(data$season_fk)){
+    tmp = data[data$season_fk == key, ]
+    table = getTableForSeason(tmp)
+    tables[[key]] = table
+  }
+  return(tables)
+}
+
+getPlaces <- function(matches){
+  tables =  getAllTables(matches)
+  teams = unique(matches$home_team_fk)
+  res = data.table(matrix(ncol = 16, nrow = 0))
+  colnames(res) = c("team", names(tables))
+  for(team in teams){
+    places = list(team = team)
+    for(season in names(tables)){
+      table = tables[[season]]
+      place = table$pos[table$team == team]
+      if(length(place) == 0){
+        places[season] = NA
+      }
+      else{
+        places[season] = place
+      }
+    }
+    # places = as.list(places)
+    res = rbind(res, places)
+  }
+  return(res)
+}
+
+
 updateLeagueTable <-function(leagueTable, matchesToCount){
   for(savedMatch in matchesToCount){
     leagueTable$p[ leagueTable$team == savedMatch$home_team_fk] = leagueTable$p[ leagueTable$team == savedMatch$home_team_fk] + 1
@@ -300,3 +362,5 @@ lengthOfIntersect <- function(vec1, vec2){
   ni = length(intersect(vec1, vec2))
   return(ni)
 }
+
+
