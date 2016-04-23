@@ -910,11 +910,22 @@ calculateKendallAndSpearmanLevelsAlg <-function(importance1, importance2, quanti
 calculateFitFunction <- function(data, importance){
   colnames = importance$feature
   data$fit = 0
+  importance$importance = normalize01(importance$importance)
   for(column in colnames){
     val = importance$importance[importance$feature == column]
     values = data[, column, with = FALSE]
-    values = normalize01(values) * val
+    values = values * val
     data$fit = data$fit + values
   }
   return(data)
+}
+
+calculateFitFunctionsForAll <- function(newClusteredData, importance){
+  for(i in 1:13){
+    tmp = newClusteredData$data[[i]]
+    im = importance[[i]]
+    tmp = calculateFitFunction(tmp, im)
+    newClusteredData$data[[i]] = tmp
+  }
+  return(newClusteredData)
 }
