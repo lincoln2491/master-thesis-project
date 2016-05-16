@@ -1,25 +1,68 @@
-getStatistics <- function(matches){
-  features = c("home_goals","away_goals"               
-            ,"home_goals_half_time","away_goals_half_time","home_shots"               
-            ,"away_shots","home_shots_on_target","away_shots_on_target"     
-            ,"home_corners","away_corners","home_fouls"               
-            ,"away_fouls","home_yellows","away_yellows"             
-            ,"home_reds","away_reds","home_shots_outside_target"
-            ,"away_shots_outside_target", "home_pos", "away_pos")
-  res = c()
-  for(feature in features){
-    min = min(matches[[feature]])
-    max = max(matches[[feature]])
-    mean = mean(matches[[feature]])
-    sd = sd(matches[[feature]])
-    median = median(matches[[feature]])
-    
-    line = paste(feature, min, mean, sd, median, max, sep = " & ")
-    line = paste(line, " \\", sep = "")
-    res = append(res, line)
-    res = append(res,"\\hline")
-  }
-  res = paste(res, sep = "\n")
-  print(res)
-  
-}
+source("classification/clusstering.R")
+source("classification/classificationUtils.R")
+
+matches = getData()
+data = prepareDataForClassification(matches)
+backupData = data
+
+#TODO wczytywanie
+getStatistics(matches)
+
+tmp = getMeansAndSdForFeaturesInSeasons(matches)
+means = tmp$means
+sd = tmp$sd
+generateMeanAndSDPlotsOfSeason(means, sd, TRUE)
+
+splitedData = splitDataToPeriods(data, 3)
+
+res = calculateMeansAndSDForFeatures(splitedData)
+
+generatePlotsOfMeansAndStandardDeviations(res$means, res$stdDevs, TRUE)
+
+kmNumberOfClusters = estimatingNumberOfClusters(data, "km")
+hcNumberOfClusters = estimatingNumberOfClusters(data, "hc")
+
+silhouettePlot(kmNumberOfClusters, "km", TRUE)
+silhouettePlot(hcNumberOfClusters, "hc", TRUE)
+
+kmRes = getSizeAndSDOfCluster(kmClusteredData)
+hcRes = getSizeAndSDOfCluster(hcClusteredData)
+stats = cbind(kmRes, hcRes)
+
+
+kmClusteredData = clustering2(data, 5, "km")
+hcClusteredData = clustering2(data, 5, "hc")
+
+kmTr = matchClusters(kmClusteredData)
+hcTr = matchClusters(hcClusteredData)
+
+kmNewClusteredData = normalizeClusterNames(kmClusteredData, kmTr)
+hcNewClusteredData = normalizeClusterNames(hcClusteredData, hcTr)
+
+kmTr = kmNewClusteredData$newTr
+hcTr = hcNewClusteredData$newTr
+
+plotNewTransitions(kmTr$newTrRows, "km", TRUE)
+plotNewTransitions(hcTr$newTrRows, "hc", TRUE)
+
+kmClusterDistribution = calculateClustedDistribution(kmNewClusteredData$data, kmTr)
+hcClusterDistribution = calculateClustedDistribution(hcNewClusteredData$data, hcTr)
+
+
+plotNewClustDistribution(kmClusterDistribution, "km", TRUE)
+plotNewClustDistribution(hcClusterDistribution, "hc", TRUE)
+
+kmImportance = calculateImportance(kmNewClusteredData$data)
+hcImportance = calculateImportance(hcNewClusteredData$data)
+
+generateImportancePlots(kmImportance, "km", saveToFile = TRUE)
+generateImportancePlots(hcImportance, "hc", saveToFile = TRUE)
+
+corr = calculateKendallAndSpearmanAlg(kmImportance, hcImportance)
+correlationPlot(corr, saveToFile = TRUE)
+
+kmCorr = calculateKendallAndSpearmanPeriods(kmImportance)
+hcCorr = calculateKendallAndSpearmanPeriods(hcImportance)
+
+correlationPeriodsPlot(kmCorr, "km", saveToFile = TRUE)
+correlationPeriodsPlot(hcCorr, "hc", saveToFile = TRUE)

@@ -150,14 +150,21 @@ generateMostCommonCLusterPlot <- function(data, n, saveToFile = FALSE){
   generatePlot(p, saveToFile, fileName)
 }
 
-plotTransitions <- function(trRows, saveToFile = FALSE){
-  fileName = "plots/plotTransitions.png"
-  png(filename = fileName, width = 1024, height = 1024)
-  matplot(t(trRows), type = "b")
-  dev.off()
+plotTransitions <- function(trRows, alg, saveToFile = FALSE){
+  fileName = paste("plots/do_magisterki/", alg, "plotTransitions.png", sep = "")
+  trRows$id = 1:nrow(trRows)
+  trRows = melt(trRows, id.vars = "id")
+  trRows$id = as.factor(trRows$id)
+  colnames(trRows) = c("cluster", "period", "newCluster") 
+  p = ggplot(trRows, aes(x = period, y = newCluster, colour = cluster, group = cluster)) +
+    geom_point() + geom_line()
+  # png(filename = fileName, width = 1024, height = 1024)
+  # matplot(t(trRows), type = "b")
+  # dev.off()
+  generatePlot(p, saveToFile, fileName)
 }
 
-plotNewTransitions <- function(trRows, saveToFile = FALSE){
+plotNewTransitions <- function(trRows, alg, saveToFile = FALSE){
   for(i in 1:13){
     for(j in 1:nrow(trRows)){
       if(is.na(trRows[j, i])){
@@ -166,10 +173,16 @@ plotNewTransitions <- function(trRows, saveToFile = FALSE){
       trRows[j, i] = as.numeric(gsub("c", "", trRows[j, i]))
     }
   }
-  fileName = "plots/plotNewTransitions.png"
-  png(filename = fileName, width = 1024, height = 1024)
-  matplot(t(trRows), type = "b")
-  dev.off()
+  fileName = paste("plots/do_magisterki/plotNewTransitions", alg, ".png", sep = "")
+  
+  trRows$id = 1:nrow(trRows)
+  trRows = melt(trRows, id.vars = "id")
+  trRows$id = as.factor(trRows$id)
+  colnames(trRows) = c("cluster", "period", "newCluster") 
+  trRows$newCluster = as.numeric(trRows$newCluster)
+  p = ggplot(trRows, aes(x = period, y = newCluster, colour = cluster, group = cluster)) +
+    geom_point() + geom_line()
+  generatePlot(p, saveToFile, fileName)
 }
 
 plotClustDistribution <- function(clustDistribution, saveToFile = FALSE){
@@ -179,11 +192,15 @@ plotClustDistribution <- function(clustDistribution, saveToFile = FALSE){
   dev.off()
 }
 
-plotNewClustDistribution <- function(clustDistribution, saveToFile = FALSE){
-  fileName = "plots/plotNewClusterDistribution.png"
-  png(filename = fileName, width = 1024, height = 1024)
-  matplot(clustDistribution, type = "b")
-  dev.off()
+plotNewClustDistribution <- function(clustDistribution, alg, saveToFile = FALSE){
+  fileName = paste("plots/do_magisterki/plotNewClusterDistribution", alg,".png", sep = "")
+  clustDistribution$id = 1:13
+  tmp = melt(clustDistribution, id.vars = "id")
+  colnames(tmp) = c("period", "cluster", "size")
+  p = ggplot(tmp, aes(x = period, y = size, group = cluster, colour = cluster)) + 
+    geom_point() + geom_line()
+  
+  generatePlot(p, saveToFile, fileName)
 }
 
 generateDensityPlots <- function(tmp, n, saveToFile = FALSE){
@@ -245,43 +262,43 @@ generatePlotsOfMeansAndStandardDeviations <- function(means, stdDevs, saveToFile
   df = merge(means, stdDevs, sort = FALSE)
   
   #shots
-  fileName = "plots/meansAndSDFeaturesPlots/shots.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/shots.png"
   p = ggplot(df[ df$feature %in% shotLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
 
   #shots on target  
-  fileName = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/shotsOnTarget.png"
   p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
   
   #shots outside target  
-  fileName = "plots/meansAndSDFeaturesPlots/shotsOnTarget.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/shotsOutsideTarget.png"
   p = ggplot(df[ df$feature %in% shotOutsideTargetLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
   
   #corners
-  fileName = "plots/meansAndSDFeaturesPlots/corners.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/corners.png"
   p = ggplot(df[ df$feature %in% cornerLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
   
   #fouls
-  fileName = "plots/meansAndSDFeaturesPlots/fouls.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/fouls.png"
   p = ggplot(df[ df$feature %in% foulsLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
   
   #yellow cards 
-  fileName = "plots/meansAndSDFeaturesPlots/yellows.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/yellows.png"
   p = ggplot(df[ df$feature %in% yellowLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
   
   #red cards 
-  fileName = "plots/meansAndSDFeaturesPlots/reds.png"
+  fileName = "plots/do_magisterki/meansAndSDFeaturesPlots/reds.png"
   p = ggplot(df[ df$feature %in% redLabels, ], aes(x = period, y = mean, colour = feature)) + 
     geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - stdDev, ymax = mean+stdDev))
   generatePlot(p, saveToFile, fileName)
@@ -328,15 +345,15 @@ generatePlotsOfMeansAndStandardDeviationsForClusters <-function(statistics, save
   }
 }
 
-generateImportancePlots <-function(importanceData, saveToFile = FALSE){
+generateImportancePlots <-function(importanceData, alg, saveToFile = FALSE){
   df = mergeImportance(importanceData)
   
-  fileName = "plots/importanceValuesPlot.png"
+  fileName = paste("plots/do_magisterki/importanceValuesPlot", alg, ".png", sep = "")
   p = ggplot(df, aes(x = period, y = importance, colour = feature)) + 
     geom_point() + geom_line()
   generatePlot(p, saveToFile, fileName)
   
-  fileName = "plots/importancePositionPlot.png"
+  fileName = paste("plots/do_magisterki/importancePositionPlot", alg, ".png", sep = "")
   p = ggplot(df, aes(x = period, y = position, colour = feature)) + 
     geom_point() + geom_line()
   generatePlot(p, saveToFile, fileName)
@@ -346,7 +363,7 @@ silhouettePlot <- function(df, alg, saveToFile = FALSE){
   df$id = 1:13
   df = melt(df, id.vars = "id")
   colnames(df) = c("period", "number_of_clusters", "silhouette_coefficient")
-  fileName = paste("plots/silhouette", alg, ".png", sep = "")
+  fileName = paste("plots/do_magisterki/silhouette", alg, ".png", sep = "")
   
   p = ggplot(df, aes(x = period, y = silhouette_coefficient, colour = number_of_clusters)) + 
     geom_line() + geom_point() + ylab("silhouette coefficient") + 
@@ -355,14 +372,14 @@ silhouettePlot <- function(df, alg, saveToFile = FALSE){
 }
 
 correlationPlot <-function(df, saveToFile = FALSE){
-  fileName = "plots/correlation.png"
+  fileName = "plots/do_magisterki/correlation.png"
   p = ggplot(df, aes(x = period, y = correlation, color = method)) + 
     geom_line() + geom_point()
   generatePlot(p, saveToFile, fileName)
 }
 
-correlationPeriodsPlot <-function(df, saveToFile = FALSE){
-  fileName = "plots/correlationPeriods.png"
+correlationPeriodsPlot <-function(df, alg, saveToFile = FALSE){
+  fileName = paste("plots/do_magisterki/correlationPeriods", alg, ".png", sep = "")
   p = ggplot(df, aes(x = periods, y = correlation, color = method)) + 
     geom_line(aes(group = method)) + geom_point()
   generatePlot(p, saveToFile, fileName)
@@ -417,3 +434,90 @@ generateTeamPlacesPlot <- function(data, saveToFile = FALSE){
     generatePlot(p, saveToFile, fileName)
   }
 }
+
+generateMeanAndSDPlotsOfSeason <- function(means, sd, saveToFile = FALSE){
+  shotLabels = c( "home_shots",
+                  "away_shots")
+  shotOnTargetLabels = c("home_shots_on_target",
+                         "away_shots_on_target")
+  shotOutsideTargetLabels = c("home_shots_outside_target",
+                              "away_shots_outside_target")
+  cornerLabels = c("home_corners",
+                   "away_corners")
+  foulsLabels = c("home_fouls",
+                  "away_fouls")
+  yellowLabels = c("home_yellows",
+                   "away_yellows")
+  redLabels = c("home_reds",
+                "away_reds")
+  
+  goalLabes = c("home_goals", 
+                "away_goals")
+  
+  goalsHalfTimeLabels = c("home_goals_half_time", 
+                          "away_goals_half_time")
+  
+  means = melt(means, id.vars = "season_fk")
+  colnames(means) = c("season_fk", "feature", "mean")
+  
+  sd = melt(sd, id.vars = "season_fk")
+  colnames(sd) = c("season_fk", "feature", "sd")
+  
+  df = merge(means, sd, sort = FALSE)
+  
+  #shots
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/shots.png"
+  p = ggplot(df[ df$feature %in% shotLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #shots on target  
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/shotsOnTarget.png"
+  p = ggplot(df[ df$feature %in% shotOnTargetLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #shots outside target  
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/shotOutsideTarget.png"
+  p = ggplot(df[ df$feature %in% shotOutsideTargetLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #corners
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/corners.png"
+  p = ggplot(df[ df$feature %in% cornerLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #fouls
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/fouls.png"
+  p = ggplot(df[ df$feature %in% foulsLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #yellow cards 
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/yellows.png"
+  p = ggplot(df[ df$feature %in% yellowLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #red cards 
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/reds.png"
+  p = ggplot(df[ df$feature %in% redLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #goals 
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/goals.png"
+  p = ggplot(df[ df$feature %in% goalLabes, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+  #goals half time
+  fileName = "plots/do_magisterki/meansAnsSdFeaturesSeasonPlots/goalsHalfTime.png"
+  p = ggplot(df[ df$feature %in% goalsHalfTimeLabels, ], aes(x = season_fk, y = mean, colour = feature, group = feature)) + 
+    geom_line() + geom_point() + geom_errorbar(aes(ymin = mean - sd, ymax = mean+sd))
+  generatePlot(p, saveToFile, fileName)
+  
+}
+

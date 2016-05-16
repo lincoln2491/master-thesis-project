@@ -120,6 +120,7 @@ clusteringOnePart <-function(data, nClusters, typeOf = "hc"){
   if(typeOf == "hc"){
     rownames(dataForClustering) = rownames(data)
     distances = dist(dataForClustering)
+    set.seed(5)
     hc = hclust(distances)
     clusters = cutree(hc, k =nClusters)
     df = data.frame(clusters)
@@ -928,4 +929,80 @@ calculateFitFunctionsForAll <- function(newClusteredData, importance){
     newClusteredData$data[[i]] = tmp
   }
   return(newClusteredData)
+}
+
+getStatistics <- function(matches){
+  features = c("home_goals","away_goals"               
+               ,"home_goals_half_time","away_goals_half_time","home_shots"               
+               ,"away_shots","home_shots_on_target","away_shots_on_target"     
+               ,"home_corners","away_corners","home_fouls"               
+               ,"away_fouls","home_yellows","away_yellows"             
+               ,"home_reds","away_reds","home_shots_outside_target"
+               ,"away_shots_outside_target", "home_pos", "away_pos")
+  res = c()
+  for(feature in features){
+    min = min(matches[[feature]])
+    max = max(matches[[feature]])
+    mean = mean(matches[[feature]])
+    sd = sd(matches[[feature]])
+    median = median(matches[[feature]])
+    
+    line = paste(feature, min, mean, sd, median, max, sep = " & ")
+    line = paste(line, " \\", sep = "")
+    res = append(res, line)
+    res = append(res,"\\hline")
+  }
+  res = paste(res, sep = "\n")
+  print(res)
+  
+}
+
+getMeansAndSdForFeaturesInSeasons <- function(matches){
+  labels = c("home_shots",
+             "away_shots",
+             "home_shots_on_target",
+             "away_shots_on_target",
+             "home_shots_outside_target",
+             "away_shots_outside_target",
+             "home_corners",
+             "away_corners",
+             "home_fouls",
+             "away_fouls",
+             "home_yellows",
+             "away_yellows",
+             "home_reds",
+             "away_reds",
+             "home_goals",
+             "away_goals",
+             "home_goals_half_time",
+             "away_goals_half_time")
+  #matches = matches[labels]
+  means = aggregate(matches[labels], by=list(matches$season_fk), FUN = mean)
+  colnames(means)[1] = "season_fk"
+  sd = aggregate(matches[labels], by=list(matches$season_fk), FUN = sd)
+  colnames(sd)[1] = "season_fk"
+  return(list(means = means, sd = sd))
+}
+
+getSizeAndSDOfCluster <-function(clusteredData){
+  res = sapply(clusteredData, function(x){ table(x$cluster) })
+  res = t(res)
+  sd = sapply(clusteredData, function(x){ sd(table(x$cluster)) })
+  res = cbind(res, sd)
+  return(res)
+}
+
+calculateClustedDistribution <-function(clusteredData, tr){
+  clustDistribution = as.data.frame(matrix(NA, ncol = nrow(tr$newTrRows), nrow = 13))
+  
+  for(i in 1:13){
+    tmp = clusteredData[[i]]
+    tab = table(tmp$newCluster)
+    for(j in names(tab)){
+      x = as.numeric(gsub("c", "", j))
+      val = tab[[j]]
+      clustDistribution[i, x] = val
+    }
+  }
+  return(clustDistribution)
 }
