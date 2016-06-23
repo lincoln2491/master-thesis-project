@@ -804,7 +804,7 @@ changeImportanceToLevels <- function(data, quantiles = TRUE){
   }else{
     levels = c(0.33 * max(data$importance), 0.66 * max(data$importance))
   }
-  data$levelOfImportance = factor(NA, levels = c("high", "medium", "low"))
+  data$levelOfImportance = factor(NA, levels = c("low", "medium", "high"))
   
   data$levelOfImportance[data$importance <= levels[1]] = "low"
   data$levelOfImportance[data$importance > levels[1] & data$importance <= levels[2] ] = "medium"
@@ -836,6 +836,19 @@ changeImportanceValuesToPostions <- function(importance){
   return(importance)
 }
 
+getImportanceLevels <- function(importance, quantiles = TRUE){
+  for(i in 1:13){
+    importance[[i]] = changeImportanceToLevels(importance[[i]], quantiles)
+    or = order(importance[[i]]$feature)
+    importance[[i]] = importance[[i]][or, ]
+  }
+  return(importance)  
+}
+
+getTableForLevel <- function(importanceLevels, level = "high"){
+  tmp = sapply(importanceLevels, function(x) x[x$levelOfImportance == level, "feature"])
+  return(table(unlist(tmp)))
+}
 
 calculateKendallAndSpearmanLevelsPeriods <- function(importance, quantiles = TRUE){
   for(i in 1:13){
@@ -1005,4 +1018,22 @@ calculateClustedDistribution <-function(clusteredData, tr){
     }
   }
   return(clustDistribution)
+}
+
+
+createLevelsStatistic <- function(importanceLevels){
+  df = importanceLevels[[1]]
+  df$levelOfImportance = as.numeric(df$levelOfImportance)
+  df$importance = NULL
+  colnames(df) = c("feature", "1")
+  for (i in 2:13) {
+    tmp = importanceLevels[[i]]
+    tmp$levelOfImportance = as.numeric(tmp$levelOfImportance)
+    tmp$importance = NULL
+    colnames(tmp) = c("feature", as.character(i))
+    df = merge(df, tmp, by = "feature")
+  }
+  rownames(df) = df$feature
+  df$feature = NULL
+  return(df)
 }

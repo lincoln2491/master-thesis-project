@@ -359,6 +359,16 @@ generateImportancePlots <-function(importanceData, alg, saveToFile = FALSE){
   generatePlot(p, saveToFile, fileName)
 }
 
+generateImportanceLevelsPlots <-function(importanceData, alg, saveToFile = FALSE){
+  df = mergeImportance(importanceData)
+  
+  fileName = paste("plots/do_magisterki/importanceValuesPlot", alg, ".png", sep = "")
+  p = ggplot(df, aes(x = period, y = levelOfImportance, colour = feature)) + 
+    geom_point() + geom_line()
+  generatePlot(p, saveToFile, fileName)
+  
+}
+
 silhouettePlot <- function(df, alg, saveToFile = FALSE){
   df$id = 1:13
   df = melt(df, id.vars = "id")
@@ -377,6 +387,14 @@ correlationPlot <-function(df, saveToFile = FALSE){
     geom_line() + geom_point()
   generatePlot(p, saveToFile, fileName)
 }
+
+correlationLevelsPlot <-function(df, saveToFile = FALSE){
+  fileName = "plots/do_magisterki/correlationLevels.png"
+  p = ggplot(df, aes(x = period, y = correlation, color = method)) + 
+    geom_line() + geom_point()
+  generatePlot(p, saveToFile, fileName)
+}
+
 
 correlationPeriodsPlot <-function(df, alg, saveToFile = FALSE){
   fileName = paste("plots/do_magisterki/correlationPeriods", alg, ".png", sep = "")
@@ -521,3 +539,9 @@ generateMeanAndSDPlotsOfSeason <- function(means, sd, saveToFile = FALSE){
   
 }
 
+correlationPeriodsLevelsPlot <-function(df, alg, saveToFile = FALSE){
+  fileName = paste("plots/do_magisterki/correlationPeriodsLevels", alg, ".png", sep = "")
+  p = ggplot(df, aes(x = periods, y = correlation, color = method)) + 
+    geom_line(aes(group = method)) + geom_point()
+  generatePlot(p, saveToFile, fileName)
+}

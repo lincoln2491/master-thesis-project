@@ -82,3 +82,8 @@ removeColumnsWhereAnyIsNa <-function(data){
   data = Filter(function(x) !any(is.na(x)), data)
   return(data)
 }
+
+
+round2 = function(x) {
+  return(floor((x+ 0.005) * 100) / 100)
+}

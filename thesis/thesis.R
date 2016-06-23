@@ -66,3 +66,47 @@ hcCorr = calculateKendallAndSpearmanPeriods(hcImportance)
 
 correlationPeriodsPlot(kmCorr, "km", saveToFile = TRUE)
 correlationPeriodsPlot(hcCorr, "hc", saveToFile = TRUE)
+
+kmImportanceLevels = getImportanceLevels(kmImportance, FALSE)
+hcImportanceLevels = getImportanceLevels(hcImportance, FALSE)
+
+corrLevels = calculateKendallAndSpearmanLevelsAlg(kmImportanceLevels, hcImportanceLevels)
+
+write.csv(t(createLevelsStatistic(kmImportanceLevels)), "km.csv", quote = FALSE)
+write.csv(t(createLevelsStatistic(hcImportanceLevels)), "hc.csv", quote = FALSE)
+
+kmCorrL = calculateKendallAndSpearmanLevelsPeriods(kmImportance, FALSE)
+hcCorrL = calculateKendallAndSpearmanLevelsPeriods(hcImportance, FALSE)
+
+correlationPeriodsLevelsPlot(kmCorrL, "km", TRUE)
+correlationPeriodsLevelsPlot(hcCorrL, "hc", TRUE)
+correlationLevelsPlot(corrLevels, TRUE)
+
+av_goals = try(kmClusteredData, data, "av_goals", isRegresion = TRUE)
+av_goals_half_time = try(kmClusteredData, data, "av_goals_half_time", isRegresion = TRUE)
+av_op_goals = try(kmClusteredData, data, "av_op_goals", isRegresion = TRUE)
+av_op_goals_half_time = try(kmClusteredData, data, "av_op_goals_half_time", isRegresion = TRUE)
+wins = try(kmClusteredData, data, "wins", isRegresion = TRUE)
+draws = try(kmClusteredData, data, "draws", isRegresion = TRUE)
+loses = try(kmClusteredData, data, "loses", isRegresion = TRUE)
+av_points = try(kmClusteredData, data, "av_points", isRegresion = TRUE)
+av_op_points = try(kmClusteredData, data, "av_op_points", isRegresion = TRUE)
+
+team = try(kmClusteredData, data, "team", isRegresion = FALSE)
+type = try(kmClusteredData, data, "type", isRegresion = FALSE)
+leaguePosition = try(kmClusteredData, data, "leaguePosition", isRegresion = FALSE)
+
+
+classRes = round2(data.frame(team,
+            type,
+            leaguePosition))
+
+regRes = round2(data.frame(av_goals,
+                    av_goals_half_time,
+                    av_op_goals,
+                    av_op_goals_half_time,
+                    wins,
+                    draws,
+                    loses,
+                    av_points,
+                    av_op_points))
