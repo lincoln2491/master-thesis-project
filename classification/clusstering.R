@@ -954,11 +954,11 @@ getStatistics <- function(matches){
                ,"away_shots_outside_target", "home_pos", "away_pos")
   res = c()
   for(feature in features){
-    min = min(matches[[feature]])
-    max = max(matches[[feature]])
-    mean = mean(matches[[feature]])
-    sd = sd(matches[[feature]])
-    median = median(matches[[feature]])
+    min = round2(min(matches[[feature]]))
+    max = round2(max(matches[[feature]]))
+    mean = round2(mean(matches[[feature]]))
+    sd = round2(sd(matches[[feature]]))
+    median = round2(median(matches[[feature]]))
     
     line = paste(feature, min, mean, sd, median, max, sep = " & ")
     line = paste(line, " \\", sep = "")
@@ -1036,4 +1036,34 @@ createLevelsStatistic <- function(importanceLevels){
   rownames(df) = df$feature
   df$feature = NULL
   return(df)
+}
+
+calculateBelow <- function(splitedData){
+  labels = c("av_shots", 
+             "av_shots_on_target",
+             "av_shots_outside_target",
+             "av_corners",
+             "av_fouls",
+             "av_yellows",
+             "av_reds",
+             "av_op_shots",
+             "av_op_shots_on_target",
+             "av_op_shots_outside_target",
+             "av_op_corners",
+             "av_op_fouls",
+             "av_op_yellows",
+             "av_op_reds")
+  dt = NULL
+  for (i in 1:13){
+    tmp = splitedData[[i]]
+    row = numeric()
+    for (label in labels) {
+      m = mean(tmp[[label]])
+      row = c(row, round2(prop.table(table(tmp[[label]] < m))[["TRUE"]] * 100))      
+    }
+    dt = rbind(dt, row)
+  }
+  rownames(dt) = 1:13
+  colnames(dt) = labels
+  return(dt)
 }

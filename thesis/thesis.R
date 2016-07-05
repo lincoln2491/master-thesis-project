@@ -1,6 +1,21 @@
 source("classification/clusstering.R")
 source("classification/classificationUtils.R")
 
+labels = c("av_shots", 
+           "av_shots_on_target",
+           "av_shots_outside_target",
+           "av_corners",
+           "av_fouls",
+           "av_yellows",
+           "av_reds",
+           "av_op_shots",
+           "av_op_shots_on_target",
+           "av_op_shots_outside_target",
+           "av_op_corners",
+           "av_op_fouls",
+           "av_op_yellows",
+           "av_op_reds")
+
 matches = getData()
 data = prepareDataForClassification(matches)
 backupData = data
@@ -15,8 +30,11 @@ generateMeanAndSDPlotsOfSeason(means, sd, TRUE)
 
 splitedData = splitDataToPeriods(data, 3)
 
-res = calculateMeansAndSDForFeatures(splitedData)
+mb = calculateBelow(splitedData)
 
+res = calculateMeansAndSDForFeatures(splitedData)
+means = res$means
+round2(cor(means, means))
 generatePlotsOfMeansAndStandardDeviations(res$means, res$stdDevs, TRUE)
 
 kmNumberOfClusters = estimatingNumberOfClusters(data, "km")
@@ -72,8 +90,12 @@ hcImportanceLevels = getImportanceLevels(hcImportance, FALSE)
 
 corrLevels = calculateKendallAndSpearmanLevelsAlg(kmImportanceLevels, hcImportanceLevels)
 
-write.csv(t(createLevelsStatistic(kmImportanceLevels)), "km.csv", quote = FALSE)
-write.csv(t(createLevelsStatistic(hcImportanceLevels)), "hc.csv", quote = FALSE)
+tmp = createLevelsStatistic(kmImportanceLevels)
+tmp = tmp[match(labels, rownames(tmp)),]
+write.csv(tmp, "km.csv", quote = FALSE)
+tmp = createLevelsStatistic(hcImportanceLevels)
+tmp = tmp[match(labels, rownames(tmp)),]
+write.csv(tmp, "hc.csv", quote = FALSE)
 
 kmCorrL = calculateKendallAndSpearmanLevelsPeriods(kmImportance, FALSE)
 hcCorrL = calculateKendallAndSpearmanLevelsPeriods(hcImportance, FALSE)
