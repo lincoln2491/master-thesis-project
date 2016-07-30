@@ -545,3 +545,10 @@ correlationPeriodsLevelsPlot <-function(df, alg, saveToFile = FALSE){
     geom_line(aes(group = method)) + geom_point()
   generatePlot(p, saveToFile, fileName)
 }
+
+plotAverageAvPointsForClusterInPreiods <- function(av, alg, saveToFile = FALSE){
+  fileName = paste("plots/do_magisterki/averageAvPointsForClusterInPreiods", alg, ".png", sep = "")
+  p = ggplot(av, aes(x = period, y = average_av_points, group = cluster, colour = cluster)) +
+    geom_point() + geom_line()
+  generatePlot(p, saveToFile, fileName)
+}

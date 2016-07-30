@@ -4,6 +4,7 @@ library(cluster)
 library(stats)
 library("Kendall")
 library("forecast")
+library("plyr")
 
 getDataForCluster <- function(data, clusters, clusterNumber){
   cl = clusters[ clusters == clusterNumber]
@@ -1066,4 +1067,26 @@ calculateBelow <- function(splitedData){
   rownames(dt) = 1:13
   colnames(dt) = labels
   return(dt)
+}
+
+
+getAverageAvPointsForClusterInPreiods <-function(newCLusterdeData){
+  tmp = lapply(newCLusterdeData$data, function(tmp) aggregate(tmp$av_points, by = list(tmp$newCluster), mean))
+  tmp2 = ldply(tmp)
+  colnames(tmp2) = c("period", "cluster", "average_av_points")
+  tmp2$period[tmp2$period == "00/01-02/03"] = 1
+  tmp2$period[tmp2$period == "01/02-03/04"] = 2
+  tmp2$period[tmp2$period == "02/03-04/05"] = 3
+  tmp2$period[tmp2$period == "03/04-05/06"] = 4
+  tmp2$period[tmp2$period == "04/05-06/07"] = 5
+  tmp2$period[tmp2$period == "05/06-07/08"] = 6
+  tmp2$period[tmp2$period == "06/07-08/09"] = 7
+  tmp2$period[tmp2$period == "07/08-09/10"] = 8
+  tmp2$period[tmp2$period == "08/09-10/11"] = 9
+  tmp2$period[tmp2$period == "09/10-11/12"] = 10
+  tmp2$period[tmp2$period == "10/11-12/13"] = 11
+  tmp2$period[tmp2$period == "11/12-13/14"] = 12
+  tmp2$period[tmp2$period == "12/13-14/15"] = 13
+  
+  return(tmp2)
 }

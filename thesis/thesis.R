@@ -70,6 +70,12 @@ hcClusterDistribution = calculateClustedDistribution(hcNewClusteredData$data, hc
 plotNewClustDistribution(kmClusterDistribution, "km", TRUE)
 plotNewClustDistribution(hcClusterDistribution, "hc", TRUE)
 
+kmAverageAvPoints = getAverageAvPointsForClusterInPreiods(kmNewClusteredData)
+plotAverageAvPointsForClusterInPreiods(kmAverageAvPoints, "km", saveToFile = TRUE)
+
+hcAverageAvPoints = getAverageAvPointsForClusterInPreiods(hcNewClusteredData)
+plotAverageAvPointsForClusterInPreiods(hcAverageAvPoints, "hc", saveToFile = TRUE)
+
 kmImportance = calculateImportance(kmNewClusteredData$data)
 hcImportance = calculateImportance(hcNewClusteredData$data)
 
