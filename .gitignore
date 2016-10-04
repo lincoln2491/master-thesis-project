@@ -1,8 +1,9 @@
 dataDownload/football-data_apikey.txt
 dataDownload/xmlsoccer.R
 .Rproj.user
-.Rhistory
-.RData
+*.Rhistory
+*.RData
+*.Rproj
 data/
 plots/
 xmlsoccer_data
