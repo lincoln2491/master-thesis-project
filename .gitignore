@@ -1,5 +1,8 @@
 dataDownload/football-data_apikey.txt
 dataDownload/xmlsoccer.R
+classification/results.txt
+core/dataModel.mwb
+core/dataModel.mwb.bak
 .Rproj.user
 *.Rhistory
 *.RData
